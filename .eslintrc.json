@@ -1,0 +1,59 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "useJSXTextNode": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "ignorePatterns": [
+        "./node_modules",
+        "./build",
+        "./public",
+        ".babelrc.js",
+        "postcss.config.js",
+        "webpack.config.js"
+    ],
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "airbnb-base"
+    ],
+    "rules": {
+        "indent": ["error", 4],
+        "no-multiple-empty-lines": ["error", {
+            "max": 2,
+            "maxBOF": 0,
+            "maxEOF": 0
+        }],
+        "no-underscore-dangle": ["error", {
+            "allowAfterThis": true,
+            "allowAfterSuper": true,
+            "allowAfterThisConstructor": true,
+            "allowFunctionParams": true
+        }],
+        "brace-style": ["error", "stroustrup"],
+        "no-use-before-define": "off",
+        "no-param-reassign": "off",
+        "no-unused-vars": "off",
+        "no-shadow": "off",
+        "no-alert": "off",
+        "quote-props": "off",
+        "arrow-body-style": "off",
+        "default-param-last": "off",
+        "import/prefer-default-export": "off",
+        "import/no-unresolved": "off",
+        "import/extensions": "off",
+        "lines-between-class-members": "off",
+        "no-console": "off",
+        "linebreak-style": "off"
+    }
+}

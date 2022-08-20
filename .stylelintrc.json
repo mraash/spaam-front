@@ -1,0 +1,242 @@
+{
+    "ignoreFiles": [
+        "./node_modules/",
+        "./build/",
+        "./public/",
+        ".babelrc.js",
+        "**/*.js",
+        "**/*.html",
+        "**/*.ts",
+        "**/*.tsx"
+    ],
+    "extends": [
+        "stylelint-config-standard-scss"
+    ],
+    "plugins": [
+		"stylelint-order",
+		"stylelint-scss"
+	],
+    "rules": {
+        "indentation": 4,
+        "no-empty-first-line": true,
+        "rule-empty-line-before": "always",
+        "string-quotes": "single",
+        "scss/at-rule-no-unknown": true,
+        
+        "block-no-empty": null,
+        "no-empty-source": null,
+        "declaration-empty-line-before": null,
+        "at-rule-no-unknown": null,
+        "selector-class-pattern": null,
+        "scss/dollar-variable-pattern": null,
+    
+        "order/order": [[
+            "dollar-variables",
+            { "type": "at-rule", "name": "function" },
+            { "type": "at-rule", "name": "mixin" },
+            { "type": "at-rule", "name": "extend" },
+            "custom-properties",
+            "declarations",
+            { "type": "at-rule","name": "media" },
+            "rules"
+        ]],
+        "order/properties-order": [
+            [
+                {
+                    "groupName": "Position",
+                    "noEmptyLineBetween": true,
+                    "emptyLineBefore": "threshold",
+                    "properties": [
+                        "position",
+                        "top",
+                        "left",
+                        "bottom",
+                        "right",
+                        "z-index"
+                    ]
+                },
+                {
+                    "groupName": "Display",
+                    "noEmptyLineBetween": true,
+                    "emptyLineBefore": "threshold",
+                    "properties": [
+                        "display",
+
+                        "order",
+                        "align-items",
+                        "justify-content",
+                        "align-content",
+                        "align-self",
+                        "flex-direction",
+                        "flex",
+                        "flex-grow",
+                        "flex-shrink",
+                        "flex-wrap",
+                        "flex-basis",
+
+                        "grid",
+                        "grid-template-areas",
+                        "grid-template-rows",
+                        "grid-template-columns",
+                        "grid-auto-rows",
+                        "grid-auto-flow",
+                        "grid-auto-columns",
+                        "justify-self",
+                        "justify-items",
+
+                        "float",
+                        "clear"
+                    ]
+                },
+                {
+                    "groupName": "Box model",
+                    "noEmptyLineBetween": true,
+                    "emptyLineBefore": "threshold",
+                    "properties": [
+                        "box-sizing",
+
+                        "margin",
+                        "margin-top",
+                        "margin-right",
+                        "margin-bottom",
+                        "margin-left",
+
+                        "border",
+                        "border-width",
+                        "border-style",
+                        "border-color",
+                        "border-top",
+                        "border-top-width",
+                        "border-top-style",
+                        "border-top-color",
+                        "border-right",
+                        "border-right-width",
+                        "border-right-style",
+                        "border-right-color",
+                        "border-bottom",
+                        "border-bottom-width",
+                        "border-bottom-style",
+                        "border-bottom-color",
+                        "border-left",
+                        "border-left-width",
+                        "border-left-style",
+                        "border-left-color",
+
+                        "padding-top",
+                        "padding-right",
+                        "padding-bottom",
+                        "padding-left",
+
+                        "width",
+                        "min-width",
+                        "max-width",
+                        "height",
+                        "min-height",
+                        "max-height"
+                    ]
+                },
+                {
+                    "groupName": "Box styling",
+                    "noEmptyLineBetween": true,
+                    "emptyLineBefore": "threshold",
+                    "properties": [
+                        "border-radius",
+                        "border-image",
+                        "border-image-outset",
+                        "border-image-repeat",
+                        "border-image-slice",
+                        "border-image-source",
+                        "border-image-width",
+                        "box-shadow",
+                        "background",
+                        "background-color",
+                        "background-image",
+                        "background-position",
+                        "background-repeat",
+                        "background-attachment",
+                        "list-style",
+                        "list-style-type",
+                        "list-style-position",
+                        "list-style-image"
+                    ]
+                },
+                {
+                    "groupName": "Typography",
+                    "noEmptyLineBetween": true,
+                    "emptyLineBefore": "threshold",
+                    "properties": [
+                        "text-align",
+                        "text-decoration",
+                        "text-transform",
+                        "text-shadow",
+                        "line-height",
+                        "letter-spacing",
+                        "color",
+                        "font",
+                        "font-style",
+                        "font-variant",
+                        "font-weight",
+                        "font-size",
+                        "font-family"
+                    ]
+                },
+                {
+                    "groupName": "Sundry",
+                    "noEmptyLineBetween": true,
+                    "emptyLineBefore": "threshold",
+                    "properties": [
+                        "overflow",
+                        "overflow-x",
+                        "overflow-y",
+                        "visibility",
+                        "opacity",
+                        "outline",
+                        "outline-color",
+                        "outline-style",
+                        "outline-width",
+                        "resize",
+                        "cursor"
+                    ]
+                },
+                {
+                    "groupName": "Transform",
+                    "noEmptyLineBetween": true,
+                    "emptyLineBefore": "threshold",
+                    "properties": [
+                        "transform",
+                        "transform-origin",
+                        "transform-style",
+                        "perspective",
+                        "perspective-origin",
+                        "backface-visibility"
+                    ]
+                },
+                {
+                    "groupName": "Animation",
+                    "noEmptyLineBetween": true,
+                    "emptyLineBefore": "threshold",
+                    "properties": [
+                        "transition",
+                        "transition-delay",
+                        "transition-duration",
+                        "transition-property",
+                        "transition-timing-function",
+                        "animation",
+                        "animation-name",
+                        "animation-duraction",
+                        "animation-delay",
+                        "animation-iteration-count",
+                        "animation-direction",
+                        "animation-timing-function",
+                        "animation-fill-mode"
+                    ]
+                }
+            ],
+            {
+                "emptyLineMinimumPropertyThreshold": 3,
+                "unspecified": "bottomAlphabetical",
+                "emptyLineBeforeUnspecified": "always"
+            }
+        ]
+    }
+}

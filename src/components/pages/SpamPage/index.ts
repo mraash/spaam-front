@@ -1,0 +1,1 @@
+export { SpamPage } from './SpamPage';
