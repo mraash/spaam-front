@@ -1,5 +1,7 @@
 import { FC } from 'react';
-import { BaseLayout, BaseMain } from '../../layouts/BaseLayout';
+import css from './SpamPage.module.scss';
+import { BaseLayout, Main } from '../../layouts/BaseLayout';
+import { PanelList } from './panels/PanelList';
 
 type SpamPageProps = {
 }
@@ -7,9 +9,47 @@ type SpamPageProps = {
 export const SpamPage: FC<SpamPageProps> = (props) => {
     return (
         <BaseLayout>
-            <BaseMain>
-                Spam page
-            </BaseMain>
+            <Main>
+                <div className={ css.SpamPage }>
+                    <PanelList panels={ [
+                        {
+                            isActive: false,
+                            senders: [
+                                {
+                                    name: 'Sender A',
+                                    isSelected: false,
+                                },
+                                {
+                                    name: 'Sender B',
+                                    isSelected: false,
+                                },
+                            ],
+                            recipients: [
+                                {
+                                    name: 'Recipient A',
+                                    isSelected: false,
+                                },
+                                {
+                                    name: 'Recipient B',
+                                    isSelected: true,
+                                },
+                            ],
+                            timeoutConfig: [
+                                {
+                                    seconds: 72,
+                                    repeat: 4,
+                                    cycle: 1,
+                                },
+                                {
+                                    seconds: 45,
+                                    repeat: 2,
+                                    cycle: 3,
+                                },
+                            ],
+                        },
+                    ] }/>
+                </div>
+            </Main>
         </BaseLayout>
     );
 };

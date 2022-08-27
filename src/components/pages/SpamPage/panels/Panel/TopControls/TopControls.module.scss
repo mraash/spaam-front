@@ -1,0 +1,25 @@
+.TopControls {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.controlWr {
+
+    &:not(:last-child) {
+        margin-right: 0.6rem;
+    }
+}
+
+.control {
+    width: 2rem;
+    height: 2rem;
+}
+
+.deleteButton {
+    border: 1px solid #e44;
+    border-radius: 0.2rem;
+    color: #e44;
+}
+
+.activateCheckbox {
+}

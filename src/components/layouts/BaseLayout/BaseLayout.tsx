@@ -1,8 +1,8 @@
 import { FC, ReactElement } from 'react';
-import { BaseMain } from './BaseMain';
+import { Main } from './Main';
 
 type BaseProps = {
-    children?: ReactElement<typeof BaseMain>,
+    children?: ReactElement<typeof Main>,
 }
 
 export const BaseLayout: FC<BaseProps> = (props) => {

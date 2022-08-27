@@ -1,0 +1,32 @@
+.PanelTimeouts {
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+}
+
+.addButtonWr {
+}
+
+.addButton {
+    border: 1px solid #7b7;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 0.2rem;
+    color: #7b7;
+}
+
+.timeoutList {
+    margin-top: 0.7rem;
+}
+
+.timeoutWr {
+
+    &:not(:first-child) {
+        margin-top: 0.5rem;
+    }
+}

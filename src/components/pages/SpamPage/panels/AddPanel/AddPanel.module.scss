@@ -1,0 +1,23 @@
+.AddPanel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #222;
+    height: 100%;
+    border-radius: 0.2rem;
+    transition: 0.15s;
+
+    &:hover {
+        background-color: #f7f7f7;
+        cursor: pointer;
+    }
+}
+
+.button {
+    border: 1px dashed #444;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    color: #777;
+    font-size: 3rem;
+}

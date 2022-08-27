@@ -1,0 +1,2 @@
+export { PanelProps } from './Panel';
+export { Panel } from './Panel';
