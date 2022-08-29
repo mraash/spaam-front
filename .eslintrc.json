@@ -28,6 +28,7 @@
         "airbnb-base"
     ],
     "rules": {
+        "max-len": ["error", 100],
         "indent": ["error", 4],
         "no-multiple-empty-lines": ["error", {
             "max": 2,
@@ -47,6 +48,7 @@
         "no-unused-vars": "off",
         "no-shadow": "off",
         "no-alert": "off",
+        "object-curly-newline": "off",
         "quote-props": "off",
         "arrow-body-style": "off",
         "default-param-last": "off",
