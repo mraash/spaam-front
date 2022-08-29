@@ -22,6 +22,7 @@
         "max-empty-lines": 2,
         "rule-empty-line-before": "always",
         "string-quotes": "single",
+        "alpha-value-notation": "number",
         "scss/at-rule-no-unknown": true,
         
         "selector-list-comma-newline-after": null,
