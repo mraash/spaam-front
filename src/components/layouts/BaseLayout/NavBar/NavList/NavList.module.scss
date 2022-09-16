@@ -1,0 +1,9 @@
+.NavList {
+}
+
+.item {
+
+    &:not(:first-child) {
+        margin-top: 1.2rem;
+    }
+}

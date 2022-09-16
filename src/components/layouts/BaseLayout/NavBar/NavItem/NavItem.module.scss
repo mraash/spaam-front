@@ -1,0 +1,15 @@
+.NavItem {
+    border: 1px solid #222;
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 50%;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}

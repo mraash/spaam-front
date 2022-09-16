@@ -7,8 +7,8 @@ export const App: FC = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navigate replace to="/bot" />} />
-                <Route path='/bot' element={ <SpamPage/> }/>
+                <Route path="/" element={<Navigate replace to="/spamer" />} />
+                <Route path='/spamer' element={ <SpamPage/> }/>
                 <Route path='*' element={ <NotFoundPage/> }/>
             </Routes>
         </BrowserRouter>
