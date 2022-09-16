@@ -14,8 +14,8 @@ export const NavBar: FC<NavBarProps> = (props) => {
                     text: 'S',
                 },
                 {
-                    link: '/vk-accounts',
-                    text: 'V',
+                    link: '/my-accounts',
+                    text: 'A',
                 },
                 {
                     link: '/profile',
