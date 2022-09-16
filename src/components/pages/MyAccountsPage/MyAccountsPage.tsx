@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { BaseLayout, Main } from '~/components/layouts/BaseLayout';
+import { BaseLayout, Content } from '~/components/layouts/BaseLayout';
 
 type MyAccountsPageProps = {
 }
@@ -7,9 +7,9 @@ type MyAccountsPageProps = {
 export const MyAccountsPage: FC<MyAccountsPageProps> = (props) => {
     return (
         <BaseLayout>
-            <Main>
+            <Content>
                 My accounts
-            </Main>
+            </Content>
         </BaseLayout>
     );
 };

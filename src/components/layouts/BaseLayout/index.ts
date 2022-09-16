@@ -1,2 +1,2 @@
 export { BaseLayout } from './BaseLayout';
-export { Main } from './Main';
+export { Content } from './Content';

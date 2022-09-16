@@ -1,10 +1,10 @@
 import { FC, ReactElement } from 'react';
 import css from './BaseLayout.module.scss';
-import { Main } from './Main';
+import { Content } from './Content';
 import { NavBar } from './NavBar';
 
 type BaseProps = {
-    children?: ReactElement<typeof Main>,
+    children?: ReactElement<typeof Content>,
 }
 
 export const BaseLayout: FC<BaseProps> = (props) => {
@@ -13,7 +13,7 @@ export const BaseLayout: FC<BaseProps> = (props) => {
             <div className={ css.navbarWr }>
                 <NavBar/>
             </div>
-            <div className={ css.mainWr }>
+            <div className={ css.contentWr }>
                 { props.children }
             </div>
         </div>

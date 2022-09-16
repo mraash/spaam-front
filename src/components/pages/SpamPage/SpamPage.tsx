@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import css from './SpamPage.module.scss';
-import { BaseLayout, Main } from '../../layouts/BaseLayout';
+import { BaseLayout, Content } from '../../layouts/BaseLayout';
 import { PanelList } from './panels/PanelList';
 
 type SpamPageProps = {
@@ -9,7 +9,7 @@ type SpamPageProps = {
 export const SpamPage: FC<SpamPageProps> = (props) => {
     return (
         <BaseLayout>
-            <Main>
+            <Content>
                 <div className={ css.SpamPage }>
                     <PanelList panels={ [
                         {
@@ -49,7 +49,7 @@ export const SpamPage: FC<SpamPageProps> = (props) => {
                         },
                     ] }/>
                 </div>
-            </Main>
+            </Content>
         </BaseLayout>
     );
 };
