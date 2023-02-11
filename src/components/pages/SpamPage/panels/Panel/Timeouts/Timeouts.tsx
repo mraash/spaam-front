@@ -1,13 +1,9 @@
 import { FC } from 'react';
 import css from './Timeouts.module.scss';
-import { Timeout } from './Timeout';
+import { Timeout, TimeoutProps } from './Timeout';
 
 type TimeoutsProps = {
-    config: Array<{
-        seconds: number,
-        repeat: number,
-        cycle: number,
-    }>,
+    config: Array<TimeoutProps>,
 }
 
 export const Timeouts: FC<TimeoutsProps> = (props) => {

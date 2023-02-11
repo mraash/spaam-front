@@ -2,7 +2,7 @@ import { FC } from 'react';
 import css from './Panel.module.scss';
 import { TopControls } from './TopControls';
 import { Communicators } from './Communicators';
-import { Timeouts } from './Timeouts';
+import { Timeouts, TimeoutProps } from './Timeouts';
 
 export type PanelProps = {
     isActive: boolean,
@@ -14,12 +14,8 @@ export type PanelProps = {
         isSelected: boolean,
         name: string,
     }>,
-    timeoutConfig: Array<{
-        seconds: number,
-        repeat: number,
-        cycle: number,
-    }>
-}
+    timeoutConfig: TimeoutProps[],
+};
 
 export const Panel: FC<PanelProps> = (props) => {
     return (

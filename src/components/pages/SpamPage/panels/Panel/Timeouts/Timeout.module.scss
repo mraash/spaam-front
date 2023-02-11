@@ -13,10 +13,18 @@
     border: 1px solid #222;
     height: 2.5rem;
     border-radius: 0.2rem;
-}
 
-.numberInput {
-    width: calc(32%);
+    &:not(:last-child) {
+        margin-right: 0.8rem;
+    }
+
+    &_timer {
+        width: calc(70%);
+    }
+
+    &_repeat {
+        width: calc(30%);
+    }
 }
 
 .controls {
@@ -31,4 +39,3 @@
     border-radius: 0.2rem;
     color: #d55;
 }
-

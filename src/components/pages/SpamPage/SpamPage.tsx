@@ -38,12 +38,10 @@ export const SpamPage: FC<SpamPageProps> = (props) => {
                                 {
                                     seconds: 72,
                                     repeat: 4,
-                                    cycle: 1,
                                 },
                                 {
                                     seconds: 45,
                                     repeat: 2,
-                                    cycle: 3,
                                 },
                             ],
                         },
