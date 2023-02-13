@@ -13,7 +13,7 @@ export const NavList: FC<NavListProps> = (props) => {
         <div className={ css.NavList }>
             { props.items.map((item) => {
                 return (
-                    <div className={ css.item }>
+                    <div key={ item.link } className={ css.item }>
                         <NavItem { ...item }/>
                     </div>
                 );

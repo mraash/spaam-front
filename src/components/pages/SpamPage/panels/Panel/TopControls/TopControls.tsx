@@ -11,6 +11,10 @@ type TopControlsProps = {
 export const TopControls: FC<TopControlsProps> = (props) => {
     const dispatch = useAppDispatch();
 
+    const onActivateButton = () => {
+        console.log('activate/deactivate');
+    };
+
     const onDeleteButton = () => {
         dispatch(panelsActions.remove(props.id));
     };
@@ -22,6 +26,7 @@ export const TopControls: FC<TopControlsProps> = (props) => {
                     className={ `${css.control} ${css.activateCheckbox}` }
                     type="checkbox"
                     checked={ props.isPanelActive }
+                    onChange={ onActivateButton }
                 />
             </div>
             <div className={ css.controlWr }>
