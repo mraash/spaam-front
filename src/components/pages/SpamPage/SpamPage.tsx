@@ -11,41 +11,43 @@ export const SpamPage: FC<SpamPageProps> = (props) => {
         <BaseLayout>
             <Content>
                 <div className={ css.SpamPage }>
-                    <PanelList panels={ [
-                        {
-                            isActive: false,
-                            senders: [
-                                {
-                                    name: 'Sender A',
-                                    isSelected: false,
-                                },
-                                {
-                                    name: 'Sender B',
-                                    isSelected: false,
-                                },
-                            ],
-                            recipients: [
-                                {
-                                    name: 'Recipient A',
-                                    isSelected: false,
-                                },
-                                {
-                                    name: 'Recipient B',
-                                    isSelected: true,
-                                },
-                            ],
-                            timeoutConfig: [
-                                {
-                                    seconds: 72,
-                                    repeat: 4,
-                                },
-                                {
-                                    seconds: 45,
-                                    repeat: 2,
-                                },
-                            ],
-                        },
-                    ] }/>
+                    <PanelList
+                        // panels={[
+                        //     {
+                        //         isActive: false,
+                        //         senders: [
+                        //             {
+                        //                 name: 'Sender A',
+                        //                 isSelected: false,
+                        //             },
+                        //             {
+                        //                 name: 'Sender B',
+                        //                 isSelected: false,
+                        //             },
+                        //         ],
+                        //         recipients: [
+                        //             {
+                        //                 name: 'Recipient A',
+                        //                 isSelected: false,
+                        //             },
+                        //             {
+                        //                 name: 'Recipient B',
+                        //                 isSelected: true,
+                        //             },
+                        //         ],
+                        //         timeoutConfig: [
+                        //             {
+                        //                 seconds: 72,
+                        //                 repeat: 4,
+                        //             },
+                        //             {
+                        //                 seconds: 45,
+                        //                 repeat: 2,
+                        //             },
+                        //         ],
+                        //     },
+                        // ]}
+                    />
                 </div>
             </Content>
         </BaseLayout>

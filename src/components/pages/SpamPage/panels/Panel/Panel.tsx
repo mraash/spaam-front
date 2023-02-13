@@ -5,6 +5,7 @@ import { Communicators } from './Communicators';
 import { Timeouts, TimeoutProps } from './Timeouts';
 
 export type PanelProps = {
+    id: number,
     isActive: boolean,
     senders: Array<{
         isSelected: boolean,
@@ -21,7 +22,7 @@ export const Panel: FC<PanelProps> = (props) => {
     return (
         <div className={ css.Panel }>
             <div className={ css.topControlsWr }>
-                <TopControls isPanelActive={ props.isActive }/>
+                <TopControls id={ props.id } isPanelActive={ props.isActive }/>
             </div>
             <div className={ css.communicatorsWr }>
                 <Communicators senders={ props.senders } recipients={ props.recipients } />

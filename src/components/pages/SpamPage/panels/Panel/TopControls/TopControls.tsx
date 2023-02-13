@@ -1,11 +1,20 @@
 import { FC } from 'react';
+import { panelsActions } from '~/gstate/slices/panelsSlice';
+import { useAppDispatch } from '~/hooks/redux';
 import css from './TopControls.module.scss';
 
 type TopControlsProps = {
+    id: number,
     isPanelActive: boolean
 }
 
 export const TopControls: FC<TopControlsProps> = (props) => {
+    const dispatch = useAppDispatch();
+
+    const onDeleteButton = () => {
+        dispatch(panelsActions.remove(props.id));
+    };
+
     return (
         <div className={ css.TopControls }>
             <div className={ css.controlWr }>
@@ -16,7 +25,12 @@ export const TopControls: FC<TopControlsProps> = (props) => {
                 />
             </div>
             <div className={ css.controlWr }>
-                <button className={ `${css.control} ${css.deleteButton}` }>-</button>
+                <button
+                    className={ `${css.control} ${css.deleteButton}` }
+                    onClick={ onDeleteButton }
+                >
+                    -
+                </button>
             </div>
         </div>
     );
