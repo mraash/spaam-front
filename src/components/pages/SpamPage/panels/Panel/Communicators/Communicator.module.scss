@@ -1,18 +1,16 @@
 .Communicator {
 }
 
-.title, .select {
+.title {
 }
 
-.selectWr {
+.inputWr {
 }
 
-.select {
+.input {
     display: block;
     border: 1px solid #222;
     padding: 0.6rem;
     width: 100%;
     border-radius: 0.3rem;
-
-    appearance: none;
 }

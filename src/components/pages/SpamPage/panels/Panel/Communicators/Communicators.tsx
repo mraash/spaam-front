@@ -1,26 +1,24 @@
 import { FC } from 'react';
 import css from './Communicators.module.scss';
-import { Communicator } from './Communicator';
+import { CommunicatorSelect } from './CommunicatorSelect';
+import { CommunicatorInput } from './CommunicatorInput';
 
 type CommunicatorsProps = {
     senders: Array<{
         isSelected: boolean,
         name: string,
     }>,
-    recipients: Array<{
-        isSelected: boolean,
-        name: string,
-    }>,
+    recipient: string,
 }
 
 export const Communicators: FC<CommunicatorsProps> = (props) => {
     return (
         <ul className={ css.Communicators }>
             <li className={ css.inputWr }>
-                <Communicator title='From' options={ props.senders }/>
+                <CommunicatorSelect title='From' options={ props.senders }/>
             </li>
             <li className={ css.inputWr }>
-                <Communicator title='To' options={ props.recipients }/>
+                <CommunicatorInput title='To' value={ props.recipient }/>
             </li>
         </ul>
     );

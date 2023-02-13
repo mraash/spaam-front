@@ -11,10 +11,7 @@ export type PanelProps = {
         isSelected: boolean,
         name: string,
     }>,
-    recipients: Array<{
-        isSelected: boolean,
-        name: string,
-    }>,
+    recipient: string,
     timeoutConfig: TimeoutProps[],
 };
 
@@ -25,7 +22,7 @@ export const Panel: FC<PanelProps> = (props) => {
                 <TopControls id={ props.id } isPanelActive={ props.isActive }/>
             </div>
             <div className={ css.communicatorsWr }>
-                <Communicators senders={ props.senders } recipients={ props.recipients } />
+                <Communicators senders={ props.senders } recipient={ props.recipient } />
             </div>
             <div className={ css.timeoutsWr }>
                 <Timeouts config={ props.timeoutConfig }/>

@@ -14,22 +14,21 @@ export const PanelList: FC<PanelListProps> = (props) => {
         <ul className={ css.PanelList }>
             { panels.map((panelEntity) => {
                 return (
-                    <li key={ Math.random() } className={ css.panelWr }>
+                    <li key={ panelEntity.id } className={ css.panelWr }>
                         <Panel
                             id={ panelEntity.id }
                             isActive={ false }
                             senders={[
                                 {
-                                    isSelected: false,
+                                    isSelected: true,
                                     name: panelEntity.sender,
                                 },
-                            ]}
-                            recipients={[
                                 {
                                     isSelected: false,
-                                    name: panelEntity.recipient,
+                                    name: 'xxx',
                                 },
                             ]}
+                            recipient={ panelEntity.recipient }
                             timeoutConfig={ panelEntity.timers }
                         />
                     </li>
