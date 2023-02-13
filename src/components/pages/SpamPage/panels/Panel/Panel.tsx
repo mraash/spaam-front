@@ -3,6 +3,7 @@ import css from './Panel.module.scss';
 import { TopControls } from './TopControls';
 import { Communicators } from './Communicators';
 import { Timeouts, TimeoutProps } from './Timeouts';
+import { Texts } from './Texts';
 
 export type PanelProps = {
     id: number,
@@ -12,6 +13,7 @@ export type PanelProps = {
         name: string,
     }>,
     recipient: string,
+    texts: string[],
     timeoutConfig: TimeoutProps[],
 };
 
@@ -23,6 +25,9 @@ export const Panel: FC<PanelProps> = (props) => {
             </div>
             <div className={ css.communicatorsWr }>
                 <Communicators senders={ props.senders } recipient={ props.recipient } />
+            </div>
+            <div className={ css.textsWr }>
+                <Texts texts={ props.texts }/>
             </div>
             <div className={ css.timeoutsWr }>
                 <Timeouts config={ props.timeoutConfig }/>

@@ -9,7 +9,11 @@ const initialState: PanelsState = {
     panels: [
         {
             id: 1,
-            sender: 'Sender 1',
+            sender: {
+                id: 1,
+                vid: 124123,
+                name: 'Sender 1',
+            },
             recipient: 'Recipient 1',
             texts: [
                 'text 1',

@@ -21,7 +21,7 @@ export const PanelList: FC<PanelListProps> = (props) => {
                             senders={[
                                 {
                                     isSelected: true,
-                                    name: panelEntity.sender,
+                                    name: panelEntity.sender.name,
                                 },
                                 {
                                     isSelected: false,
@@ -29,6 +29,7 @@ export const PanelList: FC<PanelListProps> = (props) => {
                                 },
                             ]}
                             recipient={ panelEntity.recipient }
+                            texts={ panelEntity.texts }
                             timeoutConfig={ panelEntity.timers }
                         />
                     </li>

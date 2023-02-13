@@ -12,7 +12,11 @@ export const AddPanel: FC<AddPanelProps> = (props) => {
     const onClick = () => {
         dispatch(panelsActions.add({
             id: Date.now(),
-            sender: '',
+            sender: {
+                id: Math.random(),
+                vid: Math.random(),
+                name: '',
+            },
             recipient: '',
             texts: [],
             timers: [],

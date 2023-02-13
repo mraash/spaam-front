@@ -1,6 +1,8 @@
+import { VkAccount } from './VkAccount';
+
 export type PanelEntity = {
     id: number,
-    sender: string,
+    sender: VkAccount,
     recipient: string,
     texts: string[],
     timers: Timer[],
