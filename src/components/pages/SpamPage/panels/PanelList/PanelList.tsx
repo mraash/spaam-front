@@ -1,8 +1,8 @@
 import { FC } from 'react';
+import { useAppSelector } from '~/hooks/redux';
 import css from './PanelList.module.scss';
 import { Panel } from '../Panel';
 import { AddPanel } from '../AddPanel';
-import { useAppSelector } from '~/hooks/redux';
 
 type PanelListProps = {
 }

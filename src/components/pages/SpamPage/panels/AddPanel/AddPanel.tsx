@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { panelsActions } from '~/gstate/slices/panelsSlice';
 import { useAppDispatch } from '~/hooks/redux';
+import { panelsActions } from '~/gstate/slices/panels-slice';
 import css from './AddPanel.module.scss';
 
 type AddPanelProps = {

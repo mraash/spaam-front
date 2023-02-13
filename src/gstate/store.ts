@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { panelsReducer } from './slices/panelsSlice';
+import { panelsReducer } from './slices/panels-slice';
 
 export const store = configureStore({
     reducer: {
