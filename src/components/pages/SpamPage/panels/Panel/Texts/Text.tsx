@@ -1,13 +1,26 @@
 import { FC } from 'react';
+import { panelsActions } from '~/gstate/slices/panels-slice';
+import { useAppDispatch } from '~/hooks/redux';
 import css from './Text.module.scss';
 
 type TextProps = {
+    id: number,
+    index: number,
     text: string,
 }
 
 export const Text: FC<TextProps> = (props) => {
+    const dispatch = useAppDispatch();
+
     const onTextInput = () => {
-        console.log('test tap');
+        console.log('text tap');
+    };
+
+    const onDeleteTextButton = () => {
+        dispatch(panelsActions.removeText({
+            id: props.id,
+            textIndex: props.index,
+        }));
     };
 
     return (
@@ -20,7 +33,10 @@ export const Text: FC<TextProps> = (props) => {
                 />
             </div>
             <div className={ css.controls }>
-                <button className={ css.deleteButton }>-</button>
+                <button
+                    className={ css.deleteButton }
+                    onClick={ onDeleteTextButton }
+                >-</button>
             </div>
         </div>
     );

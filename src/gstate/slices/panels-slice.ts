@@ -36,9 +36,43 @@ const panelsSlice = createSlice({
         add(state, { payload }: PayloadAction<PanelEntity>) {
             state.panels.push(payload);
         },
+
         remove(state, { payload }: PayloadAction<number>) {
-            const panel = state.panels.findIndex((panel) => panel.id === payload);
-            state.panels.splice(panel, 1);
+            const panelIndex = state.panels.findIndex((panel) => panel.id === payload);
+            state.panels.splice(panelIndex, 1);
+        },
+
+        addEmptyText(state, { payload }: PayloadAction<number>) {
+            state.panels
+                .find((panel) => panel.id === payload)
+                ?.texts.push('');
+        },
+
+        removeText(state, { payload }: PayloadAction<{
+            id: number,
+            textIndex: number,
+        }>) {
+            state.panels
+                .find((panel) => panel.id === payload.id)
+                ?.texts.splice(payload.textIndex, 1);
+        },
+
+        addEmptyTimer(state, { payload }: PayloadAction<number>) {
+            state.panels
+                .find((panel) => panel.id === payload)
+                ?.timers.push({
+                    seconds: 0,
+                    repeat: 0,
+                });
+        },
+
+        removeTimer(state, { payload }: PayloadAction<{
+            id: number,
+            timerIndex: number,
+        }>) {
+            state.panels
+                .find((panel) => panel.id === payload.id)
+                ?.timers.splice(payload.timerIndex, 1);
         },
     },
 });

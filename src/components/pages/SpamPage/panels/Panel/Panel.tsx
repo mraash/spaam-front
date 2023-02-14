@@ -14,7 +14,10 @@ export type PanelProps = {
     }>,
     recipient: string,
     texts: string[],
-    timeoutConfig: TimeoutProps[],
+    timeoutConfig: Array<{
+        seconds: number,
+        repeat: number,
+    }>,
 };
 
 export const Panel: FC<PanelProps> = (props) => {
@@ -27,10 +30,10 @@ export const Panel: FC<PanelProps> = (props) => {
                 <Communicators senders={ props.senders } recipient={ props.recipient } />
             </div>
             <div className={ css.textsWr }>
-                <Texts texts={ props.texts }/>
+                <Texts id={ props.id } texts={ props.texts }/>
             </div>
             <div className={ css.timeoutsWr }>
-                <Timeouts config={ props.timeoutConfig }/>
+                <Timeouts id={ props.id } config={ props.timeoutConfig }/>
             </div>
         </div>
     );

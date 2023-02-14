@@ -5,10 +5,8 @@ export type PanelEntity = {
     sender: VkAccount,
     recipient: string,
     texts: string[],
-    timers: Timer[],
-};
-
-type Timer = {
-    seconds: number,
-    repeat: number,
+    timers: Array<{
+        seconds: number,
+        repeat: number,
+    }>,
 };
