@@ -2,7 +2,7 @@ import { FC } from 'react';
 import css from './Panel.module.scss';
 import { TopControls } from './TopControls';
 import { Communicators } from './Communicators';
-import { Timeouts, TimeoutProps } from './Timeouts';
+import { Timers } from './Timers';
 import { Texts } from './Texts';
 
 export type PanelProps = {
@@ -14,7 +14,7 @@ export type PanelProps = {
     }>,
     recipient: string,
     texts: string[],
-    timeoutConfig: Array<{
+    timerConfig: Array<{
         seconds: number,
         repeat: number,
     }>,
@@ -32,8 +32,8 @@ export const Panel: FC<PanelProps> = (props) => {
             <div className={ css.textsWr }>
                 <Texts id={ props.id } texts={ props.texts }/>
             </div>
-            <div className={ css.timeoutsWr }>
-                <Timeouts id={ props.id } config={ props.timeoutConfig }/>
+            <div className={ css.timersWr }>
+                <Timers id={ props.id } config={ props.timerConfig }/>
             </div>
         </div>
     );

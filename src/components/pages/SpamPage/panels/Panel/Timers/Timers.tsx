@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import css from './Timeouts.module.scss';
-import { Timeout, TimeoutProps } from './Timeout';
+import css from './Timers.module.scss';
+import { Timer, TimerProps } from './Timer';
 import { useAppDispatch } from '~/hooks/redux';
 import { panelsActions } from '~/gstate/slices/panels-slice';
 
-type TimeoutsProps = {
+type TimersProps = {
     id: number,
     config: Array<{
         seconds: number,
@@ -12,36 +12,36 @@ type TimeoutsProps = {
     }>,
 }
 
-export const Timeouts: FC<TimeoutsProps> = (props) => {
+export const Timers: FC<TimersProps> = (props) => {
     const dispatch = useAppDispatch();
 
-    const onAddTimeoutButton = () => {
+    const onAddTimerButton = () => {
         dispatch(panelsActions.addEmptyTimer(props.id));
     };
 
     return (
-        <div className={ css.PanelTimeouts }>
+        <div className={ css.PanelTimers }>
 
             <div className={ css.header }>
                 <h4 className={ css.title }>
-                    Timeout config
+                    Timer config
                 </h4>
                 <div className={ css.addButtonWr }>
                     <button
                         className={ css.addButton }
-                        onClick={ onAddTimeoutButton }
+                        onClick={ onAddTimerButton }
                     >+</button>
                 </div>
             </div>
 
-            <ul className={ css.timeoutList }>
-                { props.config.map((timeout, index) => {
+            <ul className={ css.timerList }>
+                { props.config.map((timer, index) => {
                     return (
-                        <li key={ Math.random() } className={ css.timeoutWr }>
-                            <Timeout
+                        <li key={ Math.random() } className={ css.timerWr }>
+                            <Timer
                                 id={ props.id }
                                 timerIndex={ index }
-                                { ...timeout }
+                                { ...timer }
                             />
                         </li>
                     );

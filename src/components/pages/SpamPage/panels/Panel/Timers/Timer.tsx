@@ -1,16 +1,16 @@
 import { FC } from 'react';
 import { panelsActions } from '~/gstate/slices/panels-slice';
 import { useAppDispatch } from '~/hooks/redux';
-import css from './Timeout.module.scss';
+import css from './Timer.module.scss';
 
-export type TimeoutProps = {
+export type TimerProps = {
     id: number,
     timerIndex: number,
     seconds: number,
     repeat: number,
 }
 
-export const Timeout: FC<TimeoutProps> = (props) => {
+export const Timer: FC<TimerProps> = (props) => {
     const dispatch = useAppDispatch();
 
     const onTimerInput = () => {
@@ -21,7 +21,7 @@ export const Timeout: FC<TimeoutProps> = (props) => {
         console.log('on repeat tap');
     };
 
-    const onDeleteTimeoutButton = () => {
+    const onDeleteTimerButton = () => {
         dispatch(panelsActions.removeTimer({
             id: props.id,
             timerIndex: props.timerIndex,
@@ -29,7 +29,7 @@ export const Timeout: FC<TimeoutProps> = (props) => {
     };
 
     return (
-        <div className={ css.PanelTimeout }>
+        <div className={ css.PanelTimer }>
             <div className={ css.inputs }>
                 <input
                     className={ `${css.input} ${css.input_timer}` }
@@ -47,7 +47,7 @@ export const Timeout: FC<TimeoutProps> = (props) => {
             <div className={ css.controls }>
                 <button
                     className={ css.deleteButton }
-                    onClick={ onDeleteTimeoutButton }
+                    onClick={ onDeleteTimerButton }
                 >-</button>
             </div>
         </div>

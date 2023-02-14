@@ -30,7 +30,7 @@ export const PanelList: FC<PanelListProps> = (props) => {
                             ]}
                             recipient={ panelEntity.recipient }
                             texts={ panelEntity.texts }
-                            timeoutConfig={ panelEntity.timers }
+                            timerConfig={ panelEntity.timers }
                         />
                     </li>
                 );

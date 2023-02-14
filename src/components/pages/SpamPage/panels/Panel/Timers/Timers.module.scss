@@ -1,4 +1,4 @@
-.PanelTimeouts {
+.PanelTimers {
 }
 
 .header {
@@ -20,11 +20,11 @@
     color: #7b7;
 }
 
-.timeoutList {
+.timerList {
     margin-top: 0.7rem;
 }
 
-.timeoutWr {
+.timerWr {
 
     &:not(:first-child) {
         margin-top: 0.5rem;
