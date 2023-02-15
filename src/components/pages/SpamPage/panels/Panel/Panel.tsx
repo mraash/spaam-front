@@ -15,8 +15,8 @@ export type PanelProps = {
     recipient: string,
     texts: string[],
     timerConfig: Array<{
-        seconds: number,
-        repeat: number,
+        seconds: number|null,
+        repeat: number|null,
     }>,
 };
 

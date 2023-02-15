@@ -27,9 +27,9 @@ export const CommunicatorSelect: FC<CommunicatorSelectProps> = (props) => {
                     value={ selectedValue }
                     onChange={ onSelect }
                 >
-                    { props.options.map((option) => {
+                    { props.options.map((option, index) => {
                         return (
-                            <option key={ Math.random() } value={ option.name }>
+                            <option key={ index } value={ option.name }>
                                 { option.name }
                             </option>
                         );

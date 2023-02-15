@@ -6,7 +6,7 @@ export type PanelEntity = {
     recipient: string,
     texts: string[],
     timers: Array<{
-        seconds: number,
-        repeat: number,
+        seconds: number|null,
+        repeat: number|null,
     }>,
 };

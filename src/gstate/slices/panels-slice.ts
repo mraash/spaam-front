@@ -44,8 +44,18 @@ const panelsSlice = createSlice({
 
         addEmptyText(state, { payload }: PayloadAction<number>) {
             state.panels
-                .find((panel) => panel.id === payload)
-                ?.texts.push('');
+                .find((panel) => panel.id === payload)!
+                .texts.push('');
+        },
+
+        setText(state, { payload }: PayloadAction<{
+            id: number,
+            textIndex: number,
+            value: string,
+        }>) {
+            state.panels
+                .find((panel) => panel.id === payload.id)!
+                .texts[payload.textIndex] = payload.value;
         },
 
         removeText(state, { payload }: PayloadAction<{
@@ -53,17 +63,39 @@ const panelsSlice = createSlice({
             textIndex: number,
         }>) {
             state.panels
-                .find((panel) => panel.id === payload.id)
-                ?.texts.splice(payload.textIndex, 1);
+                .find((panel) => panel.id === payload.id)!
+                .texts.splice(payload.textIndex, 1);
         },
 
         addEmptyTimer(state, { payload }: PayloadAction<number>) {
             state.panels
-                .find((panel) => panel.id === payload)
-                ?.timers.push({
+                .find((panel) => panel.id === payload)!
+                .timers.push({
                     seconds: 0,
                     repeat: 0,
                 });
+        },
+
+        setTimerSeconds(state, { payload }: PayloadAction<{
+            id: number,
+            timerIndex: number,
+            seconds: number|null,
+        }>) {
+            state.panels
+                .find((panel) => panel.id === payload.id)!
+                .timers[payload.timerIndex]
+                .seconds = payload.seconds;
+        },
+
+        setTimerRepeat(state, { payload }: PayloadAction<{
+            id: number,
+            timerIndex: number,
+            repeat: number|null,
+        }>) {
+            state.panels
+                .find((panel) => panel.id === payload.id)!
+                .timers[payload.timerIndex]
+                .repeat = payload.repeat;
         },
 
         removeTimer(state, { payload }: PayloadAction<{
@@ -71,8 +103,8 @@ const panelsSlice = createSlice({
             timerIndex: number,
         }>) {
             state.panels
-                .find((panel) => panel.id === payload.id)
-                ?.timers.splice(payload.timerIndex, 1);
+                .find((panel) => panel.id === payload.id)!
+                .timers.splice(payload.timerIndex, 1);
         },
     },
 });

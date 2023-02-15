@@ -7,8 +7,8 @@ import { panelsActions } from '~/gstate/slices/panels-slice';
 type TimersProps = {
     id: number,
     config: Array<{
-        seconds: number,
-        repeat: number,
+        seconds: number|null,
+        repeat: number|null,
     }>,
 }
 
@@ -37,7 +37,7 @@ export const Timers: FC<TimersProps> = (props) => {
             <ul className={ css.timerList }>
                 { props.config.map((timer, index) => {
                     return (
-                        <li key={ Math.random() } className={ css.timerWr }>
+                        <li key={ index } className={ css.timerWr }>
                             <Timer
                                 id={ props.id }
                                 timerIndex={ index }

@@ -31,7 +31,7 @@ export const Texts: FC<TextsProps> = (props) => {
             </div>
             { props.texts.map((text, index) => {
                 return (
-                    <div className={ css.textareaWr } key={ Math.random() }>
+                    <div className={ css.textareaWr } key={ index }>
                         <Text id={ props.id } index={ index } text={ text }/>
                     </div>
                 );

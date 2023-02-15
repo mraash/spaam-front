@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ChangeEvent } from 'react';
 import { panelsActions } from '~/gstate/slices/panels-slice';
 import { useAppDispatch } from '~/hooks/redux';
 import css from './Text.module.scss';
@@ -12,8 +12,12 @@ type TextProps = {
 export const Text: FC<TextProps> = (props) => {
     const dispatch = useAppDispatch();
 
-    const onTextInput = () => {
-        console.log('text tap');
+    const onTextInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        dispatch(panelsActions.setText({
+            id: props.id,
+            textIndex: props.index,
+            value: event.target.value,
+        }));
     };
 
     const onDeleteTextButton = () => {
