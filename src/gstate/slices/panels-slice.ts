@@ -12,6 +12,7 @@ const initialState: PanelsState = {
             sender: {
                 id: 1,
                 vid: 124123,
+                slug: 'abc',
                 name: 'Sender 1',
             },
             recipient: 'Recipient 1',
@@ -38,8 +39,8 @@ const panelsSlice = createSlice({
         },
 
         remove(state, { payload }: PayloadAction<number>) {
-            const panelIndex = state.panels.findIndex((panel) => panel.id === payload);
-            state.panels.splice(panelIndex, 1);
+            const index = state.panels.findIndex((panel) => panel.id === payload);
+            state.panels.splice(index, 1);
         },
 
         addEmptyText(state, { payload }: PayloadAction<number>) {
