@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import css from './SpamPage.module.scss';
 import { BaseLayout, Content } from '../../layouts/BaseLayout';
-import { PanelList } from './panels/PanelList';
+import { PanelList } from './PanelList';
 
 type SpamPageProps = {
 }

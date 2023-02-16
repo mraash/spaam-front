@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PanelApi } from '~/types/api-entity/PanelApi';
+import { PanelApi } from '~/types/api-entities/PanelApi';
 
 type PanelsState = {
     list: PanelApi[],
