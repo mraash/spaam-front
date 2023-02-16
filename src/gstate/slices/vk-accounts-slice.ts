@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { VkAccountEntity } from '~/types/api-entity/VkAccountEntity';
+import { VkAccountApi } from '~/types/api-entity/VkAccountApi';
 
 type VkAccountsState = {
-    list: VkAccountEntity[],
+    list: VkAccountApi[],
 };
 
 const initialState: VkAccountsState = {

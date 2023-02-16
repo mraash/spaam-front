@@ -1,4 +1,4 @@
-export type VkAccountEntity = {
+export type VkAccountApi = {
     id: number,
     vid: number,
     slug: string,

@@ -1,8 +1,8 @@
-import { VkAccountEntity } from './VkAccountEntity';
+import { VkAccountApi } from './VkAccountApi';
 
-export type PanelEntity = {
+export type PanelApi = {
     id: number,
-    sender: VkAccountEntity,
+    sender: VkAccountApi,
     recipient: string,
     texts: string[],
     timers: Array<{
