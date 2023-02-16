@@ -8,7 +8,7 @@ type PanelListProps = {
 }
 
 export const PanelList: FC<PanelListProps> = (props) => {
-    const panels = useAppSelector((state) => state.panels.panels);
+    const panels = useAppSelector((state) => state.panels.list);
 
     return (
         <ul className={ css.PanelList }>
