@@ -1,2 +1,2 @@
-export { PanelProps } from './Panel';
+export type { PanelProps } from './Panel';
 export { Panel } from './Panel';
