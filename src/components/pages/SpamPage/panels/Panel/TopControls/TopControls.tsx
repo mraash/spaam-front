@@ -1,7 +1,7 @@
 import { FC } from 'react';
+import css from './TopControls.module.scss';
 import { useAppDispatch } from '~/hooks/redux';
 import { panelsActions } from '~/gstate/slices/panels-slice';
-import css from './TopControls.module.scss';
 
 type TopControlsProps = {
     id: number,
@@ -21,22 +21,24 @@ export const TopControls: FC<TopControlsProps> = (props) => {
 
     return (
         <div className={ css.TopControls }>
-            <div className={ css.controlWr }>
-                <input
-                    className={ `${css.control} ${css.activateCheckbox}` }
-                    type="checkbox"
-                    checked={ props.isPanelActive }
-                    onChange={ onActivateButton }
-                />
-            </div>
-            <div className={ css.controlWr }>
-                <button
-                    className={ `${css.control} ${css.deleteButton}` }
-                    onClick={ onDeleteButton }
-                >
-                    -
-                </button>
-            </div>
+            <ul className={ css.controlList }>
+                <li className={ css.controlWr }>
+                    <input
+                        className={ `${css.control} ${css.activateCheckbox}` }
+                        type="checkbox"
+                        checked={ props.isPanelActive }
+                        onChange={ onActivateButton }
+                    />
+                </li>
+                <li className={ css.controlWr }>
+                    <button
+                        className={ `${css.control} ${css.deleteButton}` }
+                        onClick={ onDeleteButton }
+                    >
+                        -
+                    </button>
+                </li>
+            </ul>
         </div>
     );
 };

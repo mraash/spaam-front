@@ -29,13 +29,15 @@ export const Texts: FC<TextsProps> = (props) => {
                     >+</button>
                 </div>
             </div>
-            { props.texts.map((text, index) => {
-                return (
-                    <div className={ css.textareaWr } key={ index }>
-                        <Text id={ props.id } index={ index } text={ text }/>
-                    </div>
-                );
-            }) }
+            <ul className={ css.textList }>
+                { props.texts.map((text, index) => {
+                    return (
+                        <div className={ css.textWr } key={ index }>
+                            <Text id={ props.id } index={ index } text={ text }/>
+                        </div>
+                    );
+                }) }
+            </ul>
         </div>
     );
 };
