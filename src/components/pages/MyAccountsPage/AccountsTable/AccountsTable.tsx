@@ -17,7 +17,7 @@ export const AccountsTable: FC<AccountsTableProps> = (props) => {
                         return <AccountRow
                             key={ vkAccount.id }
                             id={ vkAccount.id }
-                            vkSlug={ vkAccount.slug }
+                            vkSlug={ vkAccount.vk.slug }
                             name={ vkAccount.name }
                         />;
                     }) }

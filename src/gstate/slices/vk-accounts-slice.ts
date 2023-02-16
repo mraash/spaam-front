@@ -9,14 +9,18 @@ const initialState: VkAccountsState = {
     list: [
         {
             id: Math.random(),
-            vid: Math.random(),
-            slug: 'hihihi9',
+            vk: {
+                id: Math.random(),
+                slug: 'hihihi9',
+            },
             name: 'Hello',
         },
         {
             id: Math.random(),
-            vid: Math.random(),
-            slug: 'my-name',
+            vk: {
+                id: Math.random(),
+                slug: 'my-name',
+            },
             name: 'My name',
         },
     ],

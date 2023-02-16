@@ -14,8 +14,10 @@ export const AddPanel: FC<AddPanelProps> = (props) => {
             id: Date.now(),
             sender: {
                 id: Math.random(),
-                vid: Math.random(),
-                slug: 'abc',
+                vk: {
+                    id: Math.random(),
+                    slug: 'abc',
+                },
                 name: '',
             },
             recipient: '',
