@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { useSignIn } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import axios, { AxiosError } from 'axios';
 import * as yup from 'yup';
+import { useAppSignIn } from '~/hooks/auth';
 import css from './Form.module.scss';
 import { AuthInput } from './inputs/AuthInput';
 import { apiConsts } from '~/api/app';
@@ -12,10 +12,13 @@ type RegisterFormProps = {
 }
 
 export const RegisterForm: FC<RegisterFormProps> = (props) => {
-    const signIn = useSignIn();
+    const signIn = useAppSignIn();
     const navigate = useNavigate();
 
     const formik = useFormik({
+        validateOnMount: true,
+        validateOnBlur: true,
+        validateOnChange: true,
         initialValues: {
             email: '',
             password: '',
@@ -24,11 +27,12 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
         validationSchema: yup.object({
             email: yup.string()
                 .required('Required.')
-                .email('Invalid.'),
+                .email('Invalid email.'),
             password: yup.string()
                 .required('Required.')
                 .min(3, 'Should be at least 3 characters long.'),
             passwordRepeat: yup.string()
+                .required('Required.')
                 .equals([yup.ref('password')], 'Passwords must match.'),
         }),
         onSubmit: async (values) => {
@@ -41,24 +45,17 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
                     passwordRepeat,
                 })).data?.payload;
 
-                signIn({
-                    token: payload.token,
-                    expiresIn: apiConsts.tokenTime / 60,
-                    tokenType: 'Bearer',
-                    authState: { email },
-                    refreshToken: payload.refreshToken,
-                    refreshTokenExpireIn: apiConsts.refreshTokenTime / 60,
-                });
+                signIn(payload.token, payload.refreshToken, email);
 
                 navigate('/spamer');
             }
             catch (err: any) {
-                if (err instanceof AxiosError) {
-                    if (err.response?.data.err.message === 'User already exists.') {
-                        formik.setErrors({
-                            email: 'Email is taken.',
-                        });
-                    }
+                const message = err.response?.data.err.message;
+
+                if (err instanceof AxiosError && message === 'User already exists.') {
+                    formik.setErrors({
+                        email: 'Email is taken.',
+                    });
                 }
                 else {
                     console.log(err.response?.status, err.response?.data);

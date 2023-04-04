@@ -1,18 +1,17 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSignIn } from 'react-auth-kit';
 import axios, { AxiosError } from 'axios';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { useAppSignIn } from '~/hooks/auth';
 import css from './Form.module.scss';
-import { apiConsts } from '~/api/app';
 import { AuthInput } from './inputs/AuthInput';
 
 type LoginFormProps = {
 }
 
 export const LoginForm: FC<LoginFormProps> = (props) => {
-    const signIn = useSignIn();
+    const signIn = useAppSignIn();
     const navigate = useNavigate();
 
     const formik = useFormik({
@@ -23,10 +22,9 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
         validationSchema: yup.object({
             email: yup.string()
                 .required('Required.')
-                .email('Invalid.'),
+                .email('Invalid email.'),
             password: yup.string()
-                .required('Required.')
-                .min(3, 'Should be at least 3 characters long.'),
+                .required('Required.'),
         }),
         onSubmit: async (values) => {
             try {
@@ -37,25 +35,18 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
                     password,
                 })).data?.payload;
 
-                signIn({
-                    token: payload.token,
-                    expiresIn: apiConsts.tokenTime / 60,
-                    tokenType: 'Bearer',
-                    authState: { email },
-                    refreshToken: payload.refreshToken,
-                    refreshTokenExpireIn: apiConsts.refreshTokenTime / 60,
-                });
+                signIn(payload.token, payload.refreshToken, email);
 
                 navigate('/spamer');
             }
             catch (err: any) {
-                if (err instanceof AxiosError) {
-                    if (err.response?.data.err.message === 'Invalid credentials.') {
-                        formik.setErrors({
-                            email: 'Invalid credentials.',
-                            password: 'Invalid credentials.',
-                        });
-                    }
+                const message = err.response?.data.err.message;
+
+                if (err instanceof AxiosError && 'Invalid credentials.') {
+                    formik.setErrors({
+                        email: 'Invalid credentials.',
+                        password: 'Invalid credentials.',
+                    });
                 }
                 else {
                     console.log(err.response?.status, err.response?.data);

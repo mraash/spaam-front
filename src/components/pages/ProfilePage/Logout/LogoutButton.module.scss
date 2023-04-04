@@ -1,0 +1,9 @@
+.LogoutButton {
+    text-decoration: underline;
+    color: blue;
+    font-size: 1.4rem;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}

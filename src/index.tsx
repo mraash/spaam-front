@@ -14,8 +14,6 @@ createRoot(document.querySelector('#root')!).render(
             <AuthProvider
                 authType='cookie'
                 authName='_auth'
-                cookieDomain={ window.location.hostname }
-                cookieSecure={ false }
                 refresh={ refreshApi }
             >
                 <BrowserRouter>

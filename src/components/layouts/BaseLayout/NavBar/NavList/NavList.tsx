@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import { NavItem } from '../NavItem';
-import { NavItemProps } from '../NavItem/NavItem';
+import { NavItem, NavItemProps } from '../NavItem';
 
 import css from './NavList.module.scss';
 
