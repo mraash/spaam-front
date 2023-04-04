@@ -1,0 +1,44 @@
+.AuthBlock {
+    padding: 5rem;
+    width: 52rem;
+    border-radius: 0.4rem;
+    background-color: #fff;
+}
+
+.tabs {
+}
+
+.tabList {
+    display: flex;
+}
+
+.tabItem {
+    cursor: pointer;
+
+    &:not(:first-child) {
+        margin-left: 3rem;
+    }
+}
+
+.tabLink {
+    padding: 0.7rem;
+    color: #999;
+
+    &_active {
+        text-decoration: underline;
+        color: #111;
+    }
+}
+
+.tabContainer {
+    position: relative;
+}
+
+.tabContent {
+    display: none;
+    width: 100%;
+
+    &_active {
+        display: block;
+    }
+}
