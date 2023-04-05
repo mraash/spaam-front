@@ -1,12 +1,11 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import axios, { AxiosError } from 'axios';
 import * as yup from 'yup';
+import { EmailIsTakenError, api } from '~/api';
 import { useAppSignIn } from '~/hooks/auth';
 import css from './Form.module.scss';
 import { AuthInput } from './inputs/AuthInput';
-import { apiConsts } from '~/api/app';
 
 type RegisterFormProps = {
 }
@@ -39,26 +38,19 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
             try {
                 const { email, password, passwordRepeat } = values;
 
-                const payload = (await axios.post('http://api.spamer.my/v1/auth/register', {
-                    email,
-                    password,
-                    passwordRepeat,
-                })).data?.payload;
+                const auth = await api.auth.register(email, password, passwordRepeat);
 
-                signIn(payload.token, payload.refreshToken, email);
+                signIn(auth.token, auth.refreshToken, email);
 
                 navigate('/spamer');
             }
             catch (err: any) {
-                const message = err.response?.data.err.message;
-
-                if (err instanceof AxiosError && message === 'User already exists.') {
+                if (err instanceof EmailIsTakenError) {
                     formik.setErrors({
                         email: 'Email is taken.',
                     });
                 }
                 else {
-                    console.log(err.response?.status, err.response?.data);
                     throw err;
                 }
             }

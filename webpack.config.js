@@ -47,7 +47,7 @@ module.exports = ({ mode = 'production' }) => {
         },
         devServer: {
             hot: true,
-            open: true,
+            open: false,
             port: 3001,
             historyApiFallback: true,
         },

@@ -1,17 +1,16 @@
 import { FC } from 'react';
-import { RequireAuth } from 'react-auth-kit';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { PrivateRoute } from '../support/router/PrivateRoute';
 import { MyAccountsPage } from './pages/MyAccountsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { SpamPage } from './pages/SpamPage';
 import { AuthPage } from './pages/AuthPage';
-import { PrivateRoute } from './support/router/PrivateRoute';
 
 export const App: FC = () => {
     return (
         <Routes>
-            {/* config */}
+            {/* not routes */}
             <Route path='/' element={ <Navigate replace to="/spamer"/> }/>
             <Route path='*' element={ <NotFoundPage/> }/>
 

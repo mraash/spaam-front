@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios, { AxiosError } from 'axios';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { InvalidCredentialsError, api } from '~/api';
 import { useAppSignIn } from '~/hooks/auth';
 import css from './Form.module.scss';
 import { AuthInput } from './inputs/AuthInput';
@@ -30,26 +30,20 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
             try {
                 const { email, password } = values;
 
-                const payload = (await axios.post('http://api.spamer.my/v1/auth/login', {
-                    email,
-                    password,
-                })).data?.payload;
+                const auth = await api.auth.login(email, password);
 
-                signIn(payload.token, payload.refreshToken, email);
+                signIn(auth.token, auth.refreshToken, email);
 
                 navigate('/spamer');
             }
             catch (err: any) {
-                const message = err.response?.data.err.message;
-
-                if (err instanceof AxiosError && 'Invalid credentials.') {
+                if (err instanceof InvalidCredentialsError) {
                     formik.setErrors({
                         email: 'Invalid credentials.',
                         password: 'Invalid credentials.',
                     });
                 }
                 else {
-                    console.log(err.response?.status, err.response?.data);
                     throw err;
                 }
             }

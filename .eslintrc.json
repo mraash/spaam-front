@@ -28,7 +28,7 @@
         "airbnb-base"
     ],
     "rules": {
-        "max-len": ["error", 100],
+        "max-len": ["error", 120],
         "indent": ["error", 4],
         "no-multiple-empty-lines": ["error", {
             "max": 2,
@@ -58,6 +58,7 @@
         "lines-between-class-members": "off",
         "no-console": "off",
         "linebreak-style": "off",
-        "operator-linebreak":"off"
+        "operator-linebreak":"off",
+        "max-classes-per-file": "off"
     }
 }
