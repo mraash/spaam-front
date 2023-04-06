@@ -21,7 +21,7 @@ export const PanelList: FC<PanelListProps> = (props) => {
                             senders={[
                                 {
                                     isSelected: true,
-                                    name: panelEntity.sender.name,
+                                    name: panelEntity.sender.vk.fullName,
                                 },
                                 {
                                     isSelected: false,

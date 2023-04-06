@@ -9,7 +9,7 @@ export const login = async (email: string, password: string): Promise<AuthRespos
     try {
         const response = await axios.post(url('/auth/login'), { email, password });
 
-        return { ...getPayload(response) };
+        return getPayload(response) as AuthResposne;
     }
     catch (err) {
         if (!(err instanceof AxiosError)) throw err;

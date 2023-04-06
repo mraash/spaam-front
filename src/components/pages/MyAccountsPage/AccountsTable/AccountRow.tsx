@@ -1,11 +1,12 @@
 import { FC } from 'react';
-import { vkAccountsActions } from '~/gstate/slices/vk-accounts-slice';
+import { vkAccountsThunk, vkAccountsActions } from '~/gstate/slices/vkAccountsSlice';
 import { useAppDispatch } from '~/hooks/redux';
 import css from './AccountRow.module.scss';
+import { api } from '~/api';
 
 type AccountRowProps = {
     id: number,
-    name: string,
+    vkName: string,
     vkSlug: string,
 }
 
@@ -13,13 +14,13 @@ export const AccountRow: FC<AccountRowProps> = (props) => {
     const dispatch = useAppDispatch();
 
     const onDeleteAccountButton = () => {
-        dispatch(vkAccountsActions.remove(props.id));
+        dispatch(vkAccountsThunk.remove(props.id));
     };
 
     return (
         <tr className={ css.AccountRow }>
             <td className={ css.cell }>
-                { props.name }
+                { props.vkName }
             </td>
             <td className={ css.cell }>
                 <a
@@ -27,7 +28,7 @@ export const AccountRow: FC<AccountRowProps> = (props) => {
                     href={ `https://vk.com/${props.vkSlug}` }
                     target="_blank"
                 >
-                    @{ props.vkSlug }
+                    /{ props.vkSlug }
                 </a>
             </td>
             <td className={ css.cell }>

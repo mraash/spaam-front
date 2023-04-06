@@ -4,18 +4,18 @@ import { AxiosError } from 'axios';
 export class ApiError extends Error {
     public constructor(message?: string) {
         super(message);
-        Object.setPrototypeOf(this, Error.prototype);
+        Object.setPrototypeOf(this, ApiError.prototype);
     }
 }
 
 export class UnknownApiError extends ApiError {
-    public readonly axios: AxiosError;
+    public readonly axiosError: AxiosError;
 
-    public constructor(axios: AxiosError) {
+    public constructor(axiosError: AxiosError) {
         super();
         Object.setPrototypeOf(this, UnknownApiError.prototype);
 
-        this.axios = axios;
+        this.axiosError = axiosError;
     }
 }
 

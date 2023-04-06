@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import css from './TopControls.module.scss';
 import { useAppDispatch } from '~/hooks/redux';
-import { panelsActions } from '~/gstate/slices/panels-slice';
+import { panelsActions } from '~/gstate/slices/panelsSlice';
 
 type TopControlsProps = {
     id: number,

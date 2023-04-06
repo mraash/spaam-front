@@ -2,7 +2,7 @@ import { FC } from 'react';
 import css from './Timers.module.scss';
 import { Timer, TimerProps } from './Timer';
 import { useAppDispatch } from '~/hooks/redux';
-import { panelsActions } from '~/gstate/slices/panels-slice';
+import { panelsActions } from '~/gstate/slices/panelsSlice';
 
 type TimersProps = {
     id: number,

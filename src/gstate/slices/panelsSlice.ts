@@ -1,40 +1,38 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
 import { PanelApi } from '~/types/api-entities/PanelApi';
 
 type PanelsState = {
     list: PanelApi[],
 };
 
-const initialState: PanelsState = {
-    list: [
-        {
-            id: 1,
-            sender: {
-                id: 1,
-                vk: {
-                    id: 124123,
-                    slug: 'abc',
-                },
-                name: 'Sender 1',
-            },
-            recipient: 'Recipient 1',
-            texts: [
-                'text 1',
-                'text 2',
-            ],
-            timers: [
-                {
-                    seconds: 15,
-                    repeat: 3,
-                },
-            ],
-        },
-    ],
-};
-
-const panelsSlice = createSlice({
+const panelsSlice = createSlice<PanelsState, SliceCaseReducers<PanelsState>>({
     name: 'panel',
-    initialState,
+    initialState: {
+        list: [
+            {
+                id: 1,
+                sender: {
+                    id: 1,
+                    vk: {
+                        id: 124123,
+                        slug: 'abc',
+                        fullName: 'Sender 1',
+                    },
+                },
+                recipient: 'Recipient 1',
+                texts: [
+                    'text 1',
+                    'text 2',
+                ],
+                timers: [
+                    {
+                        seconds: 15,
+                        repeat: 3,
+                    },
+                ],
+            },
+        ],
+    },
     reducers: {
         add(state, { payload }: PayloadAction<PanelApi>) {
             state.list.push(payload);

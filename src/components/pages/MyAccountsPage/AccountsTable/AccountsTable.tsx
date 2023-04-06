@@ -1,12 +1,19 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import css from './AccountsTable.module.scss';
-import { useAppSelector } from '~/hooks/redux';
+import { useAppDispatch, useAppSelector } from '~/hooks/redux';
 import { AccountRow } from './AccountRow';
+import { vkAccountsThunk } from '~/gstate/slices/vkAccountsSlice';
 
 type AccountsTableProps = {
 }
 
 export const AccountsTable: FC<AccountsTableProps> = (props) => {
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(vkAccountsThunk.getAll());
+    }, [dispatch]);
+
     const vkAccounts = useAppSelector((state) => state.vkAccounts);
 
     return (
@@ -18,7 +25,7 @@ export const AccountsTable: FC<AccountsTableProps> = (props) => {
                             key={ vkAccount.id }
                             id={ vkAccount.id }
                             vkSlug={ vkAccount.vk.slug }
-                            name={ vkAccount.name }
+                            vkName={ vkAccount.vk.fullName }
                         />;
                     }) }
                 </tbody>

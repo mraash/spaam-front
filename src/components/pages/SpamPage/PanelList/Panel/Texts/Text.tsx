@@ -1,5 +1,5 @@
 import { FC, ChangeEvent } from 'react';
-import { panelsActions } from '~/gstate/slices/panels-slice';
+import { panelsActions } from '~/gstate/slices/panelsSlice';
 import { useAppDispatch } from '~/hooks/redux';
 import css from './Text.module.scss';
 
