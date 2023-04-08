@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
-import { api } from '~/api';
+import { VkAccountsAPI } from '~/api';
 import { VkAccountApi } from '~/types/api-entities/VkAccountApi';
 
 type VkAccountsState = {
@@ -12,7 +12,7 @@ export const vkAccountsThunk = {
         'vkAccounts/async/getAll',
         async () => {
             try {
-                const vkAccountList = await api.vkAccounts.getAll();
+                const vkAccountList = await VkAccountsAPI.getAll();
 
                 return vkAccountList;
             }
@@ -26,7 +26,7 @@ export const vkAccountsThunk = {
         'vkAccounts/async/getCreationLink',
         async () => {
             try {
-                const link = await api.vkAccounts.getCreationLink();
+                const link = await VkAccountsAPI.getCreationLink();
 
                 return link.link;
             }
@@ -40,7 +40,7 @@ export const vkAccountsThunk = {
         'vkAccounts/async/remove',
         async (id) => {
             try {
-                await api.vkAccounts.remove(id);
+                await VkAccountsAPI.remove(id);
 
                 return id;
             }

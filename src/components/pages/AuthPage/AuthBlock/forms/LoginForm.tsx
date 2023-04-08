@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { ApiErrors, api } from '~/api';
+import { ApiErrors, AuthAPI } from '~/api';
 import { useAppSignIn } from '~/hooks/auth';
 import css from './Form.module.scss';
 import { AuthInput } from './inputs/AuthInput';
@@ -30,14 +30,14 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
             try {
                 const { email, password } = values;
 
-                const auth = await api.auth.login(email, password);
+                const auth = await AuthAPI.login(email, password);
 
                 signIn(auth.token, auth.refreshToken, email);
 
                 navigate('/spamer');
             }
             catch (err: any) {
-                if (err instanceof ApiErrors.InvalidCredentialsError) {
+                if (err instanceof ApiErrors.InvalidCredentials) {
                     formik.setErrors({
                         email: 'Invalid credentials.',
                         password: 'Invalid credentials.',

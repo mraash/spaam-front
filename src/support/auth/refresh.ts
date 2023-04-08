@@ -1,12 +1,12 @@
 import Cookies from 'js-cookie';
 import { createRefresh } from 'react-auth-kit';
-import { api, apiConfig, apiConsts, apiStatus } from '~/api';
+import { AuthAPI, apiConfig, apiConsts, apiStatus } from '~/api';
 
 export const refreshApi = createRefresh({
     interval: apiConfig.refreshEach / 60,
     refreshApiCallback: async ({ refreshToken, authToken }) => {
         try {
-            const auth = await api.auth.refresh(refreshToken!);
+            const auth = await AuthAPI.refresh(refreshToken!);
 
             return {
                 isSuccess: true,

@@ -1,8 +1,10 @@
 export { apiConsts, apiConfig } from './config';
 export { apiStatus } from './status';
 
-export { api } from './api';
+export * as AuthAPI from './parts/AuthAPI';
+export * as VkAccountsAPI from './parts/VkAccountAPI';
 
-export { ApiResponses } from './Responses';
+export * as AuthResponses from './responses/AuthResponses';
+export * as VkAccountResponses from './responses/VkAccountResponses';
 
-export * as ApiErrors from './Errors';
+export * as ApiErrors from './errors';

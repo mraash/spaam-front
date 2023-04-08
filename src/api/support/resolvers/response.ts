@@ -1,10 +1,5 @@
 import { AxiosError, AxiosResponse } from 'axios';
 
-type SuccessResponse = {
-    success: boolean,
-    payload: any,
-};
-
 type ErrorResponse = {
     success: boolean,
     error: ErrorData,
@@ -18,7 +13,7 @@ export const getPayload = (axiosResponse: AxiosResponse): any => {
     return axiosResponse.data.payload;
 };
 
-export const getError = (axiosError: AxiosError): ErrorData => {
+export const getErrorData = (axiosError: AxiosError): ErrorData => {
     const data = axiosError.response?.data as ErrorResponse;
 
     return data.error;

@@ -1,8 +1,7 @@
 import { FC } from 'react';
-import { vkAccountsThunk, vkAccountsActions } from '~/gstate/slices/vkAccountsSlice';
+import { vkAccountsThunk } from '~/gstate/slices/vkAccountsSlice';
 import { useAppDispatch } from '~/hooks/redux';
 import css from './AccountRow.module.scss';
-import { api } from '~/api';
 
 type AccountRowProps = {
     id: number,
