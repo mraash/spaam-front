@@ -1,5 +1,5 @@
 import { authResponses } from './resources/auth';
 
-export const apiResponses = {
+export const ApiResponses = {
     auth: authResponses,
 };

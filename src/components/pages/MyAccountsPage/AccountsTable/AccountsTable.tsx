@@ -1,18 +1,20 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import css from './AccountsTable.module.scss';
 import { useAppDispatch, useAppSelector } from '~/hooks/redux';
 import { AccountRow } from './AccountRow';
 import { vkAccountsThunk } from '~/gstate/slices/vkAccountsSlice';
+import { useIsFirstRender } from '~/hooks/render';
 
 type AccountsTableProps = {
 }
 
 export const AccountsTable: FC<AccountsTableProps> = (props) => {
     const dispatch = useAppDispatch();
+    const isFirst = useIsFirstRender();
 
-    useEffect(() => {
+    if (isFirst) {
         dispatch(vkAccountsThunk.getAll());
-    }, [dispatch]);
+    }
 
     const vkAccounts = useAppSelector((state) => state.vkAccounts);
 

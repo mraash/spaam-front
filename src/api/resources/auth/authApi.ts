@@ -1,13 +1,13 @@
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
+import { appAxios } from '~/api/helpers/axios';
 import { AuthResposne } from './authResponses';
 import { getError, getPayload } from '~/api/helpers/responses';
-import { url } from '~/api/helpers/url';
 import { getDefaultApiError } from '~/api/helpers/errors';
-import { EmailIsTakenError, InvalidCredentialsError, InvalidRefreshTokenError } from '~/api';
+import { ApiErrors } from '~/api';
 
 export const login = async (email: string, password: string): Promise<AuthResposne> => {
     try {
-        const response = await axios.post(url('/auth/login'), { email, password });
+        const response = await appAxios.post('/auth/login', { email, password });
 
         return getPayload(response) as AuthResposne;
     }
@@ -17,7 +17,7 @@ export const login = async (email: string, password: string): Promise<AuthRespos
         const error = getError(err);
 
         if (error.message === 'Invalid credentials.') {
-            throw new InvalidCredentialsError();
+            throw new ApiErrors.InvalidCredentialsError();
         }
         else {
             throw getDefaultApiError(err);
@@ -27,9 +27,9 @@ export const login = async (email: string, password: string): Promise<AuthRespos
 
 export const register = async (email: string, password: string, passwordRepeat: string): Promise<AuthResposne> => {
     try {
-        const response = await axios.post(url('/auth/register'), { email, password, passwordRepeat });
+        const response = await appAxios.post('/auth/register', { email, password, passwordRepeat });
 
-        return { ...getPayload(response) };
+        return getPayload(response) as AuthResposne;
     }
     catch (err) {
         if (!(err instanceof AxiosError)) throw err;
@@ -37,7 +37,7 @@ export const register = async (email: string, password: string, passwordRepeat: 
         const error = getError(err);
 
         if (error.message === 'User already exists.') {
-            throw new EmailIsTakenError();
+            throw new ApiErrors.EmailIsTakenError();
         }
         else {
             throw getDefaultApiError(err);
@@ -47,9 +47,9 @@ export const register = async (email: string, password: string, passwordRepeat: 
 
 export const refresh = async (refreshToken: string): Promise<AuthResposne> => {
     try {
-        const response = await axios.post(url('/auth/refresh'), { refreshToken });
+        const response = await appAxios.post('/auth/refresh', { refreshToken });
 
-        return { ...getPayload(response) };
+        return getPayload(response) as AuthResposne;
     }
     catch (err) {
         if (!(err instanceof AxiosError)) throw err;
@@ -57,7 +57,7 @@ export const refresh = async (refreshToken: string): Promise<AuthResposne> => {
         const error = getError(err);
 
         if (error.message === 'Invalid refresh token.') {
-            throw new InvalidRefreshTokenError();
+            throw new ApiErrors.InvalidRefreshTokenError();
         }
         else {
             throw getDefaultApiError(err);

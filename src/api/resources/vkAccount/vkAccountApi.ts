@@ -1,18 +1,13 @@
-import axios, { AxiosError } from 'axios';
-import { getHeader } from '~/api/helpers/auth';
+import { AxiosError } from 'axios';
 import { getDefaultApiError } from '~/api/helpers/errors';
 import { getPayload } from '~/api/helpers/responses';
-import { url } from '~/api/helpers/url';
+import { authAxios } from '~/api/helpers/axios';
 import { VkAccountApi } from '~/types/api-entities/VkAccountApi';
 import { CreationLink } from './vkAccountResponses';
 
 export const getAll = async (): Promise<VkAccountApi[]> => {
     try {
-        const response = await axios.get(url('/vk-accounts'), {
-            headers: {
-                Authorization: getHeader(),
-            },
-        });
+        const response = await authAxios().get('/vk-accounts');
 
         return getPayload(response) as VkAccountApi[];
     }
@@ -25,11 +20,7 @@ export const getAll = async (): Promise<VkAccountApi[]> => {
 
 export const getCreationLink = async (): Promise<CreationLink> => {
     try {
-        const response = await axios.get(url('/vk-accounts/link'), {
-            headers: {
-                Authorization: getHeader(),
-            },
-        });
+        const response = await authAxios().get('/vk-accounts/link');
 
         return getPayload(response) as CreationLink;
     }
@@ -42,11 +33,7 @@ export const getCreationLink = async (): Promise<CreationLink> => {
 
 export const remove = async (id: number) => {
     try {
-        const response = await axios.delete(url(`/vk-accounts/${id}`), {
-            headers: {
-                Authorization: getHeader(),
-            },
-        });
+        const response = await authAxios().delete(`/vk-accounts/${id}`);
 
         return getPayload(response) as VkAccountApi[];
     }

@@ -1,6 +1,9 @@
 import { FC } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { PrivateRoute } from '../support/router/PrivateRoute';
+import { useIsAuthenticated } from 'react-auth-kit';
+import { PrivateRoute } from '../support/router';
+import { makeInitialRefesh } from '~/support/auth';
+import { useIsFirstRender } from '~/hooks/render';
 import { MyAccountsPage } from './pages/MyAccountsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ProfilePage } from './pages/ProfilePage';
@@ -8,6 +11,13 @@ import { SpamPage } from './pages/SpamPage';
 import { AuthPage } from './pages/AuthPage';
 
 export const App: FC = () => {
+    const isFirstRender = useIsFirstRender();
+    const isAuth = useIsAuthenticated();
+
+    if (isFirstRender && isAuth()) {
+        makeInitialRefesh();
+    }
+
     return (
         <Routes>
             {/* not routes */}

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { EmailIsTakenError, api } from '~/api';
+import { ApiErrors, api } from '~/api';
 import { useAppSignIn } from '~/hooks/auth';
 import css from './Form.module.scss';
 import { AuthInput } from './inputs/AuthInput';
@@ -45,7 +45,7 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
                 navigate('/spamer');
             }
             catch (err: any) {
-                if (err instanceof EmailIsTakenError) {
+                if (err instanceof ApiErrors.EmailIsTakenError) {
                     formik.setErrors({
                         email: 'Email is taken.',
                     });

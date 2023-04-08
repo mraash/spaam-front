@@ -7,14 +7,14 @@ type ConditionClass = [any, string];
  *
  * @returns Valid className value
  */
-export const cn = (...classes: (string|ConditionClass)[]): string => {
+export const cn = (...classes: Array<string|ConditionClass>): string => {
     const classList: string[] = [];
 
     classes.forEach((item) => {
         if (typeof item === 'string') {
             classList.push(item);
         }
-        else if (Array.isArray(item) && item[0]) {
+        else if (item[0]) {
             classList.push(item[1]);
         }
     });

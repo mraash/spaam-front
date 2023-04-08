@@ -1,8 +1,8 @@
 export { apiConsts, apiConfig } from './config';
+export { apiStatus } from './status';
 
 export { api } from './api';
 
-export { apiResponses } from './apiResponses';
+export { ApiResponses } from './Responses';
 
-export * as apiErrors from './apiErrors';
-export * from './apiErrors';
+export * as ApiErrors from './Errors';

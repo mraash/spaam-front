@@ -25,7 +25,8 @@
         "es2021": true
     },
     "extends": [
-        "airbnb-base"
+        "airbnb-base",
+        "plugin:react-hooks/recommended"
     ],
     "rules": {
         "max-len": ["error", 120],

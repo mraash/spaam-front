@@ -1,4 +1,5 @@
 import { AxiosError } from 'axios';
+import { getError } from './helpers/responses';
 
 // base
 export class ApiError extends Error {
@@ -12,7 +13,8 @@ export class UnknownApiError extends ApiError {
     public readonly axiosError: AxiosError;
 
     public constructor(axiosError: AxiosError) {
-        super();
+        const errorData = getError(axiosError);
+        super(errorData.message);
         Object.setPrototypeOf(this, UnknownApiError.prototype);
 
         this.axiosError = axiosError;
@@ -22,21 +24,28 @@ export class UnknownApiError extends ApiError {
 // auth
 export class EmailIsTakenError extends ApiError {
     public constructor() {
-        super();
+        super('Email is taken.');
         Object.setPrototypeOf(this, EmailIsTakenError.prototype);
     }
 }
 
 export class InvalidCredentialsError extends ApiError {
     public constructor() {
-        super();
+        super('Invalid credentials.');
         Object.setPrototypeOf(this, InvalidCredentialsError.prototype);
+    }
+}
+
+export class JwtTokenNotFoundError extends ApiError {
+    public constructor() {
+        super('Jwt token not found.');
+        Object.setPrototypeOf(this, JwtTokenNotFoundError.prototype);
     }
 }
 
 export class InvalidRefreshTokenError extends ApiError {
     public constructor() {
-        super();
+        super('Invalid refresh token.');
         Object.setPrototypeOf(this, InvalidRefreshTokenError.prototype);
     }
 }
