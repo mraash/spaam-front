@@ -1,8 +1,8 @@
-export type VkAccountApi = {
+export type VkAccountInfo = {
     id: number,
     vk: {
         id: number,
-        slug: string,
         fullName: string,
+        slug: string,
     },
 };

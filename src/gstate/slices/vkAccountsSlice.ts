@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
 import { VkAccountsAPI } from '~/api';
-import { VkAccountApi } from '~/types/api-entities/VkAccountApi';
+import { VkAccountEntity } from '~/types/entities/VkAccountEntity';
 
 type VkAccountsState = {
-    list: VkAccountApi[],
+    list: VkAccountEntity[],
     creationLink?: string,
 };
 
 export const vkAccountsThunk = {
-    getAll: createAsyncThunk<VkAccountApi[]>(
+    getAll: createAsyncThunk<VkAccountEntity[]>(
         'vkAccounts/async/getAll',
         async () => {
             try {

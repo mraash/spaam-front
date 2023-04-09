@@ -1,44 +1,23 @@
-import { AxiosError } from 'axios';
-import { resolveApiError, getPayload } from '~/api/support/resolvers';
-import { authAxios } from '~/api/support/axios';
-import { VkAccountApi } from '~/types/api-entities/VkAccountApi';
-import { CreationLink } from '../responses/VkAccountResponses';
+import { getPayload } from '../support/resolvers';
+import { authAxios } from '../support/axios';
+import { VkAccountInfo } from '../infos/VkAccountInfo';
+import { CreationLink } from '../responses/vkAccountTypes';
+import { ResourceDeleted } from '../responses/generalTypes';
 
-export const getAll = async (): Promise<VkAccountApi[]> => {
-    try {
-        const response = await authAxios().get('/vk-accounts');
+export const getAll = async (): Promise<VkAccountInfo[]> => {
+    const response = await authAxios().get('/vk-accounts');
 
-        return getPayload(response) as VkAccountApi[];
-    }
-    catch (err) {
-        if (!(err instanceof AxiosError)) throw err;
-
-        throw resolveApiError(err);
-    }
+    return getPayload(response);
 };
 
 export const getCreationLink = async (): Promise<CreationLink> => {
-    try {
-        const response = await authAxios().get('/vk-accounts/link');
+    const response = await authAxios().get('/vk-accounts/link');
 
-        return getPayload(response) as CreationLink;
-    }
-    catch (err) {
-        if (!(err instanceof AxiosError)) throw err;
-
-        throw resolveApiError(err);
-    }
+    return getPayload(response);
 };
 
-export const remove = async (id: number) => {
-    try {
-        const response = await authAxios().delete(`/vk-accounts/${id}`);
+export const remove = async (id: number): Promise<ResourceDeleted> => {
+    const response = await authAxios().delete(`/vk-accounts/${id}`);
 
-        return getPayload(response) as VkAccountApi[];
-    }
-    catch (err) {
-        if (!(err instanceof AxiosError)) throw err;
-
-        throw resolveApiError(err);
-    }
+    return getPayload(response);
 };

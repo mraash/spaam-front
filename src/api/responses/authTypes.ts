@@ -1,4 +1,4 @@
-export type AuthResposne = {
+export type AuthData = {
     token: string,
     refreshToken: string,
     refreshTokenExpiration: number,

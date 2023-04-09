@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
-import { PanelApi } from '~/types/api-entities/PanelApi';
+import { PanelEntity } from '~/types/entities/PanelEntity';
 
 type PanelsState = {
-    list: PanelApi[],
+    list: PanelEntity[],
 };
 
 const panelsSlice = createSlice<PanelsState, SliceCaseReducers<PanelsState>>({
@@ -34,7 +34,7 @@ const panelsSlice = createSlice<PanelsState, SliceCaseReducers<PanelsState>>({
         ],
     },
     reducers: {
-        add(state, { payload }: PayloadAction<PanelApi>) {
+        add(state, { payload }: PayloadAction<PanelEntity>) {
             state.list.push(payload);
         },
 
