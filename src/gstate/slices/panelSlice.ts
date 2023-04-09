@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
 import { PanelEntity } from '~/types/entities/PanelEntity';
 
-type PanelsState = {
+type PanelState = {
     list: PanelEntity[],
 };
 
-const panelsSlice = createSlice<PanelsState, SliceCaseReducers<PanelsState>>({
+const panelSlice = createSlice<PanelState, SliceCaseReducers<PanelState>>({
     name: 'panel',
     initialState: {
         list: [
@@ -110,5 +110,5 @@ const panelsSlice = createSlice<PanelsState, SliceCaseReducers<PanelsState>>({
     },
 });
 
-export const panelsReducer = panelsSlice.reducer;
-export const panelsActions = panelsSlice.actions;
+export const panelReducer = panelSlice.reducer;
+export const panelActions = panelSlice.actions;

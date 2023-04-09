@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { panelsActions } from '~/gstate/slices/panelsSlice';
+import { panelActions } from '~/gstate/slices/panelSlice';
 import { useAppDispatch } from '~/hooks/redux';
 import { Text } from './Text';
 import css from './Texts.module.scss';
@@ -13,7 +13,7 @@ export const Texts: FC<TextsProps> = (props) => {
     const dispatch = useAppDispatch();
 
     const onAddTextButton = () => {
-        dispatch(panelsActions.addEmptyText(props.id));
+        dispatch(panelActions.addEmptyText(props.id));
     };
 
     return (

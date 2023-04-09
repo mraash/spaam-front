@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import css from './TopControls.module.scss';
 import { useAppDispatch } from '~/hooks/redux';
-import { panelsActions } from '~/gstate/slices/panelsSlice';
+import { panelActions } from '~/gstate/slices/panelSlice';
 
 type TopControlsProps = {
     id: number,
@@ -16,7 +16,7 @@ export const TopControls: FC<TopControlsProps> = (props) => {
     };
 
     const onDeleteButton = () => {
-        dispatch(panelsActions.remove(props.id));
+        dispatch(panelActions.remove(props.id));
     };
 
     return (

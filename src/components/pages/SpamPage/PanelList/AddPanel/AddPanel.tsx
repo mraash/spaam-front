@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useAppDispatch } from '~/hooks/redux';
-import { panelsActions } from '~/gstate/slices/panelsSlice';
+import { panelActions } from '~/gstate/slices/panelSlice';
 import css from './AddPanel.module.scss';
 
 type AddPanelProps = {
@@ -10,7 +10,7 @@ export const AddPanel: FC<AddPanelProps> = (props) => {
     const dispatch = useAppDispatch();
 
     const onClick = () => {
-        dispatch(panelsActions.add({
+        dispatch(panelActions.add({
             id: Date.now(),
             sender: {
                 id: Math.random(),

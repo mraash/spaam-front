@@ -1,5 +1,5 @@
 import { FC, ChangeEvent } from 'react';
-import { panelsActions } from '~/gstate/slices/panelsSlice';
+import { panelActions } from '~/gstate/slices/panelSlice';
 import { useAppDispatch } from '~/hooks/redux';
 import css from './Text.module.scss';
 
@@ -13,7 +13,7 @@ export const Text: FC<TextProps> = (props) => {
     const dispatch = useAppDispatch();
 
     const onTextInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(panelsActions.setText({
+        dispatch(panelActions.setText({
             id: props.id,
             textIndex: props.index,
             value: event.target.value,
@@ -21,7 +21,7 @@ export const Text: FC<TextProps> = (props) => {
     };
 
     const onDeleteTextButton = () => {
-        dispatch(panelsActions.removeText({
+        dispatch(panelActions.removeText({
             id: props.id,
             textIndex: props.index,
         }));

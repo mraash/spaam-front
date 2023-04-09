@@ -1,5 +1,5 @@
 import { FC, ChangeEvent } from 'react';
-import { panelsActions } from '~/gstate/slices/panelsSlice';
+import { panelActions } from '~/gstate/slices/panelSlice';
 import { useAppDispatch } from '~/hooks/redux';
 import css from './Timer.module.scss';
 
@@ -17,7 +17,7 @@ export const Timer: FC<TimerProps> = (props) => {
         const secondsInput = event.target.value;
         const seconds = inputToInteger(secondsInput, props.seconds);
 
-        dispatch(panelsActions.setTimerSeconds({
+        dispatch(panelActions.setTimerSeconds({
             id: props.id,
             timerIndex: props.timerIndex,
             seconds,
@@ -28,7 +28,7 @@ export const Timer: FC<TimerProps> = (props) => {
         const repeatInput = event.target.value;
         const repeat = inputToInteger(repeatInput, props.repeat);
 
-        dispatch(panelsActions.setTimerRepeat({
+        dispatch(panelActions.setTimerRepeat({
             id: props.id,
             timerIndex: props.timerIndex,
             repeat,
@@ -36,7 +36,7 @@ export const Timer: FC<TimerProps> = (props) => {
     };
 
     const onDeleteTimerButton = () => {
-        dispatch(panelsActions.removeTimer({
+        dispatch(panelActions.removeTimer({
             id: props.id,
             timerIndex: props.timerIndex,
         }));

@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { panelsReducer } from './slices/panelsSlice';
-import { vkAccountsReducer } from './slices/vkAccountsSlice';
+import { panelReducer } from './slices/panelSlice';
+import { vkAccountReducer } from './slices/vkAccountSlice';
 
 export const store = configureStore({
     reducer: {
-        panels: panelsReducer,
-        vkAccounts: vkAccountsReducer,
+        panels: panelReducer,
+        vkAccounts: vkAccountReducer,
     },
 });
 

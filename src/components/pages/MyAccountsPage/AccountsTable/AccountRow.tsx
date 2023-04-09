@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { vkAccountsThunk } from '~/gstate/slices/vkAccountsSlice';
+import { vkAccountThunks } from '~/gstate/thunks/vkAccountThunks';
 import { useAppDispatch } from '~/hooks/redux';
 import css from './AccountRow.module.scss';
 
@@ -13,7 +13,7 @@ export const AccountRow: FC<AccountRowProps> = (props) => {
     const dispatch = useAppDispatch();
 
     const onDeleteAccountButton = () => {
-        dispatch(vkAccountsThunk.remove(props.id));
+        dispatch(vkAccountThunks.remove(props.id));
     };
 
     return (

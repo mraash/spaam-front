@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import css from './Header.module.scss';
 import { useAppDispatch, useAppSelector } from '~/hooks/redux';
-import { vkAccountsThunk } from '~/gstate/slices/vkAccountsSlice';
+import { vkAccountThunks } from '~/gstate/thunks/vkAccountThunks';
 import { useIsFirstRender } from '~/hooks/render';
 
 type HeaderProps = {
@@ -12,7 +12,7 @@ export const Header: FC<HeaderProps> = (props) => {
     const isFirst = useIsFirstRender();
 
     if (isFirst) {
-        dispatch(vkAccountsThunk.getCreationLink());
+        dispatch(vkAccountThunks.getCreationLink());
     }
 
     const link = useAppSelector((state) => state.vkAccounts.creationLink ?? '#');
