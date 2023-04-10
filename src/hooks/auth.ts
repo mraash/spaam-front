@@ -15,11 +15,3 @@ export const useAppSignIn = () => {
         });
     };
 };
-
-export const useAppSignOut = () => {
-    const signOut = useSignOut();
-
-    return () => {
-        signOut();
-    };
-};

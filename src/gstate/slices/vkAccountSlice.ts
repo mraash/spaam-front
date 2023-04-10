@@ -15,16 +15,16 @@ const vkAccountSlice = createSlice<VkAccountState, SliceCaseReducers<VkAccountSt
     reducers: {
     },
     extraReducers(builder) {
-        builder.addCase(vkAccountThunks.getAll.fulfilled, (state, { payload }) => {
-            state.list = payload;
+        builder.addCase(vkAccountThunks.getAll.fulfilled, (state, { payload: vkAccountList }) => {
+            state.list = vkAccountList;
         });
 
-        builder.addCase(vkAccountThunks.getCreationLink.fulfilled, (state, { payload }) => {
-            state.creationLink = payload;
+        builder.addCase(vkAccountThunks.getCreationLink.fulfilled, (state, { payload: link }) => {
+            state.creationLink = link;
         });
 
-        builder.addCase(vkAccountThunks.remove.fulfilled, (state, { payload }) => {
-            const index = state.list.findIndex((item) => item.id === payload);
+        builder.addCase(vkAccountThunks.remove.fulfilled, (state, { payload: id }) => {
+            const index = state.list.findIndex((item) => item.id === id);
             state.list.splice(index, 1);
         });
     },

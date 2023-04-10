@@ -1,21 +1,21 @@
 import { FC } from 'react';
-import { useAuthUser } from 'react-auth-kit';
 import css from './ProfilePage.module.scss';
 import { BaseLayout, Content } from '~/components/layouts/BaseLayout';
 import { LogoutButton } from './Logout';
+import { useAppSelector } from '~/hooks/redux';
 
 type ProfilePageProps = {
 }
 
 export const ProfilePage: FC<ProfilePageProps> = (props) => {
-    const auth = useAuthUser();
+    const user = useAppSelector((state) => state.auth.user);
 
     return (
         <BaseLayout>
             <Content>
                 <div className={ css.ProfilePage }>
                     <div>
-                        { auth()?.email }
+                        { !user ? <strong>Loading...</strong> : user.email }
                     </div>
                     <div className={ css.logoutButtonWr }>
                         <LogoutButton/>

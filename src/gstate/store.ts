@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { panelReducer } from './slices/panelSlice';
 import { vkAccountReducer } from './slices/vkAccountSlice';
+import { authReducer } from './slices/authSlice';
 
 export const store = configureStore({
     reducer: {
+        auth: authReducer,
         panels: panelReducer,
         vkAccounts: vkAccountReducer,
     },

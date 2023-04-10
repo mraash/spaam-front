@@ -1,10 +1,14 @@
 import Cookies from 'js-cookie';
 import { createRefresh } from 'react-auth-kit';
 import { AuthAPI, apiConfig, apiConsts, apiStatus } from '~/api';
+import { names } from './cookies';
 
 export const refreshApi = createRefresh({
     interval: apiConfig.refreshEach / 60,
-    refreshApiCallback: async ({ refreshToken, authToken }) => {
+    refreshApiCallback: async () => {
+        const authToken = Cookies.get(names.authToken)!;
+        const refreshToken = Cookies.get(names.refeshToken)!;
+
         try {
             const auth = await AuthAPI.refresh(refreshToken!);
 
@@ -16,6 +20,7 @@ export const refreshApi = createRefresh({
             };
         }
         catch (err) {
+            console.error(err);
             return {
                 isSuccess: false,
                 newAuthToken: authToken!,
@@ -25,16 +30,7 @@ export const refreshApi = createRefresh({
 });
 
 export const makeInitialRefesh = () => {
-    console.log('refresh: Make initial refresh...');
-
-    const authToken = Cookies.get('_auth')!;
-    const refreshToken = Cookies.get('_auth_refresh')!;
-
-    const refreshPromise = refreshApi.refreshApiCallback({
-        authUserState: null,
-        authToken,
-        refreshToken,
-    });
+    const refreshPromise = refreshApi.refreshApiCallback({ authUserState: null });
 
     apiStatus.initialRefreshing = refreshPromise;
 
@@ -42,18 +38,16 @@ export const makeInitialRefesh = () => {
         const cookieDays = apiConsts.refreshTokenTime / 60 / 60 / 24;
 
         if (!refreshResult.isSuccess) {
-            Cookies.remove('_auth');
+            Cookies.remove(names.authToken);
             throw new Error('Bad token refresh.');
         }
 
-        Cookies.set('_auth', refreshResult.newAuthToken!, {
+        Cookies.set(names.authToken, refreshResult.newAuthToken!, {
             expires: cookieDays,
         });
         Cookies.set('_auth_refresh', refreshResult.newRefreshToken!, {
             expires: cookieDays,
         });
-
-        console.log('refresh: End initial refresh...');
 
         apiStatus.initialRefreshing = false;
     });

@@ -30,12 +30,8 @@ const createAuthAxios = () => {
 
     instance.interceptors.request.use(async (config) => {
         if (apiStatus.initialRefreshing) {
-            console.log('axios: waiting refresh');
-
             await apiStatus.initialRefreshing;
         }
-
-        console.log('axios: request');
 
         return config;
     });

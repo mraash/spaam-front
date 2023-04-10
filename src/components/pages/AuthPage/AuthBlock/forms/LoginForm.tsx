@@ -34,7 +34,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
 
                 signIn(auth.token, auth.refreshToken, email);
 
-                navigate('/spamer');
+                window.location.href = '/spamer';
             }
             catch (err: any) {
                 if (err instanceof ApiErrors.InvalidCredentials) {

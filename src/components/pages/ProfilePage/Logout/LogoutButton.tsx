@@ -1,15 +1,17 @@
 import { FC } from 'react';
+import { useSignOut } from 'react-auth-kit';
 import css from './LogoutButton.module.scss';
-import { useAppSignOut } from '~/hooks/auth';
 
 type LogoutButtonProps = {
 }
 
 export const LogoutButton: FC<LogoutButtonProps> = (props) => {
-    const signOut = useAppSignOut();
+    const signOut = useSignOut();
 
     const onClick = () => {
         signOut();
+
+        window.location.href = '/auth';
     };
 
     return (

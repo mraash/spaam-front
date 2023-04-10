@@ -2,9 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { VkAccountsAPI } from '~/api';
 import { VkAccountEntity } from '~/types/entities/VkAccountEntity';
 
-const getAll = createAsyncThunk<VkAccountEntity[]>(
+const getAll = createAsyncThunk(
     'vkAccounts/async/getAll',
-    async () => {
+    async (): Promise<VkAccountEntity[]> => {
         try {
             const vkAccountList = await VkAccountsAPI.getAll();
 
@@ -17,9 +17,9 @@ const getAll = createAsyncThunk<VkAccountEntity[]>(
     },
 );
 
-const getCreationLink = createAsyncThunk<string>(
+const getCreationLink = createAsyncThunk(
     'vkAccounts/async/getCreationLink',
-    async () => {
+    async (): Promise<string> => {
         try {
             const link = await VkAccountsAPI.getCreationLink();
 
@@ -32,9 +32,9 @@ const getCreationLink = createAsyncThunk<string>(
     },
 );
 
-const remove = createAsyncThunk<number, number>(
+const remove = createAsyncThunk(
     'vkAccounts/async/remove',
-    async (id) => {
+    async (id: number): Promise<number> => {
         try {
             await VkAccountsAPI.remove(id);
 
