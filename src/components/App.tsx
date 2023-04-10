@@ -3,15 +3,14 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { useIsAuthenticated } from 'react-auth-kit';
 import { authThunks } from '~/gstate/thunks/authThunks';
 import { useAppDispatch } from '~/hooks/redux';
-import { PrivateRoute } from '../support/router';
-import { makeInitialRefesh } from '~/support/auth';
+import { PrivateRoute, PublicRoute } from '../features/router';
+import { makeInitialRefesh } from '~/features/auth';
 import { useIsFirstRender } from '~/hooks/render';
 import { MyAccountsPage } from './pages/MyAccountsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { SpamPage } from './pages/SpamPage';
 import { AuthPage } from './pages/AuthPage';
-import { PublicRoute } from '~/support/router/PublicRoute';
 
 export const App: FC = () => {
     const dispatch = useAppDispatch();

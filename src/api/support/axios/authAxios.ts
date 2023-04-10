@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import { apiConfig, apiConsts } from '~/api/config';
 import { apiStatus } from '~/api/status';
-import { getHeader } from '~/support/auth/cookies';
+import { getHeader } from '~/features/auth/cookies';
 import { resolveApiError } from '../resolvers';
 
 let axiosInstance: AxiosInstance;
