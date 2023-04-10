@@ -5,7 +5,7 @@ import { LogoutButton } from './Logout';
 import { useAppSelector } from '~/hooks/redux';
 
 type ProfilePageProps = {
-}
+};
 
 export const ProfilePage: FC<ProfilePageProps> = (props) => {
     const user = useAppSelector((state) => state.auth.user);

@@ -10,7 +10,7 @@ export const refreshApi = createRefresh({
         const refreshToken = Cookies.get(names.refeshToken)!;
 
         try {
-            const auth = await AuthAPI.refresh(refreshToken!);
+            const auth = await AuthAPI.refresh(refreshToken);
 
             return {
                 isSuccess: true,
@@ -23,7 +23,7 @@ export const refreshApi = createRefresh({
             console.error(err);
             return {
                 isSuccess: false,
-                newAuthToken: authToken!,
+                newAuthToken: authToken,
             };
         }
     },
@@ -42,7 +42,7 @@ export const makeInitialRefesh = () => {
             throw new Error('Bad token refresh.');
         }
 
-        Cookies.set(names.authToken, refreshResult.newAuthToken!, {
+        Cookies.set(names.authToken, refreshResult.newAuthToken, {
             expires: cookieDays,
         });
         Cookies.set('_auth_refresh', refreshResult.newRefreshToken!, {

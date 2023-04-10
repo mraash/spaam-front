@@ -4,7 +4,7 @@ import { panelActions } from '~/gstate/slices/panelSlice';
 import css from './AddPanel.module.scss';
 
 type AddPanelProps = {
-}
+};
 
 export const AddPanel: FC<AddPanelProps> = (props) => {
     const dispatch = useAppDispatch();

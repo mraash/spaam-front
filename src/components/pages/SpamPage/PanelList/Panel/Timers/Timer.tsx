@@ -8,7 +8,7 @@ export type TimerProps = {
     timerIndex: number,
     seconds: number|null,
     repeat: number|null,
-}
+};
 
 export const Timer: FC<TimerProps> = (props) => {
     const dispatch = useAppDispatch();

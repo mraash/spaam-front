@@ -5,7 +5,7 @@ import css from './NavList.module.scss';
 
 type NavListProps = {
     items: Array<NavItemProps>
-}
+};
 
 export const NavList: FC<NavListProps> = (props) => {
     return (

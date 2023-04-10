@@ -1,4 +1,4 @@
-import { useSignIn, useSignOut } from 'react-auth-kit';
+import { useSignIn } from 'react-auth-kit';
 import { apiConsts } from '~/api';
 
 export const useAppSignIn = () => {

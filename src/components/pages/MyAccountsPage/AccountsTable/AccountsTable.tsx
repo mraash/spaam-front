@@ -6,7 +6,7 @@ import { vkAccountThunks } from '~/gstate/thunks/vkAccountThunks';
 import { useIsFirstRender } from '~/hooks/render';
 
 type AccountsTableProps = {
-}
+};
 
 export const AccountsTable: FC<AccountsTableProps> = (props) => {
     const dispatch = useAppDispatch();

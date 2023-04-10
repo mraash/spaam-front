@@ -9,7 +9,7 @@ type CommunicatorsProps = {
         name: string,
     }>,
     recipient: string,
-}
+};
 
 export const Communicators: FC<CommunicatorsProps> = (props) => {
     return (

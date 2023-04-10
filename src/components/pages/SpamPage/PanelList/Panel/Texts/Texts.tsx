@@ -7,7 +7,7 @@ import css from './Texts.module.scss';
 type TextsProps = {
     id: number,
     texts: string[],
-}
+};
 
 export const Texts: FC<TextsProps> = (props) => {
     const dispatch = useAppDispatch();

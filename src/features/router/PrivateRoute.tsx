@@ -5,7 +5,7 @@ import { defaultPublicRoute } from '~/router/routes';
 
 type PrivateRouteProps = {
     children: ReactElement,
-}
+};
 
 export const PrivateRoute: FC<PrivateRouteProps> = (props) => {
     const isAuthenticated = useIsAuthenticated()();

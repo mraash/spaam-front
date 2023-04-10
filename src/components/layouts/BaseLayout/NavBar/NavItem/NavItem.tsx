@@ -6,7 +6,7 @@ import css from './NavItem.module.scss';
 export type NavItemProps = {
     link: string,
     text: string,
-}
+};
 
 export const NavItem: FC<NavItemProps> = (props) => {
     return (

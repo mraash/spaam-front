@@ -7,7 +7,7 @@ type TextProps = {
     id: number,
     index: number,
     text: string,
-}
+};
 
 export const Text: FC<TextProps> = (props) => {
     const dispatch = useAppDispatch();

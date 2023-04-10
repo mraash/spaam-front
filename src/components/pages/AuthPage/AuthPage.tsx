@@ -3,7 +3,7 @@ import css from './AuthPage.module.scss';
 import { AuthBlock } from './AuthBlock';
 
 type AuthPageProps = {
-}
+};
 
 export const AuthPage: FC<AuthPageProps> = (props) => {
     return (

@@ -5,7 +5,7 @@ import { AccountsTable } from './AccountsTable';
 import { Header } from './Header';
 
 type MyAccountsPageProps = {
-}
+};
 
 export const MyAccountsPage: FC<MyAccountsPageProps> = (props) => {
     return (

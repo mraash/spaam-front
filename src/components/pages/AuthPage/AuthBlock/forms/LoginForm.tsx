@@ -9,7 +9,7 @@ import css from './Form.module.scss';
 import { AuthInput } from './inputs/AuthInput';
 
 type LoginFormProps = {
-}
+};
 
 export const LoginForm: FC<LoginFormProps> = (props) => {
     const signIn = useAppSignIn();

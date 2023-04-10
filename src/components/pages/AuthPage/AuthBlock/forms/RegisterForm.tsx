@@ -9,7 +9,7 @@ import css from './Form.module.scss';
 import { AuthInput } from './inputs/AuthInput';
 
 type RegisterFormProps = {
-}
+};
 
 export const RegisterForm: FC<RegisterFormProps> = (props) => {
     const signIn = useAppSignIn();

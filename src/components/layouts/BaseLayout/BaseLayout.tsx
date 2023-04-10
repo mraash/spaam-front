@@ -5,7 +5,7 @@ import { NavBar } from './NavBar';
 
 type BaseProps = {
     children?: ReactElement<typeof Content>,
-}
+};
 
 export const BaseLayout: FC<BaseProps> = (props) => {
     return (

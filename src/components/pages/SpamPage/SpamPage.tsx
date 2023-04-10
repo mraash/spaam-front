@@ -4,7 +4,7 @@ import { BaseLayout, Content } from '../../layouts/BaseLayout';
 import { PanelList } from './PanelList';
 
 type SpamPageProps = {
-}
+};
 
 export const SpamPage: FC<SpamPageProps> = (props) => {
     return (

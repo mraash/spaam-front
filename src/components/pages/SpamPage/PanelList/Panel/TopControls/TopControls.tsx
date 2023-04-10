@@ -6,7 +6,7 @@ import { panelActions } from '~/gstate/slices/panelSlice';
 type TopControlsProps = {
     id: number,
     isPanelActive: boolean
-}
+};
 
 export const TopControls: FC<TopControlsProps> = (props) => {
     const dispatch = useAppDispatch();

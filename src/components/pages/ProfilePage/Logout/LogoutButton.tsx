@@ -4,7 +4,7 @@ import { defaultPublicRoute } from '~/router/routes';
 import css from './LogoutButton.module.scss';
 
 type LogoutButtonProps = {
-}
+};
 
 export const LogoutButton: FC<LogoutButtonProps> = (props) => {
     const signOut = useSignOut();

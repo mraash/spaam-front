@@ -26,6 +26,8 @@
     },
     "extends": [
         "airbnb-base",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
         "plugin:react-hooks/recommended"
     ],
     "rules": {
@@ -43,7 +45,19 @@
             "allowFunctionParams": true
         }],
         "brace-style": ["error", "stroustrup"],
-
+        "@typescript-eslint/semi": "error",
+        "@typescript-eslint/ban-types": ["error", {
+            "types": {
+                "{}": false
+            },
+            "extendDefaults": true
+        }],
+        "@typescript-eslint/comma-dangle": ["error", "always-multiline"],
+        
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "comma-dangle": "off",
         "no-use-before-define": "off",
         "no-plusplus": "off",
         "no-empty": "off",

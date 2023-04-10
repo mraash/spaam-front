@@ -5,7 +5,7 @@ import { vkAccountThunks } from '~/gstate/thunks/vkAccountThunks';
 import { useIsFirstRender } from '~/hooks/render';
 
 type HeaderProps = {
-}
+};
 
 export const Header: FC<HeaderProps> = (props) => {
     const dispatch = useAppDispatch();

@@ -3,7 +3,7 @@ import css from './Content.module.scss';
 
 type ContentProps = {
     children?: any;
-}
+};
 
 export const Content: FC<ContentProps> = (props) => {
     return (

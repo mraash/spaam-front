@@ -5,7 +5,7 @@ import { Panel } from './Panel';
 import { AddPanel } from './AddPanel';
 
 type PanelListProps = {
-}
+};
 
 export const PanelList: FC<PanelListProps> = (props) => {
     const panels = useAppSelector((state) => state.panels.list);

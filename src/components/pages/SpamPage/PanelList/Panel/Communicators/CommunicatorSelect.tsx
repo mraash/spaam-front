@@ -7,7 +7,7 @@ type CommunicatorSelectProps = {
         isSelected: boolean,
         name: string,
     }>,
-}
+};
 
 export const CommunicatorSelect: FC<CommunicatorSelectProps> = (props) => {
     const selectedValue = (props.options.find((option) => option.isSelected))?.name;

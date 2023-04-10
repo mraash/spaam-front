@@ -7,7 +7,7 @@ type AccountRowProps = {
     id: number,
     vkName: string,
     vkSlug: string,
-}
+};
 
 export const AccountRow: FC<AccountRowProps> = (props) => {
     const dispatch = useAppDispatch();

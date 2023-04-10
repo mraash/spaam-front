@@ -7,7 +7,8 @@
     "build": "webpack --env mode=production",
     "build-dev": "webpack --env mode=development",
     "lint-css": "npx stylelint ./src",
-    "lint-js": "npx eslint ./src --ext .ts,.tsx"
+    "lint-js": "npx eslint ./src --ext .ts,.tsx",
+    "lint-js-fix": "npx eslint ./src --fix --ext .ts,.tsx"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",

@@ -4,7 +4,7 @@ import { LoginForm } from './forms/LoginForm';
 import { RegisterForm } from './forms/RegisterForm';
 
 type AuthBlockProps = {
-}
+};
 
 export const AuthBlock: FC<AuthBlockProps> = (props) => {
     const loginTab = 1;

@@ -4,7 +4,7 @@ import css from './Communicator.module.scss';
 type CommunicatorInputProps = {
     title: string,
     value: string,
-}
+};
 
 export const CommunicatorInput: FC<CommunicatorInputProps> = (props) => {
     const onInput = () => {
