@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useSignOut } from 'react-auth-kit';
+import { defaultPublicRoute } from '~/router/routes';
 import css from './LogoutButton.module.scss';
 
 type LogoutButtonProps = {
@@ -11,7 +12,7 @@ export const LogoutButton: FC<LogoutButtonProps> = (props) => {
     const onClick = () => {
         signOut();
 
-        window.location.href = '/auth';
+        window.location.href = defaultPublicRoute();
     };
 
     return (

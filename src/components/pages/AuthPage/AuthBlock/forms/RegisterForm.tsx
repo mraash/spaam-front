@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { ApiErrors, AuthAPI } from '~/api';
+import { defaultPrivateRoute } from '~/router/routes';
 import { useAppSignIn } from '~/hooks/auth';
 import css from './Form.module.scss';
 import { AuthInput } from './inputs/AuthInput';
@@ -42,7 +43,7 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
 
                 signIn(auth.token, auth.refreshToken, email);
 
-                navigate('/spamer');
+                navigate(defaultPrivateRoute());
             }
             catch (err: any) {
                 if (err instanceof ApiErrors.EmailIsTaken) {
