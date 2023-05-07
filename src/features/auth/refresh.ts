@@ -45,7 +45,7 @@ export const makeInitialRefesh = () => {
         Cookies.set(names.authToken, refreshResult.newAuthToken, {
             expires: cookieDays,
         });
-        Cookies.set('_auth_refresh', refreshResult.newRefreshToken!, {
+        Cookies.set(names.refeshToken, refreshResult.newRefreshToken!, {
             expires: cookieDays,
         });
 

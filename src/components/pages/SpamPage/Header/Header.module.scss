@@ -1,0 +1,14 @@
+.Header {
+    padding: 0.7rem 0;
+}
+
+.saveButton {
+    padding: 0.7rem 1rem;
+    border-radius: 0.2em;
+    background-color: #ccc;
+    transition: 0.05s;
+
+    &:hover {
+        background-color: #aaa;
+    }
+}

@@ -10,6 +10,7 @@ export type PanelProps = {
     isActive: boolean,
     senders: Array<{
         isSelected: boolean,
+        id: number,
         name: string,
     }>,
     recipient: string,
@@ -27,7 +28,7 @@ export const Panel: FC<PanelProps> = (props) => {
                 <TopControls id={ props.id } isPanelActive={ props.isActive }/>
             </div>
             <div className={ css.communicatorsWr }>
-                <Communicators senders={ props.senders } recipient={ props.recipient } />
+                <Communicators panelId={ props.id } senders={ props.senders } recipient={ props.recipient } />
             </div>
             <div className={ css.textsWr }>
                 <Texts id={ props.id } texts={ props.texts }/>

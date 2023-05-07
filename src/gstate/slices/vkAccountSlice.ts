@@ -15,7 +15,7 @@ const vkAccountSlice = createSlice<VkAccountState, SliceCaseReducers<VkAccountSt
     reducers: {
     },
     extraReducers(builder) {
-        builder.addCase(vkAccountThunks.getAll.fulfilled, (state, { payload: vkAccountList }) => {
+        builder.addCase(vkAccountThunks.fetchAll.fulfilled, (state, { payload: vkAccountList }) => {
             state.list = vkAccountList;
         });
 

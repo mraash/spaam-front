@@ -9,28 +9,24 @@ type PanelListProps = {
 
 export const PanelList: FC<PanelListProps> = (props) => {
     const panels = useAppSelector((state) => state.panels.list);
+    const vkAccounts = useAppSelector((state) => state.vkAccounts.list);
 
     return (
         <ul className={ css.PanelList }>
-            { panels.map((panelEntity) => {
+            { panels.map((panel) => {
                 return (
-                    <li key={ panelEntity.id } className={ css.panelWr }>
+                    <li key={ panel.id } className={ css.panelWr }>
                         <Panel
-                            id={ panelEntity.id }
+                            id={ panel.id }
                             isActive={ false }
-                            senders={[
-                                {
-                                    isSelected: true,
-                                    name: panelEntity.sender.vk.fullName,
-                                },
-                                {
-                                    isSelected: false,
-                                    name: 'xxx',
-                                },
-                            ]}
-                            recipient={ panelEntity.recipient }
-                            texts={ panelEntity.texts }
-                            timerConfig={ panelEntity.timers }
+                            senders={ vkAccounts.map((vkAccount) => ({
+                                isSelected: vkAccount.id === panel.senderId,
+                                id: vkAccount.id,
+                                name: vkAccount.vk.fullName,
+                            })) }
+                            recipient={ panel.recipient }
+                            texts={ panel.texts }
+                            timerConfig={ panel.timers }
                         />
                     </li>
                 );

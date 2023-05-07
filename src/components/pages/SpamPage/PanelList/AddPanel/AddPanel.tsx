@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useAppDispatch } from '~/hooks/redux';
+import { useAppDispatch, useAppSelector } from '~/hooks/redux';
 import { panelActions } from '~/gstate/slices/panelSlice';
 import css from './AddPanel.module.scss';
 
@@ -8,21 +8,22 @@ type AddPanelProps = {
 
 export const AddPanel: FC<AddPanelProps> = (props) => {
     const dispatch = useAppDispatch();
+    const firstSender = useAppSelector((state) => state.vkAccounts.list.find(() => true));
 
     const onClick = () => {
         dispatch(panelActions.add({
             id: Date.now(),
-            sender: {
-                id: Math.random(),
-                vk: {
-                    id: Math.random(),
-                    slug: 'abc',
-                },
-                name: '',
-            },
+            senderId: firstSender?.id,
             recipient: '',
-            texts: [],
-            timers: [],
+            texts: [
+                '',
+            ],
+            timers: [
+                {
+                    seconds: null,
+                    repeat: null,
+                },
+            ],
         }));
     };
 

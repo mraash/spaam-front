@@ -1,12 +1,12 @@
 import { VkAccountEntity } from './VkAccountEntity';
 
-export type PanelEntity = {
+export interface PanelEntity {
     id: number,
-    sender: VkAccountEntity,
+    senderId: number,
     recipient: string,
     texts: string[],
     timers: Array<{
         seconds: number|null,
         repeat: number|null,
     }>,
-};
+}

@@ -3,7 +3,9 @@ type ConditionClass = [any, string];
 /**
  * Jsoin list of class strings.
  *
- * @param classes List of classes.
+ * @param classes List of classes. Its items can be a string (class name) or an array of two
+ *   elements (where the first element is condition and the second element is class name that
+ *   will be added if the condition is true).
  *
  * @returns Valid className value
  */
@@ -14,8 +16,13 @@ export const cn = (...classes: Array<string|ConditionClass>): string => {
         if (typeof item === 'string') {
             classList.push(item);
         }
-        else if (item[0]) {
-            classList.push(item[1]);
+        else {
+            const condition = item[0];
+            const className = item[1];
+
+            if (condition) {
+                classList.push(className);
+            }
         }
     });
 

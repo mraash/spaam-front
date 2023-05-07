@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useIsAuthenticated } from 'react-auth-kit';
 import { authThunks } from '~/gstate/thunks/authThunks';
+import { vkAccountThunks } from '~/gstate/thunks/vkAccountThunks';
 import { useAppDispatch } from '~/hooks/redux';
 import { PrivateRoute, PublicRoute } from '../features/router';
 import { defaultPrivateRoute, routes } from '~/router/routes';
@@ -12,6 +13,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { SpamPage } from './pages/SpamPage';
 import { AuthPage } from './pages/AuthPage';
+import { panelThunks } from '~/gstate/thunks/panelThunks';
 
 export const App: FC = () => {
     const dispatch = useAppDispatch();
@@ -20,7 +22,13 @@ export const App: FC = () => {
 
     if (isFirstRender && isAuth()) {
         makeInitialRefesh();
+
         dispatch(authThunks.getUser());
+
+        dispatch(vkAccountThunks.fetchAll());
+        dispatch(vkAccountThunks.getCreationLink());
+
+        dispatch(panelThunks.fetchAll());
     }
 
     return (

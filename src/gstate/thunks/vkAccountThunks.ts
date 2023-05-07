@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { VkAccountsAPI } from '~/api';
 import { VkAccountEntity } from '~/types/entities/VkAccountEntity';
 
-const getAll = createAsyncThunk(
+const fetchAll = createAsyncThunk(
     'vkAccounts/async/getAll',
     async (): Promise<VkAccountEntity[]> => {
         try {
@@ -48,7 +48,7 @@ const remove = createAsyncThunk(
 );
 
 export const vkAccountThunks = {
-    getAll,
+    fetchAll,
     getCreationLink,
     remove,
 };

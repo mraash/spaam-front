@@ -1,3 +1,4 @@
 import { UserInfo } from '~/api';
 
-export type UserEntity = UserInfo;
+export interface UserEntity extends UserInfo {
+}

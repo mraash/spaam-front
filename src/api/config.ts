@@ -1,5 +1,5 @@
 export const apiConsts = {
-    domain: 'http://api.spamer.my',
+    domain: 'http://api.spaamer.my',
     tokenTime: 900,
     refreshTokenTime: 2592000,
 };

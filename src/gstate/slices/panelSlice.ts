@@ -1,51 +1,53 @@
 import { createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
 import { PanelEntity } from '~/types/entities/PanelEntity';
+import { panelThunks } from '../thunks/panelThunks';
 
 type PanelState = {
+    serverList: PanelEntity[],
     list: PanelEntity[],
 };
 
 const panelSlice = createSlice<PanelState, SliceCaseReducers<PanelState>>({
-    name: 'panel',
+    name: 'panels',
     initialState: {
-        list: [
-            {
-                id: 1,
-                sender: {
-                    id: 1,
-                    vk: {
-                        id: 124123,
-                        slug: 'abc',
-                        fullName: 'Sender 1',
-                    },
-                },
-                recipient: 'Recipient 1',
-                texts: [
-                    'text 1',
-                    'text 2',
-                ],
-                timers: [
-                    {
-                        seconds: 15,
-                        repeat: 3,
-                    },
-                ],
-            },
-        ],
+        serverList: [],
+        list: [],
     },
     reducers: {
-        add(state, { payload }: PayloadAction<PanelEntity>) {
-            state.list.push(payload);
+        // Panel
+        add(state, { payload: panel }: PayloadAction<PanelEntity>) {
+            state.list.push(panel);
         },
 
-        remove(state, { payload }: PayloadAction<number>) {
-            const index = state.list.findIndex((panel) => panel.id === payload);
+        remove(state, { payload: id }: PayloadAction<number>) {
+            const index = state.list.findIndex((panel) => panel.id === id);
             state.list.splice(index, 1);
         },
 
-        addEmptyText(state, { payload }: PayloadAction<number>) {
+        // Sender
+        setSenderId(state, { payload }: PayloadAction<{
+            id: number,
+            senderId: number,
+        }>) {
             state.list
-                .find((panel) => panel.id === payload)!
+                .find((panel) => panel.id === payload.id)!
+                .senderId = payload.senderId;
+        },
+
+        // Recipient
+        setRecipient(state, { payload }: PayloadAction<{
+            id: number,
+            value: string,
+        }>) {
+            state.list
+                .find((panel) => panel.id === payload.id)!
+                .recipient = payload.value;
+        },
+
+        // Text
+        addEmptyText(state, { payload: id }: PayloadAction<number>) {
+            state.list
+                .find((panel) => panel.id === id)!
                 .texts.push('');
         },
 
@@ -68,12 +70,13 @@ const panelSlice = createSlice<PanelState, SliceCaseReducers<PanelState>>({
                 .texts.splice(payload.textIndex, 1);
         },
 
+        // Timer
         addEmptyTimer(state, { payload }: PayloadAction<number>) {
             state.list
                 .find((panel) => panel.id === payload)!
                 .timers.push({
-                    seconds: 0,
-                    repeat: 0,
+                    seconds: null,
+                    repeat: null,
                 });
         },
 
@@ -107,6 +110,16 @@ const panelSlice = createSlice<PanelState, SliceCaseReducers<PanelState>>({
                 .find((panel) => panel.id === payload.id)!
                 .timers.splice(payload.timerIndex, 1);
         },
+    },
+    extraReducers(builder) {
+        builder.addCase(panelThunks.fetchAll.fulfilled, (state, { payload: panelList }) => {
+            state.list = panelList;
+            state.serverList = panelList;
+        });
+
+        builder.addCase(panelThunks.synchronize.fulfilled, (state, { payload: panelList }) => {
+            state.serverList = panelList;
+        });
     },
 });
 

@@ -1,14 +1,24 @@
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
+import { panelActions } from '~/gstate/slices/panelSlice';
+import { useAppDispatch } from '~/hooks/redux';
 import css from './Communicator.module.scss';
 
 type CommunicatorInputProps = {
+    panelId: number,
     title: string,
     value: string,
 };
 
 export const CommunicatorInput: FC<CommunicatorInputProps> = (props) => {
-    const onInput = () => {
-        console.log('resipient tap');
+    const dispatch = useAppDispatch();
+
+    const onInput = (e: ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+
+        dispatch(panelActions.setRecipient({
+            id: props.panelId,
+            value,
+        }));
     };
 
     return (
