@@ -1,18 +1,91 @@
-import { FC } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import css from './TopControls.module.scss';
-import { useAppDispatch } from '~/hooks/redux';
+import { useAppDispatch, useAppSelector } from '~/hooks/redux';
 import { panelActions } from '~/gstate/slices/panelSlice';
+import { panelThunks } from '~/gstate/thunks/panelThunks';
 
 type TopControlsProps = {
     id: number,
-    isPanelActive: boolean
 };
+
+let isSpamActive = false;
+let currentIndex = 0;
+let timeouts: number[] = [];
+let currentTimeout: NodeJS.Timeout|null = null;
 
 export const TopControls: FC<TopControlsProps> = (props) => {
     const dispatch = useAppDispatch();
+    const panel = useAppSelector((state) => state.panels.list.find((item) => item.id === props.id)!);
 
-    const onActivateButton = () => {
-        console.log('activate/deactivate');
+    const [isActive, setIsActive] = useState(false);
+
+    const sendOnce = async (): Promise<string|true|undefined> => {
+        const response = await dispatch(panelThunks.sendOnce(props.id));
+        console.log(`${panel.recipient}: ${response.payload}`);
+
+        return response.payload;
+    };
+
+    const startSpam = () => {
+        panel.timers.forEach((timer) => {
+            for (let i = 1; i <= (timer.repeat ?? 0); i++) {
+                if (timer.seconds !== null) {
+                    timeouts.push(timer.seconds * 1000);
+                }
+            }
+        });
+
+        isSpamActive = true;
+
+        const sendInfinitiveTimes = () => {
+            if (!isSpamActive) {
+                return;
+            }
+
+            currentTimeout = setTimeout(async () => {
+                const result = await sendOnce();
+
+                if (result !== true) {
+                    setIsActive(false);
+                    stopSpam();
+                }
+
+                currentIndex++;
+
+                if (currentIndex >= timeouts.length) {
+                    currentIndex = 0;
+                }
+
+                sendInfinitiveTimes();
+            }, timeouts[currentIndex]);
+        };
+
+        sendInfinitiveTimes();
+    };
+
+    const stopSpam = () => {
+        console.log('stop');
+        isSpamActive = false;
+        currentIndex = 0;
+        timeouts = [];
+
+        if (currentTimeout) {
+            clearTimeout(currentTimeout);
+            currentTimeout = null;
+        }
+    };
+
+    const onActivateButton = (e: ChangeEvent<HTMLInputElement>) => {
+        const isNowActive = !isActive;
+
+        setIsActive(isNowActive);
+
+        if (isNowActive) {
+            sendOnce().then(startSpam);
+        }
+        else {
+            stopSpam();
+        }
     };
 
     const onDeleteButton = () => {
@@ -26,7 +99,7 @@ export const TopControls: FC<TopControlsProps> = (props) => {
                     <input
                         className={ `${css.control} ${css.activateCheckbox}` }
                         type="checkbox"
-                        checked={ props.isPanelActive }
+                        checked={ isActive }
                         onChange={ onActivateButton }
                     />
                 </li>

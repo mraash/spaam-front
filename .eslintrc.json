@@ -44,6 +44,9 @@
             "allowAfterThisConstructor": true,
             "allowFunctionParams": true
         }],
+        "no-unused-expressions": ["error", {
+            "allowTernary": true
+        }],
         "brace-style": ["error", "stroustrup"],
         "@typescript-eslint/semi": "error",
         "@typescript-eslint/ban-types": ["error", {

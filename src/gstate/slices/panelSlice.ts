@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
+import { AnyAction, createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
 import { PanelEntity } from '~/types/entities/PanelEntity';
 import { panelThunks } from '../thunks/panelThunks';
+import { ApiError } from '~/api/errors';
 
 type PanelState = {
     serverList: PanelEntity[],
@@ -120,8 +121,16 @@ const panelSlice = createSlice<PanelState, SliceCaseReducers<PanelState>>({
         builder.addCase(panelThunks.synchronize.fulfilled, (state, { payload: panelList }) => {
             state.serverList = panelList;
         });
+
+        builder.addMatcher(isRejected, (state, { payload: message }: PayloadAction<string>) => {
+            // TODO: do something here
+        });
     },
 });
+
+function isRejected(action: AnyAction): boolean {
+    return action.type.endsWith('rejected');
+}
 
 export const panelReducer = panelSlice.reducer;
 export const panelActions = panelSlice.actions;

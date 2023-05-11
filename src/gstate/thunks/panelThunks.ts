@@ -3,25 +3,39 @@ import { SpamPanelAPI } from '~/api';
 import { PanelEntity } from '~/types/entities/PanelEntity';
 import { getPanelEntityList } from '../dataMappers/panelMappers';
 import { store } from '../store';
+import { ApiError } from '~/api/errors';
 
-const fetchAll = createAsyncThunk(
+const fetchAll = createAsyncThunk<PanelEntity[], undefined, { rejectValue: string }>(
     'panels/async/fetchAll',
-    async (): Promise<PanelEntity[]> => {
+    async (_, { rejectWithValue }) => {
         try {
             const vkAccountList = await SpamPanelAPI.getAll();
 
             return getPanelEntityList(vkAccountList);
         }
         catch (err) {
-            console.error(err);
-            throw err;
+            return rejectWithValue((err as ApiError).message);
         }
     },
 );
 
-const synchronize = createAsyncThunk(
+const sendOnce = createAsyncThunk<true, number, { rejectValue: string }>(
+    'panels/async/sendOnce',
+    async (id, { rejectWithValue }) => {
+        try {
+            await SpamPanelAPI.sendOnce(id);
+
+            return true;
+        }
+        catch (err) {
+            return rejectWithValue((err as ApiError).message);
+        }
+    },
+);
+
+const synchronize = createAsyncThunk<PanelEntity[], undefined, { rejectValue: string }>(
     'panels/async/synchronize',
-    async (): Promise<PanelEntity[]> => {
+    async (_, { rejectWithValue }) => {
         const { list, serverList } = store.getState().panels;
 
         const deleted: number[] = [];
@@ -102,13 +116,13 @@ const synchronize = createAsyncThunk(
             return list;
         }
         catch (err) {
-            console.error(err);
-            throw err;
+            return rejectWithValue((err as ApiError).message);
         }
     },
 );
 
 export const panelThunks = {
     fetchAll,
+    sendOnce,
     synchronize,
 };

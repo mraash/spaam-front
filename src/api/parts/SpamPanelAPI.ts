@@ -14,8 +14,6 @@ export const createList = async (panelList: PanelEntity[]): Promise<SpamPanelInf
         return [];
     }
 
-    console.log('create list');
-
     const validPanelList = panelList.map((panel) => {
         return {
             senderId: panel.senderId,
@@ -36,8 +34,6 @@ export const updateList = async (panelList: PanelEntity[]): Promise<SpamPanelInf
     if (panelList.length === 0) {
         return [];
     }
-
-    console.log('update list');
 
     const validPanelList = panelList.map((panel) => {
         return {
@@ -63,11 +59,13 @@ export const removeList = async (idList: number[]): Promise<number[]> => {
         return [];
     }
 
-    console.log('delete list');
-
     const response = await authAxios().delete('/spam-panels', { data: {
         ids: idList,
     } });
 
     return getPayload(response);
+};
+
+export const sendOnce = async (id: number): Promise<void> => {
+    await authAxios().post(`/spam-panels/${id}/send-once`);
 };
