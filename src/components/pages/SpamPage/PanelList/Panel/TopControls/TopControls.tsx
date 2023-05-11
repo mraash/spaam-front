@@ -26,7 +26,7 @@ export const TopControls: FC<TopControlsProps> = (props) => {
         return response.payload;
     };
 
-    const startSpam = () => {
+    const startSpam = async () => {
         panel.timers.forEach((timer) => {
             for (let i = 1; i <= (timer.repeat ?? 0); i++) {
                 if (timer.seconds !== null) {
@@ -34,6 +34,14 @@ export const TopControls: FC<TopControlsProps> = (props) => {
                 }
             }
         });
+
+        const result = await sendOnce();
+
+        if (result !== true) {
+            setIsActive(false);
+            stopSpam();
+            return;
+        }
 
         isSpamActive = true;
 
@@ -48,6 +56,7 @@ export const TopControls: FC<TopControlsProps> = (props) => {
                 if (result !== true) {
                     setIsActive(false);
                     stopSpam();
+                    return;
                 }
 
                 currentIndex++;
@@ -81,7 +90,7 @@ export const TopControls: FC<TopControlsProps> = (props) => {
         setIsActive(isNowActive);
 
         if (isNowActive) {
-            sendOnce().then(startSpam);
+            startSpam();
         }
         else {
             stopSpam();

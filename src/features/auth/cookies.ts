@@ -1,11 +1,11 @@
 import Cookies from 'js-cookie';
 
-export const getHeader = (): string|false => {
+export const getHeader = (): string|null => {
     const type = Cookies.get('_auth_type');
     const token = Cookies.get('_auth');
 
     if (type === undefined || token === undefined) {
-        return false;
+        return null;
     }
 
     return `${type} ${token}`;

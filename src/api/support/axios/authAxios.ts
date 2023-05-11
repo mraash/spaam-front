@@ -4,15 +4,28 @@ import { apiStatus } from '~/api/status';
 import { getHeader } from '~/features/auth/cookies';
 import { resolveApiError } from '../resolvers';
 
-let axiosInstance: AxiosInstance;
+export const authAxios = (() => {
+    let tokenHeader: string|null;
+    let axiosInstance: AxiosInstance;
 
-export const authAxios = (): AxiosInstance => {
-    if (!axiosInstance) {
-        axiosInstance = createAuthAxios();
-    }
+    return (): AxiosInstance => {
+        const currentTokenHeader = getHeader();
 
-    return axiosInstance;
-};
+        // First instance
+        if (!axiosInstance) {
+            axiosInstance = createAuthAxios();
+            tokenHeader = currentTokenHeader;
+        }
+
+        // Token was refeshed
+        if (tokenHeader !== currentTokenHeader) {
+            axiosInstance = createAuthAxios();
+            tokenHeader = currentTokenHeader;
+        }
+
+        return axiosInstance;
+    };
+})();
 
 const createAuthAxios = () => {
     const authHeader = getHeader();
@@ -24,7 +37,7 @@ const createAuthAxios = () => {
     const instance = axios.create({
         baseURL: `${apiConsts.domain}/${apiConfig.version}`,
         headers: {
-            Authorization: getHeader(),
+            Authorization: authHeader,
         },
     });
 
