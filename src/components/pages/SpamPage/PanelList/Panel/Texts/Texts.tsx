@@ -3,6 +3,7 @@ import { panelActions } from '~/gstate/slices/panelSlice';
 import { useAppDispatch } from '~/hooks/redux';
 import { Text } from './Text';
 import css from './Texts.module.scss';
+import { SquareButton } from '~/components/ui-kit/buttons/SquareButton';
 
 type TextsProps = {
     id: number,
@@ -23,10 +24,7 @@ export const Texts: FC<TextsProps> = (props) => {
                     Texts
                 </div>
                 <div className={ css.addButtonWr }>
-                    <button
-                        className={ css.addButton }
-                        onClick={ onAddTextButton }
-                    >+</button>
+                    <SquareButton icon='add' color='success' size={ 400 } onClick={ onAddTextButton } />
                 </div>
             </div>
             <ul className={ css.textList }>

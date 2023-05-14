@@ -1,0 +1,46 @@
+.ErrorPrewall {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    background-color: var(--color-danger);
+    color: var(--color-white);
+    opacity: 0.93;
+}
+
+.header {
+    display: flex;
+    justify-content: end;
+    padding: 0.6rem 0.9rem;
+}
+
+.deleteButtonWr {
+}
+
+.deleteButton {
+    padding: 0.2rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--color-white-hover);
+    }
+
+    &:active {
+        color: var(--color-white-active);
+    }
+}
+
+.messageWr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10rem;
+    height: 100%;
+}
+
+.message {
+}

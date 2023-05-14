@@ -1,0 +1,13 @@
+.Link {
+    text-decoration: underline;
+    color: #1d00af;
+    transition: var(--transition-button);
+
+    &:hover {
+        color: #5b24ff;
+    }
+
+    &:active {
+        color: #1d00af;
+    }
+}

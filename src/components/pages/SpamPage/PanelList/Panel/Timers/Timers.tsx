@@ -3,6 +3,8 @@ import css from './Timers.module.scss';
 import { Timer, TimerProps } from './Timer';
 import { useAppDispatch } from '~/hooks/redux';
 import { panelActions } from '~/gstate/slices/panelSlice';
+import { SquareButton } from '~/components/ui-kit/buttons/SquareButton';
+import { cn } from '~/libraries/class-name';
 
 type TimersProps = {
     id: number,
@@ -23,14 +25,12 @@ export const Timers: FC<TimersProps> = (props) => {
         <div className={ css.PanelTimers }>
 
             <div className={ css.header }>
-                <h4 className={ css.title }>
-                    Timer config
+                <h4 className={ css.titles }>
+                    <span className={ cn(css.title, css.title_timer) }>Timeout (seconds)</span>
+                    <span className={ cn(css.title, css.title_repeat) }>Repeat</span>
                 </h4>
                 <div className={ css.addButtonWr }>
-                    <button
-                        className={ css.addButton }
-                        onClick={ onAddTimerButton }
-                    >+</button>
+                    <SquareButton icon='add' color='success' size={ 400 } onClick={ onAddTimerButton } />
                 </div>
             </div>
 

@@ -1,16 +1,22 @@
+@import '~scss/share/Input';
+
 .Communicator {
 }
 
 .title {
+    padding-left: 0.6rem;
+    color: #555;
+    font-weight: bold;
+    font-size: var(--fsz-300);
 }
 
 .inputWr {
+    margin-top: 0.3rem;
 }
 
 .input {
+    @extend %inputBase;
+    @extend %inputPadding_sm;
     display: block;
-    border: 1px solid #ccc;
-    padding: 0.6rem;
     width: 100%;
-    border-radius: 0.3rem;
 }

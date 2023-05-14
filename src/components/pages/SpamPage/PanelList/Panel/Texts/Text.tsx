@@ -2,6 +2,7 @@ import { FC, ChangeEvent } from 'react';
 import { panelActions } from '~/gstate/slices/panelSlice';
 import { useAppDispatch } from '~/hooks/redux';
 import css from './Text.module.scss';
+import { SquareButton } from '~/components/ui-kit/buttons/SquareButton';
 
 type TextProps = {
     id: number,
@@ -37,10 +38,7 @@ export const Text: FC<TextProps> = (props) => {
                 />
             </div>
             <div className={ css.controls }>
-                <button
-                    className={ css.deleteButton }
-                    onClick={ onDeleteTextButton }
-                >-</button>
+                <SquareButton icon='remove' color='danger' size={ 400 } onClick={ onDeleteTextButton }/>
             </div>
         </div>
     );

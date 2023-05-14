@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import css from './MyAccountsPage.module.scss';
 import { BaseLayout, Content } from '~/components/layouts/BaseLayout';
-import { AccountsTable } from './AccountsTable';
+import { AccountList } from './AccountList';
 import { Header } from './Header';
 
 type MyAccountsPageProps = {
@@ -16,7 +16,7 @@ export const MyAccountsPage: FC<MyAccountsPageProps> = (props) => {
                         <Header/>
                     </div>
                     <div className={ css.tableWr }>
-                        <AccountsTable/>
+                        <AccountList/>
                     </div>
                 </div>
             </Content>

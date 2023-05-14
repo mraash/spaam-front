@@ -4,6 +4,8 @@ import { TopControls } from './TopControls';
 import { Communicators } from './Communicators';
 import { Timers } from './Timers';
 import { Texts } from './Texts';
+import { ErrorPrewall } from './Prewall/ErrorPrewall';
+import { TimerPrewall } from './Prewall/TimerPrewall';
 
 export type PanelProps = {
     id: number,
@@ -21,8 +23,17 @@ export type PanelProps = {
 };
 
 export const Panel: FC<PanelProps> = (props) => {
+    const isActive = false;
+    const error: string|null = 'My beautiful error';
+
+    let prewall = null;
+
+    if (isActive) prewall = <TimerPrewall />;
+    if (error !== null) prewall = <ErrorPrewall message={ error } />;
+
     return (
         <div className={ css.Panel }>
+            { prewall }
             <div className={ css.topControlsWr }>
                 <TopControls id={ props.id } />
             </div>

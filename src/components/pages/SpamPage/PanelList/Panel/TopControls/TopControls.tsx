@@ -1,8 +1,9 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { FC } from 'react';
 import css from './TopControls.module.scss';
 import { useAppDispatch, useAppSelector } from '~/hooks/redux';
 import { panelActions } from '~/gstate/slices/panelSlice';
 import { panelThunks } from '~/gstate/thunks/panelThunks';
+import { TextButton } from '~/components/ui-kit/buttons/TextButton';
 
 type TopControlsProps = {
     id: number,
@@ -16,8 +17,6 @@ let currentTimeout: NodeJS.Timeout|null = null;
 export const TopControls: FC<TopControlsProps> = (props) => {
     const dispatch = useAppDispatch();
     const panel = useAppSelector((state) => state.panels.list.find((item) => item.id === props.id)!);
-
-    const [isActive, setIsActive] = useState(false);
 
     const sendOnce = async (): Promise<string|true|undefined> => {
         const response = await dispatch(panelThunks.sendOnce(props.id));
@@ -38,7 +37,6 @@ export const TopControls: FC<TopControlsProps> = (props) => {
         const result = await sendOnce();
 
         if (result !== true) {
-            setIsActive(false);
             stopSpam();
             return;
         }
@@ -54,7 +52,6 @@ export const TopControls: FC<TopControlsProps> = (props) => {
                 const result = await sendOnce();
 
                 if (result !== true) {
-                    setIsActive(false);
                     stopSpam();
                     return;
                 }
@@ -84,17 +81,8 @@ export const TopControls: FC<TopControlsProps> = (props) => {
         }
     };
 
-    const onActivateButton = (e: ChangeEvent<HTMLInputElement>) => {
-        const isNowActive = !isActive;
-
-        setIsActive(isNowActive);
-
-        if (isNowActive) {
-            startSpam();
-        }
-        else {
-            stopSpam();
-        }
+    const onStartButton = () => {
+        startSpam();
     };
 
     const onDeleteButton = () => {
@@ -105,20 +93,10 @@ export const TopControls: FC<TopControlsProps> = (props) => {
         <div className={ css.TopControls }>
             <ul className={ css.controlList }>
                 <li className={ css.controlWr }>
-                    <input
-                        className={ `${css.control} ${css.activateCheckbox}` }
-                        type="checkbox"
-                        checked={ isActive }
-                        onChange={ onActivateButton }
-                    />
+                    <TextButton text='Start' color='success' size={ 300 } onClick={ onStartButton } />
                 </li>
                 <li className={ css.controlWr }>
-                    <button
-                        className={ `${css.control} ${css.deleteButton}` }
-                        onClick={ onDeleteButton }
-                    >
-                        -
-                    </button>
+                    <TextButton text='Delete' color='danger' size={ 300 } onClick={ onDeleteButton } />
                 </li>
             </ul>
         </div>

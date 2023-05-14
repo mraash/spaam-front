@@ -1,7 +1,9 @@
+@import '~scss/share/Page';
+
 .ProfilePage {
-    padding: 2rem;
+    @extend %Page;
 }
 
 .logoutButtonWr {
-    margin-top: 1rem;
+    margin-top: 2.5rem;
 }

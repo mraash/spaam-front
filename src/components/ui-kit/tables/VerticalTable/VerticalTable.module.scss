@@ -1,0 +1,59 @@
+.VerticalTable {
+    border-collapse: collapse;
+}
+
+.cell {
+    padding: 1rem 1.2rem;
+
+    &_key {
+        background-color: var(--color-main);
+        color: var(--color-white);
+        font-size: var(--fsz-300);
+    }
+
+    &_value {
+        background-color: var(--color-white);
+    }
+}
+
+.row {
+    $border-raduis: 0.5rem;
+
+    &:not(:first-child) {
+
+        .cell {
+
+            &_value {
+                border-top: 1px solid var(--color-lightwhite);
+            }
+        }
+    }
+
+    &:first-child {
+
+        .cell {
+
+            &_key {
+                border-top-left-radius: $border-raduis;
+            }
+
+            &_value {
+                border-top-right-radius: $border-raduis;
+            }
+        }
+    }
+
+    &:last-child {
+
+        .cell {
+
+            &_key {
+                border-bottom-left-radius: $border-raduis;
+            }
+
+            &_value {
+                border-bottom-right-radius: $border-raduis;
+            }
+        }
+    }
+}

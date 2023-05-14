@@ -1,0 +1,57 @@
+.Table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.headerCell {
+    padding: 1.2rem 1.5rem;
+    background-color: var(--color-main);
+    text-align: left;
+    color: var(--color-white);
+    font-weight: 500;
+
+    &:not(:last-child) {
+        padding-right: 4rem;
+    }
+
+    &:first-child {
+        border-top-left-radius: 0.5rem;
+    }
+
+    &:last-child {
+        border-top-right-radius: 0.5rem;
+    }
+}
+
+.header {
+}
+
+.cell {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--color-white);
+
+    &:not(:last-child) {
+        padding-right: 4rem;
+    }
+}
+
+.row {
+
+    &:not(:last-child) {
+        border-bottom: 1px solid var(--color-lightwhite);
+    }
+
+    &:last-child {
+
+        .cell:first-child {
+            border-bottom-left-radius: 0.5rem;
+        }
+
+        .cell:last-child {
+            border-bottom-right-radius: 0.5rem;
+        }
+    }
+}
+
+.body {
+}

@@ -17,10 +17,18 @@ export const Communicators: FC<CommunicatorsProps> = (props) => {
     return (
         <ul className={ css.Communicators }>
             <li className={ css.inputWr }>
-                <CommunicatorSelect panelId={ props.panelId } title='From' options={ props.senders }/>
+                <CommunicatorSelect
+                    panelId={ props.panelId }
+                    title='Sender (vk account)'
+                    options={ props.senders }
+                />
             </li>
             <li className={ css.inputWr }>
-                <CommunicatorInput panelId={ props.panelId } title='To' value={ props.recipient }/>
+                <CommunicatorInput
+                    panelId={ props.panelId }
+                    title='Recipient (vk group url slug)'
+                    value={ props.recipient }
+                />
             </li>
         </ul>
     );

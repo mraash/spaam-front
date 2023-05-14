@@ -1,3 +1,5 @@
+@import '~scss/share/Input';
+
 .Text {
     display: flex;
 }
@@ -8,24 +10,41 @@
 }
 
 .textarea {
+    @extend %inputBase;
+    @extend %inputPadding_sm;
     display: block;
-    border: 1px solid #aaa;
-    padding: 0.5rem 0.7rem;
     width: 100%;
     height: 7rem;
-    border-radius: 0.2rem;
-    font-size: 1.4rem;
+    font-size: var(--fsz-400);
+    overflow-y: scroll;
+    resize: vertical;
+
+    &::-webkit-scrollbar {
+        width: 1rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        border-top-right-radius: 0.4rem;
+        background-color: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 0.4rem;
+        background: #888;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    &::-webkit-resizer {
+        border: 1rem solid #f1f1f1;
+        border-right-color: #888;
+        border-bottom-color: #888;
+    }
 }
 
 .controls {
     display: flex;
     align-items: start;
-}
-
-.deleteButton {
-    border: 1px solid #d55;
-    width: 2.2rem;
-    height: 2.2rem;
-    border-radius: 0.2rem;
-    color: #d55;
 }

@@ -1,0 +1,45 @@
+.SquareButton {
+    border-radius: 0.3rem;
+    color: var(--color-white);
+    font-size: bold;
+}
+
+.color_success {
+    border: 1.5px solid var(--color-success);
+    color: var(--color-success);
+
+    &:hover {
+        border-color: var(--color-success-hover);
+        color: var(--color-success-hover);
+    }
+
+    &:active {
+        border: 1.5px solid var(--color-success-active);
+        color: var(--color-success-active);
+    }
+}
+
+.color_danger {
+    border: 1.5px solid var(--color-danger);
+    color: var(--color-danger);
+
+    &:hover {
+        border-color: var(--color-danger-hover);
+        color: var(--color-danger-hover);
+    }
+
+    &:active {
+        border: 1.5px solid var(--color-danger-active);
+        color: var(--color-danger-active);
+    }
+}
+
+.size_400 {
+    width: 2.2rem;
+    height: 2.2rem;
+}
+
+.size_500 {
+    width: 2.4rem;
+    height: 2.4rem;
+}

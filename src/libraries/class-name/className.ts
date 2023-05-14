@@ -13,16 +13,16 @@ export const cn = (...classes: Array<string|ConditionClass>): string => {
     const classList: string[] = [];
 
     classes.forEach((item) => {
-        if (typeof item === 'string') {
-            classList.push(item);
-        }
-        else {
+        if (typeof item === 'object') {
             const condition = item[0];
             const className = item[1];
 
             if (condition) {
                 classList.push(className);
             }
+        }
+        else {
+            classList.push(item);
         }
     });
 

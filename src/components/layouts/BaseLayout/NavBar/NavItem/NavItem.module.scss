@@ -1,8 +1,22 @@
 .NavItem {
-    border: 1px solid #222;
     width: 3.4rem;
     height: 3.4rem;
     border-radius: 50%;
+    background-color: var(--color-lightwhite);
+    color: var(--color-main);
+    transition: var(--transition-button);
+
+    &_active {
+        background-color: var(--color-lightwhite-hover);
+    }
+
+    &:hover {
+        background-color: var(--color-lightwhite-hover);
+    }
+
+    &:active {
+        background-color: var(--color-lightwhite-active);
+    }
 }
 
 .link {

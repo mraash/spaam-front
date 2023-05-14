@@ -42,6 +42,7 @@ module.exports = ({ mode = 'production' }) => {
             alias: {
                 '~scss/variables': path.resolve(__dirname, './src/assets/styles/utilities/variables.scss'),
                 '~scss/mixins': path.resolve(__dirname, './src/assets/styles/utilities/mixins.scss'),
+                '~scss/share': path.resolve(__dirname, './src/assets/styles/share'),
                 '~': path.resolve(__dirname, './src'),
             },
         },

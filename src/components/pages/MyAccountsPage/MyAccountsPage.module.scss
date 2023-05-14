@@ -1,5 +1,7 @@
+@import '~scss/share/Page';
+
 .MyAccountsPage {
-    padding: 3rem;
+    @extend %Page;
 }
 
 .headerWr {

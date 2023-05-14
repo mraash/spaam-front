@@ -1,0 +1,19 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    color: #222;
+    font-size: var(--fsz-500);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+    border: 1px solid black;
+}
+
+:focus-visible {
+    outline: 1px dashed #7ae;
+}

@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { panelThunks } from '~/gstate/thunks/panelThunks';
 import { useAppDispatch } from '~/hooks/redux';
 import css from './Header.module.scss';
+import { TextButton } from '~/components/ui-kit/buttons/TextButton';
 
 type HeaderProps = {
 };
@@ -15,12 +16,12 @@ export const Header: FC<HeaderProps> = (props) => {
 
     return (
         <div className={ css.Header }>
-            <button
-                className={ css.saveButton }
+            <TextButton
+                color='success'
                 onClick={ onSave }
             >
                 Save
-            </button>
+            </TextButton>
         </div>
     );
 };

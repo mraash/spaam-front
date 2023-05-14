@@ -21,6 +21,15 @@ button, input, select, textarea {
     background: transparent;
 }
 
+select {
+    appearance: none;
+}
+
+textarea {
+    resize: none;
+}
+
+
 hr {
     border: none;
 }
@@ -41,10 +50,6 @@ a, :link, :visited {
     font-family: inherit;
 }
 
-
-textarea {
-    resize: none;
-}
 
 button, a, *[role='button'] {
     cursor: pointer;

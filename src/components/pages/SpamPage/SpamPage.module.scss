@@ -1,9 +1,12 @@
+@import '~scss/share/Page';
+
 .SpamPage {
-    padding: 1rem;
+    @extend %Page;
 }
 
 .header {
 }
 
 .panelList {
+    margin-top: 1.5rem;
 }

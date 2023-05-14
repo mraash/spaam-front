@@ -1,9 +1,8 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { AuthProvider } from 'react-auth-kit';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import './assets/styles/main.scss';
+import './assets/styles/base/index.scss';
 import { refreshApi } from './features/auth';
 import { store } from './gstate/store';
 import { App } from './components/App';
