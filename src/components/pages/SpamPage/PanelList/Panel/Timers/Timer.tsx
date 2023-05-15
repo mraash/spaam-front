@@ -5,7 +5,7 @@ import css from './Timer.module.scss';
 import { SquareButton } from '~/components/ui-kit/buttons/SquareButton';
 
 export type TimerProps = {
-    id: number,
+    panelId: number,
     timerIndex: number,
     seconds: number|null,
     repeat: number|null,
@@ -19,7 +19,7 @@ export const Timer: FC<TimerProps> = (props) => {
         const seconds = inputToInteger(secondsInput, props.seconds);
 
         dispatch(panelActions.setTimerSeconds({
-            id: props.id,
+            id: props.panelId,
             timerIndex: props.timerIndex,
             seconds,
         }));
@@ -30,7 +30,7 @@ export const Timer: FC<TimerProps> = (props) => {
         const repeat = inputToInteger(repeatInput, props.repeat);
 
         dispatch(panelActions.setTimerRepeat({
-            id: props.id,
+            id: props.panelId,
             timerIndex: props.timerIndex,
             repeat,
         }));
@@ -38,7 +38,7 @@ export const Timer: FC<TimerProps> = (props) => {
 
     const onDeleteTimerButton = () => {
         dispatch(panelActions.removeTimer({
-            id: props.id,
+            id: props.panelId,
             timerIndex: props.timerIndex,
         }));
     };

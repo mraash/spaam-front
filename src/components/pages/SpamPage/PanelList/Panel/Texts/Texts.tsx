@@ -6,7 +6,7 @@ import css from './Texts.module.scss';
 import { SquareButton } from '~/components/ui-kit/buttons/SquareButton';
 
 type TextsProps = {
-    id: number,
+    panelId: number,
     texts: string[],
 };
 
@@ -14,7 +14,7 @@ export const Texts: FC<TextsProps> = (props) => {
     const dispatch = useAppDispatch();
 
     const onAddTextButton = () => {
-        dispatch(panelActions.addEmptyText(props.id));
+        dispatch(panelActions.addEmptyText(props.panelId));
     };
 
     return (
@@ -31,7 +31,7 @@ export const Texts: FC<TextsProps> = (props) => {
                 { props.texts.map((text, index) => {
                     return (
                         <div className={ css.textWr } key={ index }>
-                            <Text id={ props.id } index={ index } text={ text }/>
+                            <Text panelId={ props.panelId } index={ index } text={ text }/>
                         </div>
                     );
                 }) }

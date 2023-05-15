@@ -5,7 +5,7 @@ import css from './Text.module.scss';
 import { SquareButton } from '~/components/ui-kit/buttons/SquareButton';
 
 type TextProps = {
-    id: number,
+    panelId: number,
     index: number,
     text: string,
 };
@@ -15,7 +15,7 @@ export const Text: FC<TextProps> = (props) => {
 
     const onTextInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
         dispatch(panelActions.setText({
-            id: props.id,
+            id: props.panelId,
             textIndex: props.index,
             value: event.target.value,
         }));
@@ -23,7 +23,7 @@ export const Text: FC<TextProps> = (props) => {
 
     const onDeleteTextButton = () => {
         dispatch(panelActions.removeText({
-            id: props.id,
+            id: props.panelId,
             textIndex: props.index,
         }));
     };

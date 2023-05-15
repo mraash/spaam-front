@@ -1,9 +1,10 @@
-import { VkAccountEntity } from './VkAccountEntity';
+import { SingleSpammer } from '~/packages/spam';
 
 export interface PanelEntity {
     id: number,
-    // isActive: false,
-    // error: string|null,
+    spammer: SingleSpammer,
+    isActive: boolean,
+    error: string|null,
     senderId: number,
     recipient: string,
     texts: string[],

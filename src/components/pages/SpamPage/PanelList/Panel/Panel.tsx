@@ -9,6 +9,8 @@ import { TimerPrewall } from './Prewall/TimerPrewall';
 
 export type PanelProps = {
     id: number,
+    isActive: boolean,
+    error: string|null,
     senders: Array<{
         isSelected: boolean,
         id: number,
@@ -23,28 +25,25 @@ export type PanelProps = {
 };
 
 export const Panel: FC<PanelProps> = (props) => {
-    const isActive = false;
-    const error: string|null = 'My beautiful error';
-
     let prewall = null;
 
-    if (isActive) prewall = <TimerPrewall />;
-    if (error !== null) prewall = <ErrorPrewall message={ error } />;
+    if (props.isActive) prewall = <TimerPrewall panelId={ props.id }/>;
+    if (props.error !== null) prewall = <ErrorPrewall panelId={ props.id } message={ props.error } />;
 
     return (
         <div className={ css.Panel }>
             { prewall }
             <div className={ css.topControlsWr }>
-                <TopControls id={ props.id } />
+                <TopControls panelId={ props.id } />
             </div>
             <div className={ css.communicatorsWr }>
                 <Communicators panelId={ props.id } senders={ props.senders } recipient={ props.recipient } />
             </div>
             <div className={ css.textsWr }>
-                <Texts id={ props.id } texts={ props.texts }/>
+                <Texts panelId={ props.id } texts={ props.texts }/>
             </div>
             <div className={ css.timersWr }>
-                <Timers id={ props.id } config={ props.timerConfig }/>
+                <Timers panelId={ props.id } config={ props.timerConfig }/>
             </div>
         </div>
     );

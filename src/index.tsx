@@ -3,7 +3,7 @@ import { AuthProvider } from 'react-auth-kit';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './assets/styles/base/index.scss';
-import { refreshApi } from './features/auth';
+import { refreshApi } from './packages/auth';
 import { store } from './gstate/store';
 import { App } from './components/App';
 

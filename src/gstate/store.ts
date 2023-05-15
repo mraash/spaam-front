@@ -9,6 +9,15 @@ export const store = configureStore({
         panels: panelReducer,
         vkAccounts: vkAccountReducer,
     },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        // todo: remove ignores here.
+        serializableCheck: {
+            // Ignore these field paths in all actions
+            ignoredActionPaths: ['payload'],
+            // Ignore these paths in the state
+            ignoredPaths: ['panels.list', 'panels.serverList'],
+        },
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

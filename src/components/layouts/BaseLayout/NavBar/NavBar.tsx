@@ -15,9 +15,9 @@ export const NavBar: FC<NavBarProps> = (props) => {
         <div className={ css.NavBar }>
             <NavList items={[
                 {
-                    link: routes.spamer(),
+                    link: routes.spammer(),
                     icon: faEnvelope,
-                    isActive: matchPath(routes.spamer(), currentPath) !== null,
+                    isActive: matchPath(routes.spammer(), currentPath) !== null,
                 },
                 {
                     link: routes.myAccounts(),

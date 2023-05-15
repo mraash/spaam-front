@@ -1,7 +1,6 @@
 import { AnyAction, createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
 import { PanelEntity } from '~/types/entities/PanelEntity';
 import { panelThunks } from '../thunks/panelThunks';
-import { ApiError } from '~/api/errors';
 
 type PanelState = {
     serverList: PanelEntity[],
@@ -23,6 +22,26 @@ const panelSlice = createSlice<PanelState, SliceCaseReducers<PanelState>>({
         remove(state, { payload: id }: PayloadAction<number>) {
             const index = state.list.findIndex((panel) => panel.id === id);
             state.list.splice(index, 1);
+        },
+
+        // Is active
+        setIsActive(state, { payload }: PayloadAction<{
+            id: number,
+            isActive: boolean,
+        }>) {
+            state.list
+                .find((panel) => panel.id === payload.id)!
+                .isActive = payload.isActive;
+        },
+
+        // Error
+        setError(state, { payload }: PayloadAction<{
+            id: number,
+            error: string|null,
+        }>) {
+            state.list
+                .find((panel) => panel.id === payload.id)!
+                .error = payload.error;
         },
 
         // Sender
@@ -123,7 +142,7 @@ const panelSlice = createSlice<PanelState, SliceCaseReducers<PanelState>>({
         });
 
         builder.addMatcher(isRejected, (state, { payload: message }: PayloadAction<string>) => {
-            // TODO: do something here
+            // todo: show some error
         });
     },
 });

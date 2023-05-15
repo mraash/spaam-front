@@ -1,9 +1,9 @@
 export const routes = {
     auth: () => '/auth',
-    spamer: () => '/spamer',
+    spammer: () => '/spammer',
     myAccounts: () => '/my-accounts',
     profile: () => '/profile',
 };
 
-export const defaultPrivateRoute = () => routes.spamer();
+export const defaultPrivateRoute = () => routes.spammer();
 export const defaultPublicRoute = () => routes.auth();

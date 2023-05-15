@@ -7,7 +7,7 @@ import { SquareButton } from '~/components/ui-kit/buttons/SquareButton';
 import { cn } from '~/libraries/class-name';
 
 type TimersProps = {
-    id: number,
+    panelId: number,
     config: Array<{
         seconds: number|null,
         repeat: number|null,
@@ -18,7 +18,7 @@ export const Timers: FC<TimersProps> = (props) => {
     const dispatch = useAppDispatch();
 
     const onAddTimerButton = () => {
-        dispatch(panelActions.addEmptyTimer(props.id));
+        dispatch(panelActions.addEmptyTimer(props.panelId));
     };
 
     return (
@@ -39,7 +39,7 @@ export const Timers: FC<TimersProps> = (props) => {
                     return (
                         <li key={ index } className={ css.timerWr }>
                             <Timer
-                                id={ props.id }
+                                panelId={ props.panelId }
                                 timerIndex={ index }
                                 { ...timer }
                             />

@@ -14,7 +14,7 @@ const getUser = createAsyncThunk(
 const removeUser = createAsyncThunk(
     'auth/async/removeUser',
     async () => {
-        // TODO: Delete refresh token
+        // todo: delete refresh token
     },
 );
 

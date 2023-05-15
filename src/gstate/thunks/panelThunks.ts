@@ -36,6 +36,7 @@ const sendOnce = createAsyncThunk<true, number, { rejectValue: string }>(
 const synchronize = createAsyncThunk<PanelEntity[], undefined, { rejectValue: string }>(
     'panels/async/synchronize',
     async (_, { rejectWithValue }) => {
+        // todo: omg do something with this!
         const { list, serverList } = store.getState().panels;
 
         const deleted: number[] = [];

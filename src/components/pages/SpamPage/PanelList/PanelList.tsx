@@ -18,6 +18,8 @@ export const PanelList: FC<PanelListProps> = (props) => {
                     <li key={ panel.id } className={ css.panelWr }>
                         <Panel
                             id={ panel.id }
+                            isActive={ panel.isActive }
+                            error={ panel.error }
                             senders={ vkAccounts.map((vkAccount) => ({
                                 isSelected: vkAccount.id === panel.senderId,
                                 id: vkAccount.id,

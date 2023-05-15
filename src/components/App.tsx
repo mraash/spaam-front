@@ -4,9 +4,9 @@ import { useIsAuthenticated } from 'react-auth-kit';
 import { authThunks } from '~/gstate/thunks/authThunks';
 import { vkAccountThunks } from '~/gstate/thunks/vkAccountThunks';
 import { useAppDispatch } from '~/hooks/redux';
-import { PrivateRoute, PublicRoute } from '../features/router';
+import { PrivateRoute, PublicRoute } from '../packages/router';
 import { defaultPrivateRoute, routes } from '~/router/routes';
-import { makeInitialRefesh } from '~/features/auth';
+import { makeInitialRefesh } from '~/packages/auth';
 import { useIsFirstRender } from '~/hooks/render';
 import { MyAccountsPage } from './pages/MyAccountsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
@@ -41,7 +41,7 @@ export const App: FC = () => {
             <Route path={ routes.auth() } element={ <PublicRoute children={ <AuthPage/> } /> }/>
 
             {/* private routes */}
-            <Route path={ routes.spamer() } element={ <PrivateRoute children={ <SpamPage/> }/> }/>
+            <Route path={ routes.spammer() } element={ <PrivateRoute children={ <SpamPage/> }/> }/>
             <Route path={ routes.myAccounts() } element={ <PrivateRoute children={ <MyAccountsPage/> }/> }/>
             <Route path={ routes.profile() } element={ <PrivateRoute children={ <ProfilePage/> }/> }/>
         </Routes>
