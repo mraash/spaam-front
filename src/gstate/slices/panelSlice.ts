@@ -4,6 +4,7 @@ import { panelThunks } from '../thunks/panelThunks';
 import { store } from '../store';
 import { errorActions } from './errorsSlice';
 import { BaseApiError } from '~/api/errors';
+import { SingleSpammer } from '~/packages/spam';
 
 type PanelState = {
     serverList: PanelEntity[],
@@ -18,8 +19,26 @@ const panelSlice = createSlice<PanelState, SliceCaseReducers<PanelState>>({
     },
     reducers: {
         // Panel
-        add(state, { payload: panel }: PayloadAction<PanelEntity>) {
-            state.list.push(panel);
+        addEmpty(state, action: PayloadAction<undefined>) {
+            const id = Date.now() * -1;
+
+            state.list.push({
+                id,
+                spammer: new SingleSpammer(id),
+                isActive: false,
+                error: null,
+                senderId: null,
+                recipient: '',
+                texts: [
+                    '',
+                ],
+                timers: [
+                    {
+                        seconds: null,
+                        repeat: null,
+                    },
+                ],
+            });
         },
 
         remove(state, { payload: id }: PayloadAction<number>) {

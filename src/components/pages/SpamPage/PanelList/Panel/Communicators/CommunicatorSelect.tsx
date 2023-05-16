@@ -17,13 +17,14 @@ export const CommunicatorSelect: FC<CommunicatorSelectProps> = (props) => {
     const dispatch = useAppDispatch();
 
     const selectedValue = (props.options.find((option) => option.isSelected))?.id;
+    const nullOptionValue = 'random string';
 
     const onSelect = (e: ChangeEvent<HTMLSelectElement>) => {
-        const senderId = e.target.value;
+        const senderValue = e.target.value;
 
         dispatch(panelActions.setSenderId({
             id: props.panelId,
-            senderId: +senderId,
+            senderId: senderValue === nullOptionValue ? null : +senderValue,
         }));
     };
 
@@ -38,6 +39,9 @@ export const CommunicatorSelect: FC<CommunicatorSelectProps> = (props) => {
                     value={ selectedValue }
                     onChange={ onSelect }
                 >
+                    <option key={ -1 } value={ nullOptionValue }>
+                        ---
+                    </option>
                     { props.options.map((option, index) => {
                         return (
                             <option key={ index } value={ option.id }>

@@ -5,7 +5,7 @@ export interface PanelEntity {
     spammer: SingleSpammer,
     isActive: boolean,
     error: string|null,
-    senderId: number,
+    senderId: number|null,
     recipient: string,
     texts: string[],
     timers: Array<{

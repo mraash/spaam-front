@@ -1,6 +1,6 @@
 export const routes = {
     auth: () => '/auth',
-    spammer: () => '/spammer',
+    spammer: () => '/spam',
     myAccounts: () => '/my-accounts',
     profile: () => '/profile',
 };
