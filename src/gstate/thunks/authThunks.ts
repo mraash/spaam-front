@@ -1,13 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { UserAPI } from '~/api';
+import { BaseApiError } from '~/api/errors';
 import { UserEntity } from '~/types/entities/UserEntity';
 
-const getUser = createAsyncThunk(
+const getUser = createAsyncThunk<UserEntity, undefined, { rejectValue: BaseApiError }>(
     'auth/async/getUser',
-    async (): Promise<UserEntity> => {
-        const me = await UserAPI.me();
+    async (_, { rejectWithValue }) => {
+        try {
+            const me = await UserAPI.me();
 
-        return me;
+            return me;
+        }
+        catch (err) {
+            return rejectWithValue(err as BaseApiError);
+        }
     },
 );
 

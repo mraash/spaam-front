@@ -1,4 +1,4 @@
-import { ApiError } from '../base/ApiError';
+import { ApiError } from '../ApiError';
 
 export class InvalidRefreshToken extends ApiError {
     public constructor() {

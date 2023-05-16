@@ -1,5 +1,6 @@
-import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
+import { AnyAction, createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
 import { authThunks } from '../thunks/authThunks';
+import { BaseApiError } from '~/api/errors';
 
 type AuthState = {
     user?: {
@@ -21,7 +22,16 @@ export const authSlice = createSlice<AuthState, SliceCaseReducers<AuthState>>({
         builder.addCase(authThunks.removeUser.fulfilled, (state) => {
             delete state.user;
         });
+
+        builder.addMatcher(isRejected, (state, { payload: err }: PayloadAction<BaseApiError>) => {
+            // todo: show some error
+            console.log(`${err.name}: ${err.message}`);
+        });
     },
 });
+
+function isRejected(action: AnyAction): boolean {
+    return action.type.endsWith('rejected');
+}
 
 export const authReducer = authSlice.reducer;

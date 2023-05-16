@@ -1,4 +1,4 @@
-import { ApiError } from '../base/ApiError';
+import { ApiError } from '../ApiError';
 
 export class RecipientNotFound extends ApiError {
     public constructor() {

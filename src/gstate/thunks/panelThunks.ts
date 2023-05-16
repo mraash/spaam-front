@@ -5,7 +5,7 @@ import { getPanelEntityList } from '../dataMappers/panelMappers';
 import { store } from '../store';
 import { ApiError } from '~/api/errors';
 
-const fetchAll = createAsyncThunk<PanelEntity[], undefined, { rejectValue: string }>(
+const fetchAll = createAsyncThunk<PanelEntity[], undefined, { rejectValue: Error }>(
     'panels/async/fetchAll',
     async (_, { rejectWithValue }) => {
         try {
@@ -14,12 +14,12 @@ const fetchAll = createAsyncThunk<PanelEntity[], undefined, { rejectValue: strin
             return getPanelEntityList(vkAccountList);
         }
         catch (err) {
-            return rejectWithValue((err as ApiError).message);
+            return rejectWithValue(err as Error);
         }
     },
 );
 
-const sendOnce = createAsyncThunk<true, number, { rejectValue: string }>(
+const sendOnce = createAsyncThunk<true, number, { rejectValue: Error }>(
     'panels/async/sendOnce',
     async (id, { rejectWithValue }) => {
         try {
@@ -28,12 +28,12 @@ const sendOnce = createAsyncThunk<true, number, { rejectValue: string }>(
             return true;
         }
         catch (err) {
-            return rejectWithValue((err as ApiError).message);
+            return rejectWithValue(err as Error);
         }
     },
 );
 
-const synchronize = createAsyncThunk<PanelEntity[], undefined, { rejectValue: string }>(
+const synchronize = createAsyncThunk<PanelEntity[], undefined, { rejectValue: Error }>(
     'panels/async/synchronize',
     async (_, { rejectWithValue }) => {
         // todo: omg do something with this!
@@ -117,7 +117,7 @@ const synchronize = createAsyncThunk<PanelEntity[], undefined, { rejectValue: st
             return list;
         }
         catch (err) {
-            return rejectWithValue((err as ApiError).message);
+            return rejectWithValue(err as Error);
         }
     },
 );

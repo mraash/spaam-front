@@ -13,6 +13,10 @@ export const getPayload = (axiosResponse: AxiosResponse): any => {
     return axiosResponse.data.payload;
 };
 
+export const isApiErrorData = (axiosError: AxiosError): boolean => {
+    return typeof axiosError.response?.data === 'object';
+};
+
 export const getErrorData = (axiosError: AxiosError): ErrorData => {
     const data = axiosError.response?.data as ErrorResponse;
 

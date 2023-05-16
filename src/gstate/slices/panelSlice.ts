@@ -1,6 +1,9 @@
 import { AnyAction, createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
 import { PanelEntity } from '~/types/entities/PanelEntity';
 import { panelThunks } from '../thunks/panelThunks';
+import { store } from '../store';
+import { errorActions } from './errorsSlice';
+import { BaseApiError } from '~/api/errors';
 
 type PanelState = {
     serverList: PanelEntity[],
@@ -141,8 +144,9 @@ const panelSlice = createSlice<PanelState, SliceCaseReducers<PanelState>>({
             state.serverList = panelList;
         });
 
-        builder.addMatcher(isRejected, (state, { payload: message }: PayloadAction<string>) => {
+        builder.addMatcher(isRejected, (state, { payload: err }: PayloadAction<BaseApiError>) => {
             // todo: show some error
+            console.log(`${err.name}: ${err.message}`);
         });
     },
 });

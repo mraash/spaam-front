@@ -1,0 +1,13 @@
+.NotFoundPage {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+    background-color: var(--color-bg);
+}
+
+.text {
+    padding-bottom: 6rem;
+    color: var(--color-main);
+    font-size: 3rem;
+}

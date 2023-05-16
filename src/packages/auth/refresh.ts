@@ -20,7 +20,6 @@ export const refreshApi = createRefresh({
             };
         }
         catch (err) {
-            console.error(err);
             return {
                 isSuccess: false,
                 newAuthToken: authToken,
@@ -35,19 +34,16 @@ export const makeInitialRefesh = () => {
     apiStatus.initialRefreshing = refreshPromise;
 
     refreshPromise.then((refreshResult) => {
-        const cookieDays = apiConsts.refreshTokenTime / 60 / 60 / 24;
+        if (refreshResult.isSuccess) {
+            const cookieDays = apiConsts.refreshTokenTime / 60 / 60 / 24;
 
-        if (!refreshResult.isSuccess) {
-            Cookies.remove(names.authToken);
-            throw new Error('Bad token refresh.');
+            Cookies.set(names.authToken, refreshResult.newAuthToken, {
+                expires: cookieDays,
+            });
+            Cookies.set(names.refeshToken, refreshResult.newRefreshToken!, {
+                expires: cookieDays,
+            });
         }
-
-        Cookies.set(names.authToken, refreshResult.newAuthToken, {
-            expires: cookieDays,
-        });
-        Cookies.set(names.refeshToken, refreshResult.newRefreshToken!, {
-            expires: cookieDays,
-        });
 
         apiStatus.initialRefreshing = false;
     });

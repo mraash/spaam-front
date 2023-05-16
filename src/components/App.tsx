@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { useIsAuthenticated } from 'react-auth-kit';
 import { authThunks } from '~/gstate/thunks/authThunks';
 import { vkAccountThunks } from '~/gstate/thunks/vkAccountThunks';
-import { useAppDispatch } from '~/hooks/redux';
+import { useAppDispatch, useAppSelector } from '~/hooks/redux';
 import { PrivateRoute, PublicRoute } from '../packages/router';
 import { defaultPrivateRoute, routes } from '~/router/routes';
 import { makeInitialRefesh } from '~/packages/auth';
@@ -14,11 +14,14 @@ import { ProfilePage } from './pages/ProfilePage';
 import { SpamPage } from './pages/SpamPage';
 import { AuthPage } from './pages/AuthPage';
 import { panelThunks } from '~/gstate/thunks/panelThunks';
+import { errorActions } from '~/gstate/slices/errorsSlice';
 
 export const App: FC = () => {
     const dispatch = useAppDispatch();
     const isAuth = useIsAuthenticated();
     const isFirstRender = useIsFirstRender();
+
+    const errors = useAppSelector((state) => state.errors);
 
     if (isFirstRender && isAuth()) {
         makeInitialRefesh();
@@ -29,6 +32,12 @@ export const App: FC = () => {
         dispatch(vkAccountThunks.getCreationLink());
 
         dispatch(panelThunks.fetchAll());
+    }
+
+    if (errors.messages.length > 0) {
+        window.alert(errors.messages[0]);
+
+        dispatch(errorActions.removeFirst(null));
     }
 
     return (

@@ -1,9 +1,9 @@
-import { AppDispatch, store } from '~/gstate/store';
+import { store } from '~/gstate/store';
 import { panelThunks } from '~/gstate/thunks/panelThunks';
 import { panelActions } from '~/gstate/slices/panelSlice';
 
 export class SingleSpammer {
-    private dispatch: AppDispatch = store.dispatch;
+    private reduxStore = store;
     private panelId: number;
     private timeouts: number[] = []; // In miliseconds.
     private currentTimeoutIndex: number = 0;
@@ -18,7 +18,11 @@ export class SingleSpammer {
     }
 
     public start(timers: Array<{ seconds: number|null, repeat: number|null }>): void {
-        this.dispatch(panelActions.setIsActive({
+        if (this.isActive()) {
+            throw new Error('Can\'t start a spam process while one process is already active.');
+        }
+
+        this.reduxStore.dispatch(panelActions.setIsActive({
             id: this.panelId,
             isActive: true,
         }));
@@ -34,7 +38,7 @@ export class SingleSpammer {
 
     public stop(): void {
         console.log('stop');
-        this.dispatch(panelActions.setIsActive({
+        this.reduxStore.dispatch(panelActions.setIsActive({
             id: this.panelId,
             isActive: false,
         }));
@@ -52,6 +56,11 @@ export class SingleSpammer {
         const timeout = this.timeouts[this.currentTimeoutIndex];
 
         this.currentTimeout = setTimeout(async () => {
+            if (!this.isActive()) {
+                this.stop();
+                return;
+            }
+
             const isSuccess = await this.sendOnceOrError();
 
             if (!isSuccess) {
@@ -74,12 +83,12 @@ export class SingleSpammer {
         const sendingResult = await this.sendOnce();
 
         if (typeof sendingResult === 'string') {
-            this.dispatch(panelActions.setError({
+            this.reduxStore.dispatch(panelActions.setError({
                 id: this.panelId,
                 error: sendingResult,
             }));
 
-            this.dispatch(panelActions.setIsActive({
+            this.reduxStore.dispatch(panelActions.setIsActive({
                 id: this.panelId,
                 isActive: false,
             }));
@@ -94,7 +103,7 @@ export class SingleSpammer {
      * @returns Error message or true.
      */
     private async sendOnce(): Promise<true|string> {
-        // const payload = (await this.dispatch(panelThunks.sendOnce(this.panelId))).payload!;
+        // const payload = (await this.reduxStore.dispatch(panelThunks.sendOnce(this.panelId))).payload!;
 
         // console.log(`${this.panelId}: ${payload}`);
 

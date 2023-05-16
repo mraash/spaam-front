@@ -209,7 +209,8 @@
                         "outline-style",
                         "outline-width",
                         "resize",
-                        "cursor"
+                        "cursor",
+                        "user-select"
                     ]
                 },
                 {

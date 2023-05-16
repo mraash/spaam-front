@@ -14,6 +14,7 @@
 
 .tabItem {
     cursor: pointer;
+    user-select: none;
 
     &:not(:first-child) {
         margin-left: 3rem;
