@@ -20,6 +20,8 @@ export const refreshApi = createRefresh({
             };
         }
         catch (err) {
+            console.log('Invalid refesh');
+
             return {
                 isSuccess: false,
                 newAuthToken: authToken,

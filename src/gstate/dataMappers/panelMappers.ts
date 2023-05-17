@@ -8,7 +8,7 @@ export const getPanelEntity = (apiInfo: SpamPanelInfo): PanelEntity => {
         spammer: new SingleSpammer(apiInfo.id),
         isActive: false,
         error: null,
-        senderId: apiInfo.sender.id,
+        senderId: apiInfo.sender?.id ?? null,
         recipient: apiInfo.recipient,
         texts: apiInfo.texts,
         timers: apiInfo.timers,

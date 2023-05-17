@@ -7,10 +7,12 @@ export class UnknownServerError extends ApiError {
     public readonly errorData: ReturnType<typeof getErrorData>;
 
     public constructor(axiosError: AxiosError) {
-        super('Something went wrong.');
+        super('Unknown api error.');
         Object.setPrototypeOf(this, UnknownServerError.prototype);
 
         this.axiosError = axiosError;
         this.errorData = getErrorData(axiosError);
+
+        console.log(this.errorData);
     }
 }

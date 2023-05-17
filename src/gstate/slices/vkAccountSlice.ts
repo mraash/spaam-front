@@ -31,7 +31,7 @@ const vkAccountSlice = createSlice<VkAccountState, SliceCaseReducers<VkAccountSt
 
         builder.addMatcher(isRejected, (state, { payload: err }: PayloadAction<BaseApiError>) => {
             // todo: show some error
-            console.log(`${err.name}: ${err.message}`);
+            console.log('---', err);
         });
     },
 });

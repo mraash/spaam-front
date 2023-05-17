@@ -2,7 +2,7 @@ import { VkAccountInfo } from './VkAccountInfo';
 
 export type SpamPanelInfo = {
     id: number,
-    sender: VkAccountInfo,
+    sender: VkAccountInfo|null,
     recipient: string,
     texts: Array<string>,
     timers: Array<{
