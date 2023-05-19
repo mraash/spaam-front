@@ -1,8 +1,8 @@
-import { SingleSpammer } from '~/packages/spam';
+import { PanelSpammer } from '~/packages/spam';
 
 export interface PanelEntity {
     id: number,
-    spammer: SingleSpammer,
+    spammer: PanelSpammer,
     isActive: boolean,
     error: string|null,
     senderId: number|null,

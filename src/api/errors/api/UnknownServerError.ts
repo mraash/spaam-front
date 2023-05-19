@@ -12,7 +12,5 @@ export class UnknownServerError extends ApiError {
 
         this.axiosError = axiosError;
         this.errorData = getErrorData(axiosError);
-
-        console.log(this.errorData);
     }
 }

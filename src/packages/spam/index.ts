@@ -1,1 +1,1 @@
-export { SingleSpammer } from './SingleSpammer';
+export { PanelSpammer } from './PanelSpammer';

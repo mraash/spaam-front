@@ -1,10 +1,8 @@
 import { AnyAction, createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
 import { PanelEntity } from '~/types/entities/PanelEntity';
 import { panelThunks } from '../thunks/panelThunks';
-import { store } from '../store';
-import { errorActions } from './errorsSlice';
 import { BaseApiError } from '~/api/errors';
-import { SingleSpammer } from '~/packages/spam';
+import { PanelSpammer } from '~/packages/spam';
 
 type PanelState = {
     serverList: PanelEntity[],
@@ -24,7 +22,7 @@ const panelSlice = createSlice<PanelState, SliceCaseReducers<PanelState>>({
 
             state.list.push({
                 id,
-                spammer: new SingleSpammer(id),
+                spammer: new PanelSpammer(id),
                 isActive: false,
                 error: null,
                 senderId: null,

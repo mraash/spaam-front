@@ -3,7 +3,6 @@ import { SpamPanelAPI } from '~/api';
 import { PanelEntity } from '~/types/entities/PanelEntity';
 import { getPanelEntityList } from '../dataMappers/panelMappers';
 import { store } from '../store';
-import { ApiError } from '~/api/errors';
 
 const fetchAll = createAsyncThunk<PanelEntity[], undefined, { rejectValue: Error }>(
     'panels/async/fetchAll',
@@ -12,20 +11,6 @@ const fetchAll = createAsyncThunk<PanelEntity[], undefined, { rejectValue: Error
             const vkAccountList = await SpamPanelAPI.getAll();
 
             return getPanelEntityList(vkAccountList);
-        }
-        catch (err) {
-            return rejectWithValue(err as Error);
-        }
-    },
-);
-
-const sendOnce = createAsyncThunk<true, number, { rejectValue: Error }>(
-    'panels/async/sendOnce',
-    async (id, { rejectWithValue }) => {
-        try {
-            await SpamPanelAPI.sendOnce(id);
-
-            return true;
         }
         catch (err) {
             return rejectWithValue(err as Error);
@@ -124,6 +109,5 @@ const synchronize = createAsyncThunk<PanelEntity[], undefined, { rejectValue: Er
 
 export const panelThunks = {
     fetchAll,
-    sendOnce,
     synchronize,
 };

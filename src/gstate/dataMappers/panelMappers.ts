@@ -1,11 +1,11 @@
 import { SpamPanelInfo } from '~/api';
-import { SingleSpammer } from '~/packages/spam';
+import { PanelSpammer } from '~/packages/spam';
 import { PanelEntity } from '~/types/entities/PanelEntity';
 
 export const getPanelEntity = (apiInfo: SpamPanelInfo): PanelEntity => {
     return {
         id: apiInfo.id,
-        spammer: new SingleSpammer(apiInfo.id),
+        spammer: new PanelSpammer(apiInfo.id),
         isActive: false,
         error: null,
         senderId: apiInfo.sender?.id ?? null,

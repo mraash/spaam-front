@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useAppDispatch } from '~/hooks/redux';
 import { panelActions } from '~/gstate/slices/panelSlice';
 import css from './AddPanel.module.scss';
-import { SingleSpammer } from '~/packages/spam';
+import { PanelSpammer } from '~/packages/spam';
 
 type AddPanelProps = {
 };

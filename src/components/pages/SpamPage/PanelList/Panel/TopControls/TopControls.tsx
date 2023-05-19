@@ -13,7 +13,7 @@ export const TopControls: FC<TopControlsProps> = (props) => {
     const panel = useAppSelector((state) => state.panels.list.find((item) => item.id === props.panelId)!);
 
     const onStartButton = () => {
-        panel.spammer.start(panel.timers);
+        panel.spammer.start();
     };
 
     const onDeleteButton = () => {

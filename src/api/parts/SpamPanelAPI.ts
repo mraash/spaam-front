@@ -65,7 +65,3 @@ export const removeList = async (idList: number[]): Promise<number[]> => {
 
     return getPayload(response);
 };
-
-export const sendOnce = async (id: number): Promise<void> => {
-    await authAxios().post(`/spam-panels/${id}/send-once`);
-};
