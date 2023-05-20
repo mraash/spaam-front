@@ -2,6 +2,7 @@ import { store } from '~/gstate/store';
 import { panelActions } from '~/gstate/slices/panelSlice';
 import { VkAPI } from '~/api';
 
+// todo: remove redux store from here.
 export class PanelSpammer {
     private reduxStore = store;
 
@@ -40,10 +41,20 @@ export class PanelSpammer {
 
         const panel = this.reduxStore.getState().panels.list.find((panel) => panel.id === this.panelId)!;
 
-        this.senderId = panel.senderId!;
-        this.recipient = panel.recipient;
-        this.texts = panel.texts;
-        this.timeouts = this.buildTimeouts(panel.timers);
+        const timers = this.validateTimers(panel.timers);
+        const texts = this.validateTexts(panel.texts);
+        const recipient = this.validateRecipient(panel.recipient);
+        const senderId = this.validateSenderId(panel.senderId);
+
+        if (senderId === undefined || recipient === undefined || texts === undefined || timers === undefined) {
+            this.stop();
+            return;
+        }
+
+        this.senderId = senderId;
+        this.recipient = recipient;
+        this.texts = texts;
+        this.timeouts = this.buildTimeouts(timers);
 
         this.sendOnceOrError().then((isSuccess) => {
             if (isSuccess) {
@@ -126,40 +137,34 @@ export class PanelSpammer {
      * @returns Error message or true.
      */
     private async sendOnce(): Promise<true|string> {
-        // // Uncomment to mock sending.
-        // await new Promise((resolve) => {
-        //     setTimeout(() => {
-        //         console.log('send');
-        //         resolve(1);
-        //     }, 200);
-        // });
+        // Uncomment to mock sending.
+        await new Promise((resolve) => {
+            setTimeout(() => {
+                console.log(`send (${this.recipient}): ${this.getRandomText()}`);
+                resolve(1);
+            }, 200);
+        });
 
-        // return Math.random() > 0.9 ? 'Error from PanelSpammer.' : true;
+        return Math.random() > 0.9 ? 'Error from code.' : true;
 
-        try {
-            console.log('send');
+        // try {
+        //     console.log('send');
 
-            await VkAPI.send(this.senderId!, this.recipient!, this.getRandomText());
+        //     await VkAPI.send(this.senderId!, this.recipient!, this.getRandomText());
 
-            return true;
-        }
-        catch (err) {
-            return (err as Error).message;
-        }
+        //     return true;
+        // }
+        // catch (err) {
+        //     return (err as Error).message;
+        // }
     }
 
-    private buildTimeouts(timers: Array<{ seconds: number|null, repeat: number|null }>): number[] {
+    private buildTimeouts(timers: Array<{ seconds: number, repeat: number }>): number[] {
         const timeouts: number[] = [];
 
         timers.forEach((timer) => {
-            if (timer.repeat === null || timer.seconds === null) {
-                return;
-            }
-
-            for (let i = 1; i <= (timer.repeat ?? 0); i++) {
-                if (timer.seconds !== null) {
-                    timeouts.push(timer.seconds * 1000);
-                }
+            for (let i = 1; i <= timer.repeat; i++) {
+                timeouts.push(timer.seconds * 1000);
             }
         });
 
@@ -168,5 +173,90 @@ export class PanelSpammer {
 
     private getRandomText(): string {
         return this.texts![Math.floor(Math.random() * this.texts!.length)];
+    }
+
+    private validateSenderId(senderId: number|null): number|undefined {
+        if (senderId === null) {
+            this.showError('Sender must be selected.');
+
+            return undefined;
+        }
+
+        return senderId!;
+    }
+
+    private validateRecipient(recipient: string): string|undefined {
+        if (recipient === '') {
+            this.showError('Recipient can not be blank.');
+
+            return undefined;
+        }
+
+        return recipient;
+    }
+
+    private validateTexts(texts: string[]): string[]|undefined {
+        if (texts.length === 0) {
+            this.showError('There should be at least 1 text.');
+
+            return undefined;
+        }
+
+        for (let i = 0; i < texts.length; i++) {
+            if (texts[i] === '') {
+                this.showError('Text can not be blank.');
+
+                return undefined;
+            }
+        }
+
+        return texts;
+    }
+
+    private validateTimers(
+        timers: Array<{ seconds: number|null, repeat: number|null }>,
+    ): Array<{ seconds: number, repeat: number }>|undefined {
+        if (timers.length === 0) {
+            this.showError('There should be at least 1 timeout.');
+
+            return undefined;
+        }
+
+        for (let i = 0; i < timers.length; i++) {
+            const { seconds, repeat } = timers[i];
+
+            if (repeat === null || repeat === 0) {
+                this.showError('Repeat can not be blank.');
+
+                return undefined;
+            }
+
+            if (repeat < 1) {
+                this.showError('Repeat minimum value is 1.');
+
+                return undefined;
+            }
+
+            if (seconds === null || seconds === 0) {
+                this.showError('Timeout can not be blank.');
+
+                return undefined;
+            }
+
+            if (seconds < 3) {
+                this.showError('Timeout minimum value is 3.');
+
+                return undefined;
+            }
+        }
+
+        return timers as Array<{ seconds: number, repeat: number }>;
+    }
+
+    private showError(message: string): void {
+        this.reduxStore.dispatch(panelActions.setError({
+            id: this.panelId,
+            error: message,
+        }));
     }
 }
