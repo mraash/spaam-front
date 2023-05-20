@@ -18,8 +18,11 @@ const fetchAll = createAsyncThunk<PanelEntity[], undefined, { rejectValue: Error
     },
 );
 
-const synchronize = createAsyncThunk<PanelEntity[], undefined, { rejectValue: Error }>(
+const synchronize = createAsyncThunk<number[], undefined, { rejectValue: Error }>(
     'panels/async/synchronize',
+    /**
+     * @returns created ids
+     */
     async (_, { rejectWithValue }) => {
         // todo: omg do something with this!
         const { list, serverList } = store.getState().panels;
@@ -93,13 +96,13 @@ const synchronize = createAsyncThunk<PanelEntity[], undefined, { rejectValue: Er
         });
 
         try {
-            await Promise.all([
+            const [createdList] = await Promise.all([
                 SpamPanelAPI.createList(created),
                 SpamPanelAPI.updateList(changed),
                 SpamPanelAPI.removeList(deleted),
             ]);
 
-            return list;
+            return createdList.map((panel) => panel.id);
         }
         catch (err) {
             return rejectWithValue(err as Error);

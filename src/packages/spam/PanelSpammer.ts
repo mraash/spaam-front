@@ -225,18 +225,6 @@ export class PanelSpammer {
         for (let i = 0; i < timers.length; i++) {
             const { seconds, repeat } = timers[i];
 
-            if (repeat === null || repeat === 0) {
-                this.showError('Repeat can not be blank.');
-
-                return undefined;
-            }
-
-            if (repeat < 1) {
-                this.showError('Repeat minimum value is 1.');
-
-                return undefined;
-            }
-
             if (seconds === null || seconds === 0) {
                 this.showError('Timeout can not be blank.');
 
@@ -245,6 +233,18 @@ export class PanelSpammer {
 
             if (seconds < 3) {
                 this.showError('Timeout minimum value is 3.');
+
+                return undefined;
+            }
+
+            if (repeat === null || repeat === 0) {
+                this.showError('Repeat can not be blank.');
+
+                return undefined;
+            }
+
+            if (repeat < 1) {
+                this.showError('Repeat minimum value is 1.');
 
                 return undefined;
             }

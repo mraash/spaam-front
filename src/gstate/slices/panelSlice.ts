@@ -157,8 +157,17 @@ const panelSlice = createSlice<PanelState, SliceCaseReducers<PanelState>>({
             state.serverList = panelList;
         });
 
-        builder.addCase(panelThunks.synchronize.fulfilled, (state, { payload: panelList }) => {
-            state.serverList = panelList;
+        builder.addCase(panelThunks.synchronize.fulfilled, (state, { payload: createdIds }) => {
+            state.serverList = state.list.map((panel) => {
+                panel.spammer = new PanelSpammer(panel.id);
+
+                return panel;
+            });
+
+            // todo: change created panels id normally.
+            createdIds.reverse().forEach((id, index) => {
+                state.list[state.list.length - 1 - index].id = id;
+            });
         });
 
         builder.addMatcher(isRejected, (state, { payload: err }: PayloadAction<BaseApiError>) => {
