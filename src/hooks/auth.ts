@@ -1,5 +1,6 @@
-import { useSignIn } from 'react-auth-kit';
+import { useSignIn, useSignOut } from 'react-auth-kit';
 import { apiConsts } from '~/api';
+import { authStorage } from '~/packages/auth';
 
 export const useAppSignIn = () => {
     const signIn = useSignIn();
@@ -13,5 +14,17 @@ export const useAppSignIn = () => {
             refreshTokenExpireIn: apiConsts.refreshTokenTime / 60,
             tokenType: 'Bearer',
         });
+    };
+};
+
+export const useAppSignOut = () => {
+    const signOut = useSignOut();
+
+    return () => {
+        authStorage.clear();
+
+        signOut();
+
+        window.location.reload();
     };
 };

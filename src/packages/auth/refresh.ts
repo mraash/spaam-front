@@ -1,16 +1,19 @@
-import Cookies from 'js-cookie';
 import { createRefresh } from 'react-auth-kit';
 import { AuthAPI, apiConfig, apiConsts, apiStatus } from '~/api';
-import { names } from './cookies';
+import { authStorage } from './authStorage';
 
 export const refreshApi = createRefresh({
     interval: apiConfig.refreshEach / 60,
     refreshApiCallback: async () => {
-        const authToken = Cookies.get(names.authToken)!;
-        const refreshToken = Cookies.get(names.refeshToken)!;
-
         try {
+            const refreshToken = authStorage.getRefreshToken();
+
             const auth = await AuthAPI.refresh(refreshToken);
+
+            const cookieDays = apiConsts.refreshTokenTime / 60 / 60 / 24;
+
+            authStorage.setToken(auth.token, { expires: cookieDays });
+            authStorage.setRefreshToken(auth.refreshToken, { expires: cookieDays });
 
             return {
                 isSuccess: true,
@@ -20,7 +23,9 @@ export const refreshApi = createRefresh({
             };
         }
         catch (err) {
-            console.log('Invalid refesh');
+            console.error('Invalid token refesh: ', err);
+
+            const authToken = authStorage.getToken();
 
             return {
                 isSuccess: false,
@@ -35,20 +40,10 @@ export const makeInitialRefesh = () => {
 
     apiStatus.initialRefreshing = refreshPromise;
 
-    refreshPromise.then((refreshResult) => {
-        if (refreshResult.isSuccess) {
-            const cookieDays = apiConsts.refreshTokenTime / 60 / 60 / 24;
-
-            Cookies.set(names.authToken, refreshResult.newAuthToken, {
-                expires: cookieDays,
-            });
-            Cookies.set(names.refeshToken, refreshResult.newRefreshToken!, {
-                expires: cookieDays,
-            });
-        }
-
-        apiStatus.initialRefreshing = false;
-    });
+    refreshPromise
+        .finally(() => {
+            apiStatus.initialRefreshing = false;
+        });
 
     return refreshPromise;
 };

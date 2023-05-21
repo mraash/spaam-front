@@ -1,15 +1,15 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import { apiConfig, apiConsts } from '~/api/config';
 import { apiStatus } from '~/api/status';
-import { getHeader } from '~/packages/auth/cookies';
 import { resolveApiError } from '../resolvers';
+import { authStorage } from '~/packages/auth';
 
 export const authAxios = (() => {
     let tokenHeader: string|null;
     let axiosInstance: AxiosInstance;
 
     return (): AxiosInstance => {
-        const currentTokenHeader = getHeader();
+        const currentTokenHeader = authStorage.getAuthHeader();
 
         // First instance
         if (!axiosInstance) {
@@ -28,7 +28,7 @@ export const authAxios = (() => {
 })();
 
 const createAuthAxios = () => {
-    const authHeader = getHeader();
+    const authHeader = authStorage.getAuthHeader();
 
     if (!authHeader) {
         throw new Error('Trying to use authAxios before authentication.');

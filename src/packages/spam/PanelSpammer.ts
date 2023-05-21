@@ -137,26 +137,25 @@ export class PanelSpammer {
      * @returns Error message or true.
      */
     private async sendOnce(): Promise<true|string> {
-        // Uncomment to mock sending.
-        await new Promise((resolve) => {
-            setTimeout(() => {
-                console.log(`send (${this.recipient}): ${this.getRandomText()}`);
-                resolve(1);
-            }, 200);
-        });
+        // // Uncomment to mock sending.
+        // await new Promise((resolve) => {
+        //     setTimeout(() => {
+        //         console.log(`mock send (${this.recipient}): ${this.getRandomText()}`);
+        //         resolve(1);
+        //     }, 200);
+        // });
 
-        return Math.random() > 0.9 ? 'Error from code.' : true;
+        // return Math.random() > 0.9 ? 'Error from code.' : true;
 
-        // try {
-        //     console.log('send');
+        try {
+            console.log(`send: ${this.recipient}`);
+            await VkAPI.send(this.senderId!, this.recipient!, this.getRandomText());
 
-        //     await VkAPI.send(this.senderId!, this.recipient!, this.getRandomText());
-
-        //     return true;
-        // }
-        // catch (err) {
-        //     return (err as Error).message;
-        // }
+            return true;
+        }
+        catch (err) {
+            return (err as Error).message;
+        }
     }
 
     private buildTimeouts(timers: Array<{ seconds: number, repeat: number }>): number[] {

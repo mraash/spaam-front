@@ -1,7 +1,6 @@
-import { AnyAction, createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
+import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
 import { VkAccountEntity } from '~/types/entities/VkAccountEntity';
 import { vkAccountThunks } from '../thunks/vkAccountThunks';
-import { BaseApiError } from '~/api/errors';
 
 type VkAccountState = {
     list: VkAccountEntity[],
@@ -28,16 +27,7 @@ const vkAccountSlice = createSlice<VkAccountState, SliceCaseReducers<VkAccountSt
             const index = state.list.findIndex((item) => item.id === id);
             state.list.splice(index, 1);
         });
-
-        builder.addMatcher(isRejected, (state, { payload: err }: PayloadAction<BaseApiError>) => {
-            // todo: show some error
-            console.log('---', err);
-        });
     },
 });
-
-function isRejected(action: AnyAction): boolean {
-    return action.type.endsWith('rejected');
-}
 
 export const vkAccountReducer = vkAccountSlice.reducer;

@@ -1,5 +1,6 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
@@ -16,9 +17,7 @@ module.exports = ({ mode = 'production' }) => {
                 options: {
                     modules: {
                         auto: true,
-                        localIdentName: isDev
-                            ? '[name]-[local]-[hash:base64:7]'
-                            : '[hash:base64]',
+                        localIdentName: isDev ? '[name]-[local]-[hash:base64:7]' : '[hash:base64]',
                     },
                 }
             },
@@ -35,7 +34,7 @@ module.exports = ({ mode = 'production' }) => {
         output: {
             publicPath: '/',
             path: path.resolve(__dirname, './build'),
-            filename: 'build.js'
+            filename: 'build.[hash].js'
         },
         resolve: {
             extensions: ['.ts', '.tsx', '.js'],
@@ -86,10 +85,24 @@ module.exports = ({ mode = 'production' }) => {
         },
         plugins: [
             new CleanWebpackPlugin(),
+            new CopyPlugin({
+                patterns: [
+                    {
+                        from: path.resolve(__dirname, './public'),
+                        globOptions: {
+                            ignore: [
+                                '**/index.html',
+                            ],
+                        },
+                    },
+                ],
+            }),
             new HtmlWebpackPlugin({
                 template: './public/index.html'
             }),
-            new MiniCssExtractPlugin(),
+            new MiniCssExtractPlugin({
+                filename: 'build.[hash].css'
+            }),
             new ReactRefreshPlugin(),
         ],
     };
