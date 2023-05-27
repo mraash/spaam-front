@@ -34,6 +34,7 @@ const getCreationLink = createAsyncThunk<string, undefined, { rejectValue: BaseA
 const remove = createAsyncThunk<number, number, { rejectValue: BaseApiError }>(
     'vkAccounts/async/remove',
     async (id, { rejectWithValue }) => {
+        // todo: set null Panel.senderId where remote VkAccount is selected.
         try {
             await VkAccountsAPI.remove(id);
 

@@ -4,9 +4,12 @@ import { getErrorData, isApiErrorData } from './response';
 
 const apiErrormatches: Array<[string|RegExp, typeof Errors.ApiError]> = [
     ['Jwt token not found.', Errors.JwtTokenNotFound],
+    ['Jwt token expired.', Errors.JwtTokenExpired],
     ['Invalid credentials.', Errors.InvalidCredentials],
     ['User already exists.', Errors.EmailIsTaken],
     ['Invalid refresh token.', Errors.InvalidRefreshToken],
+
+    ['Vk account already added.', Errors.VkAccountAlreadyExists],
 
     ['Message not allowed.', Errors.MessageNotAllowed],
     [/Recipient with id .+ not found./, Errors.RecipientNotFound],

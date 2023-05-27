@@ -100,6 +100,11 @@ export class PanelSpammer {
                 return;
             }
 
+            if (!this.isActive()) {
+                this.stop();
+                return;
+            }
+
             const maxIndex = this.timeouts!.length - 1;
 
             this.currentTimeoutIndex = (this.currentTimeoutIndex >= maxIndex) ? 0 : this.currentTimeoutIndex + 1;

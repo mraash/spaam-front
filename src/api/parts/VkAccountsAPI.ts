@@ -16,6 +16,19 @@ export const getCreationLink = async (): Promise<CreationLink> => {
     return getPayload(response);
 };
 
+export const create = async (): Promise<void> => {
+    let vkQuery = window.location.href.split('#')[1];
+
+    if (!vkQuery) {
+        vkQuery = window.location.search;
+    }
+    else {
+        vkQuery = `?${vkQuery}`;
+    }
+
+    await authAxios().post(`/vk-accounts/create${vkQuery}`);
+};
+
 export const remove = async (id: number): Promise<ResourceDeleted> => {
     const response = await authAxios().delete(`/vk-accounts/${id}`);
 

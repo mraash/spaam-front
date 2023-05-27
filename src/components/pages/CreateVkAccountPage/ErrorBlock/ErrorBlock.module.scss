@@ -1,0 +1,29 @@
+.ErrorBlock {
+}
+
+.title {
+    display: block;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.text {
+    display: block;
+    margin-top: 0.7rem;
+}
+
+.link {
+    color: #00f;
+
+    &:hover {
+        color: #0202d4;
+    }
+
+    &:active {
+        color: #0202b0;
+    }
+}
+
+.homeLinkWr {
+    margin-top: 1rem;
+}

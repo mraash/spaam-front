@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { useIsAuthenticated } from 'react-auth-kit';
 import { authThunks } from '~/gstate/thunks/authThunks';
 import { vkAccountThunks } from '~/gstate/thunks/vkAccountThunks';
+import { panelThunks } from '~/gstate/thunks/panelThunks';
 import { useAppDispatch } from '~/hooks/redux';
 import { PrivateRoute, PublicRoute } from '../packages/router';
 import { defaultPrivateRoute, routes } from '~/router/routes';
@@ -13,7 +14,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { SpamPage } from './pages/SpamPage';
 import { AuthPage } from './pages/AuthPage';
-import { panelThunks } from '~/gstate/thunks/panelThunks';
+import { CreateVkAccountPage } from './pages/CreateVkAccountPage';
 
 export const App: FC = () => {
     const dispatch = useAppDispatch();
@@ -44,6 +45,7 @@ export const App: FC = () => {
             <Route path={ routes.spammer() } element={ <PrivateRoute children={ <SpamPage/> }/> }/>
             <Route path={ routes.myAccounts() } element={ <PrivateRoute children={ <MyAccountsPage/> }/> }/>
             <Route path={ routes.profile() } element={ <PrivateRoute children={ <ProfilePage/> }/> }/>
+            <Route path={ routes.createVkAccount() } element={ <PrivateRoute children={ <CreateVkAccountPage/> }/> }/>
         </Routes>
     );
 };

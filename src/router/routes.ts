@@ -2,6 +2,7 @@ export const routes = {
     auth: () => '/auth',
     spammer: () => '/spam',
     myAccounts: () => '/my-accounts',
+    createVkAccount: () => '/create-vk-account',
     profile: () => '/profile',
 };
 

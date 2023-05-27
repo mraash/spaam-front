@@ -8,7 +8,10 @@ export { UnknownServerError } from './api/UnknownServerError';
 export { EmailIsTaken } from './api/auth/EmailIsTaken';
 export { InvalidCredentials } from './api/auth/InvalidCredentials';
 export { InvalidRefreshToken } from './api/auth/InvalidRefreshToken';
+export { JwtTokenExpired } from './api/auth/JwtTokenExpired';
 export { JwtTokenNotFound } from './api/auth/JwtTokenNotFound';
+
+export { VkAccountAlreadyExists } from './api/vkAccounts/VkAccountAlreadyExists';
 
 export { MessageNotAllowed } from './api/vk/MessageNotAllowed';
 export { RecipientNotFound } from './api/vk/RecipientNotFound';
