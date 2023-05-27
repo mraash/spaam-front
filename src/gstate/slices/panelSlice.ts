@@ -157,15 +157,25 @@ const panelSlice = createSlice<PanelState, SliceCaseReducers<PanelState>>({
         });
 
         builder.addCase(panelThunks.synchronize.fulfilled, (state, { payload: createdIds }) => {
-            state.serverList = state.list.map((panel) => {
-                panel.spammer = new PanelSpammer(panel.id);
-
-                return panel;
-            });
-
             // todo: change created panels id normally.
             createdIds.reverse().forEach((id, index) => {
-                state.list[state.list.length - 1 - index].id = id;
+                const panel = state.list[state.list.length - 1 - index];
+
+                panel.id = id;
+                panel.spammer.setRealPanelId(id);
+            });
+
+            state.serverList = state.list.map((panel) => {
+                return {
+                    id: panel.id,
+                    isActive: panel.isActive,
+                    error: panel.error,
+                    spammer: new PanelSpammer(panel.id),
+                    senderId: panel.senderId,
+                    recipient: panel.recipient,
+                    texts: panel.texts,
+                    timers: panel.timers,
+                };
             });
         });
     },

@@ -8,6 +8,7 @@ export class PanelSpammer {
 
     private panelId: number;
 
+    private isSpamming: boolean = false;
     private senderId: number|null;
     private recipient: string|null;
     private texts: string[]|null;
@@ -25,8 +26,20 @@ export class PanelSpammer {
         this.timeouts = null;
     }
 
+    public setRealPanelId(panelId: number): void {
+        if (panelId === this.panelId) {
+            return;
+        }
+
+        if (this.panelId > 0) {
+            throw new Error('You can change panel id only if its value is negative.');
+        }
+
+        this.panelId = panelId;
+    }
+
     public isActive(): boolean {
-        return this.currentTimeout !== null;
+        return this.isSpamming;
     }
 
     public start(): void {
@@ -34,6 +47,7 @@ export class PanelSpammer {
             throw new Error('Can\'t start a spam process while one process is already active.');
         }
 
+        this.isSpamming = true;
         this.reduxStore.dispatch(panelActions.setIsActive({
             id: this.panelId,
             isActive: true,
@@ -66,6 +80,8 @@ export class PanelSpammer {
     public stop(): void {
         console.log('stop');
 
+        this.isSpamming = false;
+
         if (this.currentTimeout) {
             clearTimeout(this.currentTimeout);
         }
@@ -85,6 +101,11 @@ export class PanelSpammer {
     }
 
     private sendInfinitive() {
+        if (!this.isActive()) {
+            this.stop();
+            return;
+        }
+
         const timeout = this.timeouts![this.currentTimeoutIndex];
 
         this.currentTimeout = setTimeout(async () => {
@@ -153,7 +174,7 @@ export class PanelSpammer {
         // return Math.random() > 0.9 ? 'Error from code.' : true;
 
         try {
-            console.log(`send: ${this.recipient}`);
+            console.log(`send (${this.panelId}): ${this.recipient}`);
             await VkAPI.send(this.senderId!, this.recipient!, this.getRandomText());
 
             return true;
