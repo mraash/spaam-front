@@ -56,6 +56,14 @@ class AuthStorage {
         return `${this.getTokenType()} ${this.getToken()}`;
     }
 
+    public getAuthHeaderOrNull(): string|null {
+        if (!this.hasAuthHeader()) {
+            return null;
+        }
+
+        return this.getAuthHeader();
+    }
+
 
     // Private
     private hasTokenType(): boolean {

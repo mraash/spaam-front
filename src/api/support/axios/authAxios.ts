@@ -9,7 +9,7 @@ export const authAxios = (() => {
     let axiosInstance: AxiosInstance;
 
     return (): AxiosInstance => {
-        const currentTokenHeader = authStorage.getAuthHeader();
+        const currentTokenHeader = authStorage.getAuthHeaderOrNull();
 
         // First instance
         if (!axiosInstance) {
@@ -17,7 +17,7 @@ export const authAxios = (() => {
             tokenHeader = currentTokenHeader;
         }
 
-        // Token was refeshed
+        // Token was refeshed (but not at initial refresh)
         if (tokenHeader !== currentTokenHeader) {
             axiosInstance = createAuthAxios();
             tokenHeader = currentTokenHeader;
@@ -28,7 +28,7 @@ export const authAxios = (() => {
 })();
 
 const createAuthAxios = () => {
-    const authHeader = authStorage.getAuthHeader();
+    const authHeader = authStorage.getAuthHeaderOrNull();
 
     if (!authHeader) {
         throw new Error('Trying to use authAxios before authentication.');
@@ -44,6 +44,8 @@ const createAuthAxios = () => {
     instance.interceptors.request.use(async (config) => {
         if (apiStatus.initialRefreshing) {
             await apiStatus.initialRefreshing;
+
+            config.headers.Authorization = authStorage.getAuthHeader();
         }
 
         return config;
