@@ -14,6 +14,7 @@ const apiErrormatches: Array<[string|RegExp, typeof Errors.ApiError]> = [
     ['Message not allowed.', Errors.MessageNotAllowed],
     [/Recipient with id .+ not found./, Errors.RecipientNotFound],
     ['Captcha needed.', Errors.CaptchaNeeded],
+    ['User is blocked.', Errors.UserIsBlockedError],
 ];
 
 export const resolveApiError = (axiosError: AxiosError): Errors.BaseApiError => {
@@ -27,7 +28,7 @@ export const resolveApiError = (axiosError: AxiosError): Errors.BaseApiError => 
             return new FindedError();
         }
 
-        return new Errors.UnknownServerError(axiosError);
+        return new Errors.UndefinedApiError(axiosError);
     }
 
     if (axiosError.code === 'ERR_NETWORK') {
