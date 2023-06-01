@@ -3,17 +3,17 @@ import * as Errors from '../../errors';
 import { getErrorData, isApiErrorData } from './response';
 
 const apiErrormatches: Array<[string|RegExp, typeof Errors.ApiError]> = [
-    ['Jwt token not found.', Errors.JwtTokenNotFound],
-    ['Jwt token expired.', Errors.JwtTokenExpired],
-    ['Invalid credentials.', Errors.InvalidCredentials],
-    ['User already exists.', Errors.EmailIsTaken],
-    ['Invalid refresh token.', Errors.InvalidRefreshToken],
+    ['Jwt token not found.', Errors.JwtTokenNotFoundError],
+    ['Jwt token expired.', Errors.JwtTokenExpiredError],
+    ['Invalid credentials.', Errors.InvalidCredentialsError],
+    ['User already exists.', Errors.EmailIsTakenError],
+    ['Invalid refresh token.', Errors.InvalidRefreshTokenError],
 
-    ['Vk account already added.', Errors.VkAccountAlreadyExists],
+    ['Vk account already added.', Errors.VkAccountAlreadyExistsError],
 
-    ['Message not allowed.', Errors.MessageNotAllowed],
-    [/Recipient with id .+ not found./, Errors.RecipientNotFound],
-    ['Captcha needed.', Errors.CaptchaNeeded],
+    ['Message not allowed.', Errors.MessageNotAllowedError],
+    [/Recipient with id .+ not found./, Errors.RecipientNotFoundError],
+    ['Captcha needed.', Errors.CaptchaNeededError],
     ['User is blocked.', Errors.UserIsBlockedError],
 ];
 

@@ -46,7 +46,7 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
                 navigate(defaultPrivateRoute());
             }
             catch (err: any) {
-                if (err instanceof ApiErrors.EmailIsTaken) {
+                if (err instanceof ApiErrors.EmailIsTakenError) {
                     formik.setErrors({
                         email: 'Email is taken.',
                     });

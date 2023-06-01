@@ -5,15 +5,15 @@ export { UnknownApiError } from './UnknownApiError';
 export { ApiError } from './api/ApiError';
 export { UndefinedApiError } from './api/UndefinedApiError';
 
-export { EmailIsTaken } from './api/auth/EmailIsTaken';
-export { InvalidCredentials } from './api/auth/InvalidCredentials';
-export { InvalidRefreshToken } from './api/auth/InvalidRefreshToken';
-export { JwtTokenExpired } from './api/auth/JwtTokenExpired';
-export { JwtTokenNotFound } from './api/auth/JwtTokenNotFound';
+export { EmailIsTakenError } from './api/auth/EmailIsTakenError';
+export { InvalidCredentialsError } from './api/auth/InvalidCredentialsError';
+export { InvalidRefreshTokenError } from './api/auth/InvalidRefreshTokenError';
+export { JwtTokenExpiredError } from './api/auth/JwtTokenExpiredError';
+export { JwtTokenNotFoundError } from './api/auth/JwtTokenNotFoundError';
 
-export { VkAccountAlreadyExists } from './api/vkAccounts/VkAccountAlreadyExists';
-
-export { MessageNotAllowed } from './api/vk/MessageNotAllowed';
-export { RecipientNotFound } from './api/vk/RecipientNotFound';
-export { CaptchaNeeded } from './api/vk/CaptchaNeeded';
+export { CaptchaNeededError } from './api/vk/CaptchaNeededError';
+export { MessageNotAllowedError } from './api/vk/MessageNotAllowedError';
+export { RecipientNotFoundError } from './api/vk/RecipientNotFoundError';
 export { UserIsBlockedError } from './api/vk/UserIsBlockedError';
+
+export { VkAccountAlreadyExistsError } from './api/vkAccounts/VkAccountAlreadyExistsError';

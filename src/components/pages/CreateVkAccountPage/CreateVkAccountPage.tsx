@@ -3,7 +3,7 @@ import css from './CreateVkAccountPage.module.scss';
 import { VkAccountsAPI } from '~/api';
 import { useIsFirstRender } from '~/hooks/render';
 import { routes } from '~/router/routes';
-import { VkAccountAlreadyExists } from '~/api/errors';
+import { VkAccountAlreadyExistsError } from '~/api/errors';
 import { AlreadyExistsBlock, SomethingWentWrong } from './ErrorBlock';
 
 type CreateVkAccountPageProps = {
@@ -21,7 +21,7 @@ export const CreateVkAccountPage: FC<CreateVkAccountPageProps> = (props) => {
             })
             .catch((err) => {
                 console.error(err);
-                if (err instanceof VkAccountAlreadyExists) {
+                if (err instanceof VkAccountAlreadyExistsError) {
                     setBlock(<AlreadyExistsBlock/>);
                 }
                 else {

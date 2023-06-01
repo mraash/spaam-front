@@ -38,7 +38,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
                 window.location.href = defaultPrivateRoute();
             }
             catch (err: any) {
-                if (err instanceof ApiErrors.InvalidCredentials) {
+                if (err instanceof ApiErrors.InvalidCredentialsError) {
                     formik.setErrors({
                         email: 'Invalid credentials.',
                         password: 'Invalid credentials.',
